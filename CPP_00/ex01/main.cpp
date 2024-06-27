@@ -1,50 +1,50 @@
 #include <iostream>
 #include <string>
-#include <vector>
+#include "PhoneBook.class.hpp"
+#include "Contact.class.hpp"
 
-class Contact
-{
-private:
-    std::string name;
-    int phone;
 
-public:
-    // Constructor
-    Contact(std::string name, int phone) : name(name), phone(phone) {}
+void displayMenu() {
+    std::cout << "********************************************\n";
+    std::cout << "*                                          *\n";
+    std::cout << "*       📞 Welcome to Phonebook! 📞        *\n";
+    std::cout << "*                                          *\n";
+    std::cout << "*     What would you like to do?           *\n";
+    std::cout << "*                                          *\n";
+    std::cout << "*    ✨ Type 'ADD' to add a contact        *\n";
+    std::cout << "*    🔍 Type 'SEARCH' to find a contact    *\n";
+    std::cout << "*    ❌ Type 'EXIT' to close app           *\n";
+    std::cout << "*                                          *\n";
+    std::cout << "*******************************************\n";
+}
 
-    // Method to display contact details
-    void display() const
-    {
-        std::cout << "Name: " << name << std::endl;
-        std::cout << "Phone: " << phone << std::endl;
-    }
-};
-
-class PhoneBook
-{
-private:
-    std::vector<Contact> contacts;
-
-public:
-    // Method to add a contact to the phone book
-    void addContact(const Contact& contact)
-    {
-        contacts.push_back(contact);
-    }
-};
-
-int main()
-{
-    // Create a PhoneBook object
+int main() {
+    displayMenu();
     PhoneBook phoneBook;
+    std::string cmd;
 
-    // Create a Contact object
-    Contact contact("Yuma", 608473761);
+    while (true) {
+        std::cout << "\033[1;35m";
+        std::cout << "Enter your command (ADD, SEARCH or EXIT): " << "\n";
+        std::cin >> cmd;
+        std::cout << "\033[0m";
 
-    // Add the contact to the phone book
-    phoneBook.addContact(contact);
-
-    contact.display();
+        if (cmd == "ADD")
+            phoneBook.set_contact();
+        else if (cmd == "SEARCH")
+            phoneBook.search_contacts();
+        else if (cmd == "EXIT") 
+        {
+            std::cout << "❌ Exiting the phonebook. Goodbye!\n";
+            return 0;
+        } 
+        else
+        {
+        std::cout << "\033[1;31m";
+        std::cout << "❗ Oops! Looks like that command took a wrong turn at Albuquerque. Let's try something different, shall we 🤔😅?.\n";
+        std::cout << "\033[0m";
+        }
+    }
 
     return 0;
 }

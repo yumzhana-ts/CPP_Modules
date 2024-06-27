@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/yumzhana/Desktop/42Prague/CPP_Modules/CPP_00/ex01",
+      "program": "/Users/yumzhana/Desktop/42Prague/CPP_Modules/CPP_00/ex01/build/Debug/outDebug"
+    }
+  ]
+}

@@ -13,11 +13,14 @@ int main(int argc, char **argv)
 			l = 0;
 			while (argv[i][l])
 			{
-				std::cout << (char)toupper(argv[i][l]);
+				if(isalpha(argv[i][l]))
+					argv[i][l] = std::toupper(argv[i][l]);
+				std::cout << argv[i][l];
 				l++;
 			}
 			i++;
 		}
+		std::cout << std::endl;
 	}
 	else
 		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
