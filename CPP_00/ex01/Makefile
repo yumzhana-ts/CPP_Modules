@@ -1,7 +1,7 @@
 NAME		=	phonebook
-SRCS		=	main.cpp src/Contact.class.cpp src/PhoneBook.class.cpp
+SRCS		=	phonebook.cpp src/Contact.class.cpp src/PhoneBook.class.cpp
 OBJS		=	$(SRCS:.cpp=.o)
-CPPFLAGS	=	-Wall -Werror -Wextra -pedantic -g -std=c++98 -I. -Iinclude
+CPPFLAGS	=	-Wall -Werror -Wextra -std=c++98 -I. -Iinclude
 CPP			=	c++
 
 all:		$(NAME)

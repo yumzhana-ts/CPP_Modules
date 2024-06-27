@@ -13,7 +13,7 @@ int main(int argc, char **argv)
 			l = 0;
 			while (argv[i][l])
 			{
-				if(isalpha(argv[i][l]))
+				if(std::isalpha(argv[i][l]))
 					argv[i][l] = std::toupper(argv[i][l]);
 				std::cout << argv[i][l];
 				l++;

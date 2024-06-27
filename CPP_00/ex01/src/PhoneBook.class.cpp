@@ -1,8 +1,9 @@
 #include "PhoneBook.class.hpp"
 #include <iomanip>
+#include <cstdlib> // Required for std::atoi
 
 //constructor & desctructor
-PhoneBook::PhoneBook()
+PhoneBook::PhoneBook() : current_index(0) 
 {}
 
 PhoneBook::~PhoneBook()
@@ -16,7 +17,6 @@ bool PhoneBook::set_contact()
 
     std::string name, surname, nickname, phone, darkest_secret;
     std::cout << "Name:";
-    std::getline(std::cin, name);
     std::getline(std::cin, name);
     std::cout << "Surname:";
     std::getline(std::cin, surname);
@@ -66,19 +66,21 @@ void PhoneBook::search_contacts()
 {
     display_contacts();
     
-    int n;
+    std::string contact;
     std::cout << "Please enter the contact number to display:🔍" << std::endl;
-    std::cin >> n;
+    std::getline(std::cin, contact);
+    int n = std::atoi(contact.c_str());
+
     if (n > 0 && n <= size)
     {
     std::cout << "**********************************************\n";
     std::cout << "*       📞 Contact information 📞            *\n";
     std::cout << "**********************************************\n";
-    std::cout << "First name: " << ": "<< contacts[n-1].get_name() << std::endl;
-    std::cout << "Last name: " << ": "<< contacts[n-1].get_surname() << std::endl;
-    std::cout << "Nickname: " << ": "<< contacts[n-1].get_nickname() << std::endl;
-    std::cout << "Phone number: " << ": "<< contacts[n-1].get_phone_number() << std::endl;
-    std::cout << "Darkest secret: " << ": "<< contacts[n-1].get_secret() << std::endl;
+    std::cout << "First name: " << contacts[n-1].get_name() << std::endl;
+    std::cout << "Last name: " << contacts[n-1].get_surname() << std::endl;
+    std::cout << "Nickname: " << contacts[n-1].get_nickname() << std::endl;
+    std::cout << "Phone number: " << contacts[n-1].get_phone_number() << std::endl;
+    std::cout << "Darkest secret: " << contacts[n-1].get_secret() << std::endl;
     std::cout << "**********************************************\n";
  
     }

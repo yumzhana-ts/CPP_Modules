@@ -26,7 +26,7 @@ int main() {
     while (true) {
         std::cout << "\033[1;35m";
         std::cout << "Enter your command (ADD, SEARCH or EXIT): " << "\n";
-        std::cin >> cmd;
+        std::getline(std::cin, cmd);
         std::cout << "\033[0m";
 
         if (cmd == "ADD")
