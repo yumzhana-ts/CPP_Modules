@@ -1,5 +1,7 @@
 #include "Account.hpp"
 #include <iostream>
+#include <iomanip>
+#include <ctime>
 
 int Account::_nbAccounts = 0;
 int Account::_totalAmount = 0;
@@ -27,6 +29,7 @@ int	Account::getNbWithdrawals( void )
 }
 void	Account::displayAccountsInfos( void )
 {
+    _displayTimestamp();
     std::cout << "accounts:" << _nbAccounts << ";";
     std::cout << "total:"<< _totalAmount << ";";
     std::cout << "deposits:"<< _totalNbDeposits << ";";
@@ -35,6 +38,7 @@ void	Account::displayAccountsInfos( void )
 
 Account::Account(int initial_deposit): _accountIndex(_nbAccounts++), _amount(initial_deposit)
 {
+    _displayTimestamp();
     std::cout << "index:" << _accountIndex << ";";
     std::cout << "amount:" << _amount<< ";";
     std::cout << "created" << std::endl;
@@ -43,6 +47,7 @@ Account::Account(int initial_deposit): _accountIndex(_nbAccounts++), _amount(ini
 
 Account::~Account( void )
 {
+    _displayTimestamp();
     std::cout << "index:" << _accountIndex << ";";
     std::cout << "amount:" << _amount<< ";";
     std::cout << "closed" << std::endl;
@@ -53,7 +58,7 @@ void	Account::makeDeposit( int deposit )
     _nbDeposits++;
     _totalNbDeposits++;
     _totalAmount += deposit;
-    
+    _displayTimestamp();
     std::cout << "index:" << _accountIndex << ";";
     std::cout << "p_amount:" << _amount<< ";";
     std::cout << "deposit:"<< deposit << ";";
@@ -65,6 +70,7 @@ void	Account::makeDeposit( int deposit )
 //no idea
 bool	Account::makeWithdrawal( int withdrawal )
 {
+    _displayTimestamp();
     std::cout << "index:" << _accountIndex << ";";
     std::cout << "p_amount:" << _amount<< ";";
     if((_amount - withdrawal) > 0)
@@ -87,11 +93,30 @@ int		Account::checkAmount( void ) const
 }
 void	Account::displayStatus( void ) const
 {
+    _displayTimestamp();
     std::cout << "index:" << _accountIndex << ";";
     std::cout << "amount:" << _amount<< ";";
     std::cout << "deposits:"<< _nbDeposits << ";";
     std::cout << "withdrawals:"<< _nbWithdrawals << std::endl;
 }
-void	Account::_displayTimestamp( void ){}
+
+void	Account::_displayTimestamp(void)
+{
+	std::time_t time_now;
+	time_now = std::time(NULL);
+	tm tm = *(std::localtime(&time_now));
+	std::cout << "["
+	<< tm.tm_year + 1900
+	<< std::setfill('0') << std::setw(2) << tm.tm_mon + 1
+	<< std::setfill('0') << std::setw(2) << tm.tm_mday
+	<< "_"
+	<< std::setfill('0') << std::setw(2) << tm.tm_hour
+	<< std::setfill('0') << std::setw(2) << tm.tm_min
+	<< std::setfill('0') << std::setw(2) << tm.tm_sec
+	<< "] ";
+}
+
+
+
 Account::Account( void ){}
 
