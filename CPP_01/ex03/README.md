@@ -1,4 +1,4 @@
-#Pointer vs Reference in class
+# Pointer vs Reference in class
 
 ## In which case do you think it would be best to use a pointer to
 Weapon? And a reference to Weapon? Why? 

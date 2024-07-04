@@ -1,4 +1,4 @@
-#Array of zombies on Heap 
+# Array of zombies on Heap 
 
 ## Memory Management:
 - Allocation: New + Zombie[n] - allocates memory for an array of N Zombie objects.
