@@ -6,7 +6,7 @@
 #    By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/05 18:06:28 by ytsyrend          #+#    #+#              #
-#    Updated: 2024/07/05 18:20:40 by ytsyrend         ###   ########.fr        #
+#    Updated: 2024/07/07 03:25:51 by ytsyrend         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,16 +23,26 @@ RM 			= 	rm -rf
 OBJS_DIR 	= 	objs
 SRC_DIRS 	= 	srcs
 
+MAIN 		= 	$(SRC_DIRS)/main.cpp
+TEST 		= 	$(SRC_DIRS)/tests.cpp
+COMMON_SRCS =	$(SRC_DIRS)/Fixed.class.cpp
+
 # Source and Object Files
-SRCS 		= 	$(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.cpp))
+SRCS 		= 	$(COMMON_SRCS) $(MAIN)
+TEST_SRCS 	= 	$(COMMON_SRCS) $(TEST)
 OBJS 		= 	$(SRCS:%.cpp=$(OBJS_DIR)/%.o)
+TEST_OBJS 	= 	$(TEST_SRCS:%.cpp=$(OBJS_DIR)/%.o)
 
 all : $(OBJS_DIR) $(NAME)
 
 # Compile and Link the Project
 $(NAME) : $(OBJS)
 	$(CPP) $(CPPFLAGS) $^ -o $@
-	@echo "Compilation successful."
+	@echo "main: Compilation successful."
+
+test : $(TEST_OBJS)
+	$(CPP) $(CPPFLAGS) $^ -o $@
+	@echo "test: Compilation successful."
 
 
 # Compile Source Files into Object Files
@@ -40,9 +50,11 @@ $(OBJS_DIR)/%.o: %.cpp | $(OBJS_DIR)
 	@mkdir -p $(@D)
 	$(CPP) $(CPPFLAGS) -c $< -o $@
 
+
 # Create the Object File Directory
 $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)/$(SRC_DIRS)
+
 
 # Clean Objects and Executable
 clean :
@@ -50,7 +62,11 @@ clean :
 	@echo "Object files and directory cleaned."
 
 fclean : clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) 
+	@echo "Executable removed."
+
+tclean : clean
+	$(RM) test
 	@echo "Executable removed."
 
 
@@ -64,7 +80,9 @@ valgrind_leaks: re
 
 
 # Define symbolic constants for color codes
-BOLD_CYAN=\033[1;36m
+CYAN=\033[1;36m
+GREEN=\033[1;32m"
 RESET_COLOR=\033[0m
+
 
 .PHONY : clean fclean re all bonus

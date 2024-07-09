@@ -6,7 +6,7 @@
 #    By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/05 18:06:28 by ytsyrend          #+#    #+#              #
-#    Updated: 2024/07/05 18:20:40 by ytsyrend         ###   ########.fr        #
+#    Updated: 2024/07/06 00:48:04 by ytsyrend         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,9 @@ valgrind_leaks: re
 
 
 # Define symbolic constants for color codes
-BOLD_CYAN=\033[1;36m
+CYAN=\033[1;36m
+GREEN=\033[1;32m"
 RESET_COLOR=\033[0m
+
 
 .PHONY : clean fclean re all bonus
