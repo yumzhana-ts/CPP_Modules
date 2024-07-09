@@ -1,6 +1,6 @@
 ## Subject: BSP
 
-## Rule of Orientation:
+# Rule of Orientation:
 - Positive Orientation: If all cross products are positive, then point P lies inside triangle ABC.
 - Negative Orientation: If all cross products are negative, then point P also lies inside triangle ABC.
 - Mixed Orientation: If the orientations are mixed (e.g., one positive and another negative), 

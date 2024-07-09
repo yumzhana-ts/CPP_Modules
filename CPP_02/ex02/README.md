@@ -1,8 +1,8 @@
-## Subject: Now we’re talking
+# Subject: Now we’re talking
 
-## Study: 
+# Study: 
 
-# Arithmetic operator overload
+## Arithmetic operator overload
 
 Make operation on raw bits and make conversion to float value that is passed to function.
 For multiplication and division scale fractional bits, these methods ensure accurate arithmetic operations for fixed-point numbers.
@@ -21,7 +21,7 @@ preserve the precision of the fractional part.
 This is done by scaling the numerator left by the number of fractional bits before 
 performing the division.
 
-# Static member function 
+## Static member function 
 
 A static member function is a function that belongs to the class 
 rather than to instances (objects) of the class.

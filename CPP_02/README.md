@@ -30,7 +30,7 @@ This approach leverages the advantages of fixed-point arithmetic,
 such as increased efficiency and predictability, 
 especially in resource-constrained environments or applications requiring precise numerical behavior.
 
-# Advantages
+## Advantages
 - Efficiency: Integer arithmetic operations are typically faster than floating-point operations, 
 making fixed-point arithmetic more efficient in resource-constrained environments.
 
