@@ -43,5 +43,5 @@ Example: value = B::value
 
 
 Step 3: 
-
+checking git name
 
