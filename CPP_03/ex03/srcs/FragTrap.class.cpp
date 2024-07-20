@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   template.class.cpp                                 :+:      :+:    :+:   */
+/*   FragTrap.class.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:24:16 by ytsyrend          #+#    #+#             */
-/*   Updated: 2024/07/13 03:53:46 by ytsyrend         ###   ########.fr       */
+/*   Updated: 2024/07/15 19:06:18 by ytsyrend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Template_c.class.hpp"
+#include "FragTrap.class.hpp"
+#include "ClapTrap.class.hpp"
 
 /****************************************************/
 /*                    Constructor                   */
 /****************************************************/
 
-Template_c::Template_c(void) 
+FragTrap ::FragTrap (std::string n): ClapTrap(n)
 {
-    if (DEBUG){ std::cout << GREEN << "[Template_c] Template - Default Constructor called" << RESET_COLOR << std::endl;}
+    hit_points = 100;
+    energy_points = 100;
+    attack_damage = 30;
+    if (DEBUG){ std::cout << GREEN << "[FragTrap] Default Constructor called" << RESET_COLOR << std::endl;}
 }
-//Template_c(std::string n = "Unkown"): name(n)
+//FragTrap (std::string n = "Unkown"): name(n)
 
-Template_c::Template_c(const Template_c& src) 
+FragTrap ::FragTrap (const FragTrap & src) : ClapTrap(src) 
 {
-    if (DEBUG){std::cout << GREEN << "[Template_c] Template - Copy Constructor called" << RESET_COLOR << std::endl;}
+    if (DEBUG){std::cout << GREEN << "[FragTrap] Copy Constructor called" << RESET_COLOR << std::endl;}
     *this = src;
 }
 
@@ -32,9 +36,9 @@ Template_c::Template_c(const Template_c& src)
 /*                    Destructor.                   */
 /****************************************************/
 
-Template_c::~Template_c(void) 
+FragTrap ::~FragTrap (void) 
 {
-    if (DEBUG){std::cout << GREEN << "[Template_c] Template - Destructor called" << RESET_COLOR << std::endl;}
+    if (DEBUG){std::cout << GREEN << "[FragTrap] Destructor called" << RESET_COLOR << std::endl;}
 }
 
 /****************************************************
@@ -42,14 +46,24 @@ Template_c::~Template_c(void)
 ****************************************************/
 
 
-Template_c& Template_c::operator=(const Template_c& rhs) 
+FragTrap & FragTrap ::operator=(const FragTrap & rhs) 
 {
-    if (DEBUG){std::cout << GREEN << "[Template_c] Copy assignment operator called" << std::endl;}
+    if (DEBUG){std::cout << GREEN << "[FragTrap] Copy assignment operator called" << std::endl;}
     if (this != &rhs)
-        this->value = rhs.get_value();
+    {
+        this->name = rhs.name;
+        this->hit_points = rhs.hit_points;
+        this->energy_points = rhs.energy_points;
+        this->attack_damage = rhs.attack_damage;
+    
+    }
     return (*this);
 }
 
 /****************************************************
 *                 Memeber Functions                *
 ****************************************************/
+
+void FragTrap::high_fives_guys() {
+    std::cout << BLUE << "FragTrap " << this->name << " requests a positive high five!" << RESET_COLOR << std::endl;
+}
