@@ -11,23 +11,24 @@
 /* ************************************************************************** */
 
 #include "DiamondTrap.class.hpp"
-#include "DiamondTrap.class.hpp"
+#include "FragTrap.class.hpp"
+#include "ScavTrap.class.hpp"
 #include "ClapTrap.class.hpp"
 
 /****************************************************/
 /*                    Constructor                   */
 /****************************************************/
 
-DiamondTrap ::DiamondTrap (std::string n): ClapTrap(n)
+DiamondTrap ::DiamondTrap (std::string n): ClapTrap(n), FragTrap(n), ScavTrap(n)
 {
-    hit_points = 100;
-    energy_points = 100;
-    attack_damage = 30;
+    hit_points = FragTrap::hit_points;
+    energy_points = ScavTrap::energy_points;
+    attack_damage = FragTrap::attack_damage;
     if (DEBUG){ std::cout << GREEN << "[DiamondTrap] Default Constructor called" << RESET_COLOR << std::endl;}
 }
 //DiamondTrap (std::string n = "Unkown"): name(n)
 
-DiamondTrap ::DiamondTrap (const DiamondTrap & src) : ClapTrap(src) 
+DiamondTrap ::DiamondTrap (const DiamondTrap & src) : ClapTrap(src), FragTrap(src), ScavTrap(src)
 {
     if (DEBUG){std::cout << GREEN << "[DiamondTrap] Copy Constructor called" << RESET_COLOR << std::endl;}
     *this = src;
@@ -65,6 +66,7 @@ DiamondTrap & DiamondTrap ::operator=(const DiamondTrap & rhs)
 *                 Memeber Functions                *
 ****************************************************/
 
-void DiamondTrap::high_fives_guys() {
-    std::cout << BLUE << "DiamondTrap " << this->name << " requests a positive high five!" << RESET_COLOR << std::endl;
+void DiamondTrap::attack(const std::string& target)
+{
+    ScavTrap::attack(target);
 }
