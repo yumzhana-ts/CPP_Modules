@@ -17,7 +17,7 @@
 
 int main() 
 {
-/*     ClapTrap obj1("Yuma");
+    ClapTrap obj1("Yuma");
     obj1.attack("creature");
     obj1.print_state();
     obj1.take_damage(2);
@@ -42,7 +42,7 @@ int main()
     obj3.be_repaired(2);
     obj3.high_fives_guys();
     obj3.print_state();   
- */
+
     DiamondTrap obj4("Lo");
     obj4.attack("creature");
     obj4.print_state();
@@ -52,5 +52,6 @@ int main()
     obj4.high_fives_guys();
     obj4.guard_gate();
     obj4.print_state();
+    obj4.who_am_i();
     return (0);
 }

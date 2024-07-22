@@ -57,8 +57,10 @@ int main()
                     break;
                 }
                 else
+                {
                     std::cout << "Please enter valid target" << std::endl;
                     break;
+                }
             case 2:;
                 obj1.take_damage(damage);
                 obj1.print_state();

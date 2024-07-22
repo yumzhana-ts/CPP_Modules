@@ -6,7 +6,7 @@
 /*   By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:24:01 by ytsyrend          #+#    #+#             */
-/*   Updated: 2024/07/21 02:23:51 by ytsyrend         ###   ########.fr       */
+/*   Updated: 2024/07/16 14:39:07 by ytsyrend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ public:
 
     void attack(const std::string& target);
     void who_am_i();
+
+
+    int get_hit_points(void) const {return (this->hit_points);}
+    int get_energy_points(void) const {return (this->energy_points);}
+    int get_attack_damage(void) const {return (this->attack_damage);}
 };
 
 

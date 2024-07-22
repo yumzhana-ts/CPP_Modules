@@ -6,7 +6,7 @@
 /*   By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:24:01 by ytsyrend          #+#    #+#             */
-/*   Updated: 2024/07/21 02:27:23 by ytsyrend         ###   ########.fr       */
+/*   Updated: 2024/07/16 14:34:36 by ytsyrend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,15 @@
 /*                    Constructor                   */
 /****************************************************/
 
-DiamondTrap ::DiamondTrap (std::string n): ClapTrap(n + "_clap_name"), FragTrap(n), ScavTrap(n), name(name)
+DiamondTrap ::DiamondTrap (std::string n): ClapTrap(n + "_clap_name"), FragTrap(n), ScavTrap(n)
 {
+    name = n;
     hit_points = FragTrap::hit_points;
     energy_points = ScavTrap::energy_points;
     attack_damage = FragTrap::attack_damage;
     if (DEBUG){ std::cout << GREEN << "[DiamondTrap] Default Constructor called" << RESET_COLOR << std::endl;}
 }
+//DiamondTrap (std::string n = "Unkown"): name(n)
 
 DiamondTrap ::DiamondTrap (const DiamondTrap & src) : ClapTrap(src), FragTrap(src), ScavTrap(src)
 {
@@ -68,4 +70,10 @@ DiamondTrap & DiamondTrap ::operator=(const DiamondTrap & rhs)
 void DiamondTrap::attack(const std::string& target)
 {
     ScavTrap::attack(target);
+}
+
+void DiamondTrap::who_am_i()
+{
+    std::cout << BLUE << "ClapTrap's name:" << ClapTrap::name<< std::endl;
+    std::cout << BLUE << "Diamond's name:" << this->name<< RESET_COLOR << std::endl;
 }

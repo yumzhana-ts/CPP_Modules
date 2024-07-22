@@ -5,7 +5,7 @@
 Create DiamondTrap: 
 2 classes derived from ScavTrap & FragTrap
 - attributes: 
-    - give exact variable name (use this?)
+    - give exact variable name ()
     - ClapTrap::name (parameter of the constructor)
 
 Initialize parameters different classes
@@ -17,8 +17,6 @@ Step 1: Diamond inheritance problem
 The diamond problem in multiple inheritance arises when a class inherits from two classes 
 that both derive from a common base class, creating a diamond-shaped inheritance diagram. 
 This can lead to ambiguity and potential issues in the derived class.
-
-
              A (ClapTrap)
             / \
 (FragTrap) B   C (ScavTrap)
@@ -41,7 +39,7 @@ Step 2: Inherited attributes
 By explicitly specifying inherited attribues of which base class is used.
 Example: value = B::value
 
+Step 3: Variable names
+It is possisble to make initialized base class attribute and set this attribute, so base class attribute and instance attrbute would get different names.
 
-Step 3: 
-checking git name
 
