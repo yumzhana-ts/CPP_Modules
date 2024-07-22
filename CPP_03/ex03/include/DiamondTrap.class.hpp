@@ -6,7 +6,7 @@
 /*   By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:24:01 by ytsyrend          #+#    #+#             */
-/*   Updated: 2024/07/16 14:39:07 by ytsyrend         ###   ########.fr       */
+/*   Updated: 2024/07/21 02:23:51 by ytsyrend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 
 class DiamondTrap : public FragTrap, public ScavTrap
 {
+private:
+    std::string name;
 public:
     DiamondTrap (std::string n);
     ~DiamondTrap (void);
