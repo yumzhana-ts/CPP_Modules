@@ -17,7 +17,10 @@
 
 int main()
 {
-    AAnimal j;
-    j->get_type();
+    const AAnimal* j = new Dog();    
+    const AAnimal* i = new Cat();
+    
+    delete j;
+    delete i;
+    return 0;
 }
-

@@ -113,11 +113,11 @@ void delete_array(Animal* array[], int size)
     {
         if (array[c] != NULL)
         {
-            delete array[c];
             if(array[c]->get_type() == "Cat")
                 std::cout << c + 1 << " " << array[c]->get_type() << " gracefully slipped out of the presentation hall with a flick of its tail." << std::endl;
             if(array[c]->get_type() == "Dog")
                 std::cout << c + 1<< " " << array[c]->get_type() << " exited the presentation hall with a cheerful wag of its tail." << std::endl;
+            delete array[c];
         }
         c++;
     }
@@ -131,5 +131,6 @@ int main()
     std::cout << BLUE <<  "A total of " << i <<  " animals — half energetic dogs and half sharp-witted cats \n— invited for a global presentation on the impact of AI in enhancing animal lives." << RESET_COLOR << "\n"<<std::endl;
     //fill_array(array, i);
     fill_array_copy(array, i);
+    //fill_array_deep_copy(array, i);
     delete_array(array, i);
 }

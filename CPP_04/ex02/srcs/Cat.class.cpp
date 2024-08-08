@@ -50,8 +50,7 @@ Cat& Cat::operator=(const Cat& rhs)
     if (this != &rhs)
     {
         this->type = rhs.type;
-        if (this->brain)
-            delete this->brain;
+        delete brain;
         brain = new Brain(*rhs.brain);
     }
     return (*this);

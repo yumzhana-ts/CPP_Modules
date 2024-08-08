@@ -36,10 +36,12 @@ public:
     virtual void unequip(int idx);
     virtual void use(int idx, ICharacter& target);
     void print_inventory() const;
+
+    static void cleanup_floor();
 };
 
 
-#define DEBUG 0
+#define DEBUG 1
 // Define ANSI escape sequences for colors
 #define RESET_COLOR "\033[0m"
 #define BLACK "\033[0;30m"

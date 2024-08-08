@@ -50,8 +50,7 @@ Dog& Dog::operator=(const Dog& rhs)
     if (this != &rhs)
     {
         this->type = rhs.type;
-        if (this->brain)
-            delete this->brain;
+         delete brain;
         this->brain = new Brain(*rhs.brain);
     }
     return (*this);

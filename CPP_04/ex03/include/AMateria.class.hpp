@@ -22,8 +22,8 @@ protected:
 public:
     AMateria(std::string const &type);
     virtual ~AMateria(void);
-    //AMateria(const AMateria& other);
-    //AMateria& operator=(const AMateria& other);
+    AMateria(const AMateria& other);
+    AMateria& operator=(const AMateria& other);
 
     //get&set
     std::string const& get_type() const{return this->type;} //Returns the metria type
@@ -32,7 +32,7 @@ public:
 };
 
 
-#define DEBUG 0
+#define DEBUG 1
 // Define ANSI escape sequences for colors
 #define RESET_COLOR "\033[0m"
 #define BLACK "\033[0;30m"

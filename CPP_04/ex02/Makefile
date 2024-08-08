@@ -16,7 +16,7 @@ NAME        = main
 CPP         = c++
 
 # Compiler Flags
-CPPFLAGS    = -Wall -Werror -Wextra -fsanitize=address -g -std=c++98 -I. -Iinclude -IAAnimals/include
+CPPFLAGS    = -Wall -Werror -Wextra -std=c++98 -I. -Iinclude -IAAnimals/include
 #CPPFLAGS    = -Wall -Werror -Wextra -std=c++98 -I. -Iinclude
 RM          = rm -rf
 

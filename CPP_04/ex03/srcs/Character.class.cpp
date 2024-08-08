@@ -20,6 +20,12 @@ AMateria* Character::floor[3] = {NULL};
 Character::Character(std::string n): name(n)
 {
     if (DEBUG){ std::cout << GREEN << "[Character] Default Constructor called" << RESET_COLOR << std::endl;}
+    int i = 0;
+    while (i < 4) 
+    {
+        inventory[i] = NULL;
+        ++i;
+    }
 }
 //Character(std::string n = "Unkown"): name(n)
 
@@ -83,9 +89,10 @@ Character& Character::operator=(const Character& rhs)
 void Character::equip(AMateria* m)
 {
     int i = 0;
-    if (m == NULL) {
+    if (m == NULL) 
+    {
         std::cout << RED << "Equipment failed: Invalid materia." << RESET_COLOR << std::endl;
-        return;
+        return ;
     }
     while(i < 4 && this->inventory[i] != NULL)
         i++;
@@ -95,7 +102,10 @@ void Character::equip(AMateria* m)
         std::cout << "Equipment successful: Item "<< inventory[i]->get_type() << " has been added to inventory." << std::endl;
     }
     else
+    {
+        delete m;
         std::cout << RED << "Equipment failed: Inventory is full." << RESET_COLOR << std::endl;
+    }
 }
 
 
@@ -109,7 +119,7 @@ void Character::unequip(int idx)
     }
     if (f < 3) 
     {
-        this->floor[f] = this->inventory[idx]->clone();
+        this->floor[f] = this->inventory[idx];
         this->inventory[idx] = NULL;
         std::cout << "Unequipment successful: Inventory has been left on the floor." << std::endl;
         f++;
@@ -170,4 +180,14 @@ void Character::print_inventory() const
     
     std::cout << "+---------------------------------------------------+" << std::endl;
     std::cout << "+---------------------------------------------------+" << std::endl;
+}
+
+void Character::cleanup_floor()
+{
+    int i = 0;
+    while (i < 3) 
+    {
+        delete floor[i];
+        ++i;
+    }
 }

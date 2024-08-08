@@ -153,11 +153,11 @@ void delete_array(AAnimal* array[], int size)
     {
         if (array[c] != NULL)
         {
-            delete array[c];
             if(array[c]->get_type() == "Cat")
                 std::cout << c + 1 << " " << array[c]->get_type() << " gracefully slipped out of the presentation hall with a flick of its tail." << std::endl;
             if(array[c]->get_type() == "Dog")
                 std::cout << c + 1<< " " << array[c]->get_type() << " exited the presentation hall with a cheerful wag of its tail." << std::endl;
+            delete array[c];
         }
         c++;
     }

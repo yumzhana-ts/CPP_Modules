@@ -19,6 +19,12 @@
 MateriaSource::MateriaSource(void) 
 {
     if (DEBUG){ std::cout << GREEN << "[MateriaSource] Default Constructor called" << RESET_COLOR << std::endl;}
+    int i = 0;
+    while(i < 4)
+    {
+        this->materia_array[i] = NULL;
+        i++;
+    }
 }
 //MateriaSource(std::string n = "Unkown"): name(n)
 
@@ -40,6 +46,12 @@ MateriaSource::MateriaSource(const MateriaSource& src)
 MateriaSource::~MateriaSource(void) 
 {
     if (DEBUG){std::cout << GREEN << "[MateriaSource] Destructor called" << RESET_COLOR << std::endl;}
+    int i = 0;
+    while(i < 4)
+    {
+        delete this->materia_array[i];
+        i++;
+    }
 }
 
 /****************************************************
@@ -69,10 +81,10 @@ MateriaSource& MateriaSource::operator=(const MateriaSource& rhs)
 void MateriaSource::learn_materia(AMateria* src)
 {
     static int i = 0;
-    if (src == NULL) {
+     if (src == NULL) {
         std::cout << RED << "Learning failed: Invalid materia." << RESET_COLOR << std::endl;
         return;
-    }
+    } 
     if (i < 4)
     {
         materia_array[i] = src;
@@ -80,7 +92,10 @@ void MateriaSource::learn_materia(AMateria* src)
         i++;
     }
     else
+    {
+        delete src;
         std::cout << RED << "Learning failed: 'Learned Items' list is full." << RESET_COLOR << std::endl;
+    }
 }
 
 void MateriaSource::print_materia()
@@ -90,10 +105,11 @@ void MateriaSource::print_materia()
     std::cout << "|              📜 **Learned Items** 🧙‍♂️             |" << std::endl;
     std::cout << "+---------------------------------------------------+" << std::endl;
     
-    if (this->materia_array[0] == nullptr) {
+    if (this->materia_array[0] == NULL)
         std::cout << RED << "🔴 List is empty" << RESET_COLOR << "               |" << std::endl;
-    } else {
-        while (this->materia_array[i] != nullptr) {
+    else 
+    {
+        while (i < 4 && this->materia_array[i] != NULL) {
             std::cout << " 🌟 Item " << i + 1 << ": " << this->materia_array[i]->get_type() << std::endl;
             i++;
         }

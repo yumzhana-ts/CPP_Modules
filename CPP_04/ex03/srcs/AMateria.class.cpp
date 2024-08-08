@@ -22,11 +22,11 @@ AMateria::AMateria(std::string const &type): type(type)
 }
 //AMateria(std::string n = "Unkown"): name(n)
 
-/* AMateria::AMateria(const AMateria& src) 
+AMateria::AMateria(const AMateria& src) 
 {
     if (DEBUG){std::cout << GREEN << "[AMateria] Copy Constructor called" << RESET_COLOR << std::endl;}
     *this = src;
-} */
+}
 
 /****************************************************/
 /*                    Destructor.                   */
@@ -42,13 +42,13 @@ AMateria::~AMateria(void)
 ****************************************************/
 
 
-/* AMateria& AMateria::operator=(const AMateria& rhs) 
+AMateria& AMateria::operator=(const AMateria& rhs) 
 {
     if (DEBUG){std::cout << GREEN << "[AMateria] Copy assignment operator called" << std::endl;}
     if (this != &rhs)
-        this->value = rhs.get_value();
+        this->type = rhs.type;
     return (*this);
-} */
+}
 
 /****************************************************
 *                 Memeber Functions                *

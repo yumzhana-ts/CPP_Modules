@@ -18,7 +18,7 @@
 #include "IMateriaSource.class.hpp"
 #include "MateriaSource.class.hpp"
 
-/* int main() 
+int main() 
 {
     std::string name;
     std::cout << BLUE "Welcome to Eldoria, \nwhere the ancient Tower of Elements stands tall amidst lush forests, shimmering lakes, and jagged mountains. \n" << std::endl;
@@ -32,7 +32,6 @@
     ICharacter* enemy = new Character("Morgath");
     std::cout << BLUE "In the shadowy depths of Eldoria, a dark force stirs: an enemy named " << enemy->get_name() << ", the Shadow Sorcerer. \nNow, he commands the power of shadow and decay, using his malevolent abilities to spread fear and chaos across the realm." << RESET_COLOR << std::endl;
     int action;
-    //int damage = 0;
     while(true)
     {
         std::cout << GREEN <<"Choose next action: create and equip Ice (1), create and equip Cure(2), unequip(3), use inventory(4)" << RESET_COLOR << std::endl;
@@ -99,5 +98,6 @@
     delete enemy; 
     delete me;
     delete src;
+    Character::cleanup_floor();
     return 0;
-} */
+}
