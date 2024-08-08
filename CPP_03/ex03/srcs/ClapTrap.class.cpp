@@ -6,7 +6,7 @@
 /*   By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:24:16 by ytsyrend          #+#    #+#             */
-/*   Updated: 2024/07/15 15:43:31 by ytsyrend         ###   ########.fr       */
+/*   Updated: 2024/07/29 16:51:06 by ytsyrend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ ClapTrap::~ClapTrap(void)
 
 ClapTrap& ClapTrap::operator=(const ClapTrap& rhs) 
 {
-    if (DEBUG){std::cout << GREEN << "[ClapTrap] Copy assignment operator called" << std::endl;}
+    if (DEBUG){std::cout << GREEN << "[ClapTrap] Copy assignment operator called" << RESET_COLOR <<  std::endl;}
     if (this != &rhs)
     {
         this->name = rhs.name;

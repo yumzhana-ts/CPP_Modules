@@ -6,7 +6,7 @@
 /*   By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:24:16 by ytsyrend          #+#    #+#             */
-/*   Updated: 2024/07/13 03:53:46 by ytsyrend         ###   ########.fr       */
+/*   Updated: 2024/07/29 13:56:01 by ytsyrend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@
 
 Template_c::Template_c(void) 
 {
-    if (DEBUG){ std::cout << GREEN << "[Template_c] Template - Default Constructor called" << RESET_COLOR << std::endl;}
+    if (DEBUG){ std::cout << GREEN << "[Template_c] Default Constructor called" << RESET_COLOR << std::endl;}
 }
 //Template_c(std::string n = "Unkown"): name(n)
 
 Template_c::Template_c(const Template_c& src) 
 {
-    if (DEBUG){std::cout << GREEN << "[Template_c] Template - Copy Constructor called" << RESET_COLOR << std::endl;}
+    if (DEBUG){std::cout << GREEN << "[Template_c] Copy Constructor called" << RESET_COLOR << std::endl;}
     *this = src;
 }
 
@@ -34,7 +34,7 @@ Template_c::Template_c(const Template_c& src)
 
 Template_c::~Template_c(void) 
 {
-    if (DEBUG){std::cout << GREEN << "[Template_c] Template - Destructor called" << RESET_COLOR << std::endl;}
+    if (DEBUG){std::cout << GREEN << "[Template_c] Destructor called" << RESET_COLOR << std::endl;}
 }
 
 /****************************************************

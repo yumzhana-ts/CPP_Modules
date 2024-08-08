@@ -1,0 +1,84 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/07/05 18:06:28 by ytsyrend          #+#    #+#              #
+#    Updated: 2024/08/05 16:41:46 by ytsyrend         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME        = main
+
+# Compiler
+CPP         = c++
+
+# Compiler Flags
+CPPFLAGS    = -Wall -Werror -Wextra -fsanitize=address -g -std=c++98 -I. -Iinclude -IAAnimals/include
+#CPPFLAGS    = -Wall -Werror -Wextra -std=c++98 -I. -Iinclude
+RM          = rm -rf
+
+# Directories
+OBJS_DIR    = objs
+SRC_DIRS    = srcs
+
+MAIN        = $(SRC_DIRS)/main.cpp
+TEST        = $(SRC_DIRS)/tests.cpp
+COMMON_SRCS = $(SRC_DIRS)/Brain.class.cpp $(SRC_DIRS)/AAnimal.class.cpp $(SRC_DIRS)/Cat.class.cpp $(SRC_DIRS)/Dog.class.cpp
+
+# Source and Object Files
+SRCS        = $(COMMON_SRCS) $(MAIN)
+TEST_SRCS   = $(COMMON_SRCS) $(TEST)
+OBJS        = $(SRCS:%.cpp=$(OBJS_DIR)/%.o)
+TEST_OBJS   = $(TEST_SRCS:%.cpp=$(OBJS_DIR)/%.o)
+
+all: $(OBJS_DIR) $(NAME)
+
+# Compile and Link the Project
+$(NAME): $(OBJS)
+	$(CPP) $(CPPFLAGS) $^ -o $@
+	@echo "main: Compilation successful."
+
+test: $(TEST_OBJS)
+	$(CPP) $(CPPFLAGS) $^ -o $@
+	@echo "test: Compilation successful."
+
+# Compile Source Files into Object Files
+$(OBJS_DIR)/%.o: %.cpp | $(OBJS_DIR)
+	@mkdir -p $(@D)
+	$(CPP) $(CPPFLAGS) -c $< -o $@
+
+# Create the Object File Directory
+$(OBJS_DIR):
+	@mkdir -p $(OBJS_DIR)/$(SRC_DIRS) $(OBJS_DIR)/AAnimals/srcs
+
+# Clean Objects and Executable
+clean:
+	$(RM) $(OBJS_DIR)
+	@echo "Object files and directory cleaned."
+
+fclean: clean
+	$(RM) $(NAME)
+	@echo "Executable removed."
+
+tclean: clean
+	$(RM) test
+	@echo "Test executable removed."
+
+leaks: re
+	@echo "\033[1;33m\nChecking for memory leaks...\033[0m"
+	leaks --atExit -- ./$(NAME)
+
+valgrind_leaks: re
+	@echo "\033[1;33m\nChecking for memory leaks with valgrind...\033[0m"
+	valgrind --leak-check=full ./$(NAME)
+
+# Define symbolic constants for color codes
+CYAN=\033[1;36m
+GREEN=\033[1;32m
+RESET_COLOR=\033[0m
+
+.PHONY: clean fclean re all test leaks valgrind_leaks
+
