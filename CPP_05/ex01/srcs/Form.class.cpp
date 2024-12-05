@@ -11,13 +11,19 @@
 /* ************************************************************************** */
 
 #include "Form.class.hpp"
+#include "Bureaucrat.class.hpp"
 
 /****************************************************/
 /*                    Constructor                   */
 /****************************************************/
 
-Form::Form(std::string n, bool s, int gs, int ge): name(n), is_signed(s), grade_to_sign(gs), grade_to_execute(ge)
+Form::Form(std::string n, int gs, int ge): name(n), grade_to_sign(gs), grade_to_execute(ge)
 {
+    this->is_signed = false;
+    if (this->grade_to_sign > 150 || this->grade_to_execute > 150)
+        throw GradeTooLowException();
+    else if (this->grade_to_sign < 1 || this->grade_to_execute < 1)
+        throw GradeTooHighException();
     if (DEBUG){ std::cout << GREEN << "[Form] Default Constructor called" << RESET_COLOR << std::endl;}
 }
 
@@ -42,9 +48,11 @@ Form::~Form(void)
 
 Form& Form::operator=(const Form& rhs) 
 {
-    if (DEBUG){std::cout << GREEN << "[Form] Copy assignment operator called" << std::endl;}
+    if (DEBUG){std::cout << GREEN << "[Form] Copy assignment operator called" << RESET_COLOR << std::endl;}
     if (this != &rhs)
-        this->value = rhs.get_value();
+    {
+        this->is_signed = rhs.get_signed_state();
+    }
     return (*this);
 }
 
@@ -64,6 +72,14 @@ const char* Form::GradeTooLowException::what() const throw()
 
 std::ostream &operator<<(std::ostream & o, Form const &rhs)
 {
-    o << rhs.get_name() << ", bureaucrat grade " << rhs.get_grade();
+    o << "Form name: " << rhs.get_name() << "\nForm state: " << rhs.get_signed_state() << "\nPermission to execute: " << rhs.get_grade_to_execute() << "\nPermission to sign: " << rhs.get_grade_to_sign() << std::endl;
     return o;
+}
+
+void Form::be_signed(Bureaucrat const &person)
+{
+    if (person.get_grade() > this->get_grade_to_sign())
+        throw GradeTooLowException();
+    else
+        this->is_signed = true;
 }

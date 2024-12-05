@@ -25,7 +25,7 @@ SRC_DIRS 	= 	srcs
 
 MAIN 		= 	$(SRC_DIRS)/main.cpp
 TEST 		= 	$(SRC_DIRS)/tests.cpp
-COMMON_SRCS =	$(SRC_DIRS)/Bureaucrat.class.cpp
+COMMON_SRCS =	$(SRC_DIRS)/Bureaucrat.class.cpp $(SRC_DIRS)/Form.class.cpp
 
 # Source and Object Files
 SRCS 		= 	$(COMMON_SRCS) $(MAIN)

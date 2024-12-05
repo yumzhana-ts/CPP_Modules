@@ -30,6 +30,7 @@ public:
     int get_grade(void) const {return (this->grade);}
     void increment_grade();
     void decrement_grade();
+    void sign_form(Form &form);
 
     class GradeTooHighException: public std::exception
     {
@@ -41,8 +42,6 @@ public:
     public:
         const char* what() const throw();
     };
-
-    
 };
 
 std::ostream &operator<<(std::ostream & o, Bureaucrat const &rhs);

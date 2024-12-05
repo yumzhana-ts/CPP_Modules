@@ -18,12 +18,12 @@
 class Form
 {
 private:
-    const std::string name;
-    bool is_signed;
-    const int grade_to_sign;
-    const int grade_to_execute;
+    const       std::string name;
+    bool        is_signed;
+    const int   grade_to_sign;
+    const int   grade_to_execute;
 public:
-    Form(std::string n, bool s, int gs, int ge);
+    Form(std::string n, int gs, int ge);
     ~Form(void);
     Form(const Form& other);
     Form& operator=(const Form& other);
@@ -31,8 +31,9 @@ public:
     //get&set
     std::string get_name(void) const {return (this->name);}
     bool get_signed_state(void) const {return (this->is_signed);}
-    int get_grade_to_sign(void) const {(this->grade_to_sign);}
-    int get_grade_to_execute(void) const {(this->grade_to_execute);}
+    int get_grade_to_sign(void) const {return (this->grade_to_sign);}
+    int get_grade_to_execute(void) const {return (this->grade_to_execute);}
+    void be_signed(Bureaucrat const &person);
 
     class GradeTooHighException: public std::exception
     {

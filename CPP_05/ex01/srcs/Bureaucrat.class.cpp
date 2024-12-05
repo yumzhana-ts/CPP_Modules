@@ -11,42 +11,54 @@
 /* ************************************************************************** */
 
 #include "Bureaucrat.class.hpp"
+#include "Form.class.hpp"
 
 /****************************************************/
 /*                    Constructor                   */
 /****************************************************/
 
-Bureaucrat::Bureaucrat(int g, const std::string n): name(n), grade(g)
+Bureaucrat::Bureaucrat(int g, const std::string n) : name(n), grade(g)
 {
-    if (DEBUG){ std::cout << GREEN << "[Bureaucrat] Default Constructor called" << RESET_COLOR << std::endl;}
+    if (DEBUG)
+    {
+        std::cout << GREEN << "[Bureaucrat] Default Constructor called" << RESET_COLOR << std::endl;
+    }
     if (this->grade > 150)
         throw GradeTooLowException();
     else if (this->grade < 1)
         throw GradeTooHighException();
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& src): name(src.name), grade(src.grade) // Copy both members directly
+Bureaucrat::Bureaucrat(const Bureaucrat &src) : name(src.name), grade(src.grade) // Copy both members directly
 {
-    if (DEBUG) { std::cout << GREEN << "[Bureaucrat] Copy Constructor called" << RESET_COLOR << std::endl; }
+    if (DEBUG)
+    {
+        std::cout << GREEN << "[Bureaucrat] Copy Constructor called" << RESET_COLOR << std::endl;
+    }
 }
 
 /****************************************************/
 /*                    Destructor.                   */
 /****************************************************/
 
-Bureaucrat::~Bureaucrat(void) 
+Bureaucrat::~Bureaucrat(void)
 {
-    if (DEBUG){std::cout << GREEN << "[Bureaucrat] Destructor called" << RESET_COLOR << std::endl;}
+    if (DEBUG)
+    {
+        std::cout << GREEN << "[Bureaucrat] Destructor called" << RESET_COLOR << std::endl;
+    }
 }
 
 /****************************************************
-*                    Overload                      *
-****************************************************/
+ *                    Overload                      *
+ ****************************************************/
 
-
-Bureaucrat& Bureaucrat::operator=(const Bureaucrat& rhs) 
+Bureaucrat &Bureaucrat::operator=(const Bureaucrat &rhs)
 {
-    if (DEBUG){std::cout << GREEN << "[Bureaucrat] Copy assignment operator called" RESET_COLOR << std::endl;}
+    if (DEBUG)
+    {
+        std::cout << GREEN << "[Bureaucrat] Copy assignment operator called" RESET_COLOR << std::endl;
+    }
     if (this != &rhs)
     {
         this->grade = rhs.get_grade();
@@ -55,8 +67,8 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& rhs)
 }
 
 /****************************************************
-*                 Memeber Functions                *
-****************************************************/
+ *                 Memeber Functions                *
+ ****************************************************/
 
 void Bureaucrat::increment_grade()
 {
@@ -80,18 +92,29 @@ void Bureaucrat::decrement_grade()
     std::cout << BLUE "Bureaucrat is successfully leveled down" RESET_COLOR << std::endl;
 }
 
-const char* Bureaucrat::GradeTooHighException::what() const throw()
+const char *Bureaucrat::GradeTooHighException::what() const throw()
 {
-    return("Error: Grade out of range, must be more then 1");
+    return ("Error: Grade out of range, must be more then 1");
 }
 
-const char* Bureaucrat::GradeTooLowException::what() const throw()
+const char *Bureaucrat::GradeTooLowException::what() const throw()
 {
-    return("Error: Grade out of range, must be less then 150");
+    return ("Error: Grade out of range, must be less then 150");
 }
 
-std::ostream &operator<<(std::ostream & o, Bureaucrat const &rhs)
+std::ostream &operator<<(std::ostream &o, Bureaucrat const &rhs)
 {
     o << rhs.get_name() << ", bureaucrat grade " << rhs.get_grade();
     return o;
+}
+
+void Bureaucrat::sign_form(Form &form)
+{
+    if (form.get_signed_state() == true)
+        std::cout << this->name << " signed " << form.get_name() << std::endl;
+    else
+    {
+        std::cout << this->name << " couldn’t sign " << form.get_name() << "because ";
+        throw GradeTooLowException();
+    }
 }
