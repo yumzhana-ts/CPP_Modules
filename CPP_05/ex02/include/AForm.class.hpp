@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.class.hpp                                     :+:      :+:    :+:   */
+/*  AForm.class.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,15 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORM_CLASS_H
-#define FORM_CLASS_H
+#ifndef AForm_CLASS_H
+#define AForm_CLASS_H
 
 #include <iostream>
 #include "Bureaucrat.class.hpp"
 
 class Bureaucrat;
 
-class Form
+class AForm
 {
 private:
     const       std::string name;
@@ -26,10 +26,10 @@ private:
     const int   grade_to_sign;
     const int   grade_to_execute;
 public:
-    Form(std::string n, int gs, int ge);
-    ~Form(void);
-    Form(const Form& other);
-    Form& operator=(const Form& other);
+    AForm(std::string n, int gs, int ge);
+    ~AForm(void);
+    AForm(const AForm& other);
+    AForm& operator=(const AForm& other);
 
     //get&set
     std::string get_name(void) const {return (this->name);}
@@ -37,11 +37,11 @@ public:
     int get_grade_to_sign(void) const {return (this->grade_to_sign);}
     int get_grade_to_execute(void) const {return (this->grade_to_execute);}
     int be_signed(Bureaucrat &person);
-
-    
+    virtual void execute() = 0;
+    virtual void check_permission() = 0;
 };
 
-std::ostream &operator<<(std::ostream & o, Form const &rhs);
+std::ostream &operator<<(std::ostream & o,AForm const &rhs);
 
 #define DEBUG 1
 // Define ANSI escape sequences for colors

@@ -1,47 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.class.hpp                                     :+:      :+:    :+:   */
+/*   Bureaucrat.class.hpp                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:24:01 by ytsyrend          #+#    #+#             */
-/*   Updated: 2024/12/03 02:58:56 by ytsyrend         ###   ########.fr       */
+/*   Updated: 2024/12/03 02:50:48 by ytsyrend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORM_CLASS_H
-#define FORM_CLASS_H
+#ifndef BUREACRAT_CLASS_H
+#define BUREACRAT_CLASS_H
 
 #include <iostream>
-#include "Bureaucrat.class.hpp"
+#include "AForm.class.hpp"
 
-class Bureaucrat;
+class AForm;
 
-class Form
+class Bureaucrat
 {
 private:
-    const       std::string name;
-    bool        is_signed;
-    const int   grade_to_sign;
-    const int   grade_to_execute;
+    const std::string name;
+    int grade;
 public:
-    Form(std::string n, int gs, int ge);
-    ~Form(void);
-    Form(const Form& other);
-    Form& operator=(const Form& other);
+    Bureaucrat(int g, const std::string n);
+    ~Bureaucrat(void);
+    Bureaucrat(const Bureaucrat& other);
+    Bureaucrat& operator=(const Bureaucrat& other);
 
-    //get&set
     std::string get_name(void) const {return (this->name);}
-    bool get_signed_state(void) const {return (this->is_signed);}
-    int get_grade_to_sign(void) const {return (this->grade_to_sign);}
-    int get_grade_to_execute(void) const {return (this->grade_to_execute);}
-    int be_signed(Bureaucrat &person);
+    int get_grade(void) const {return (this->grade);}
+    void increment_grade();
+    void decrement_grade();
+    void sign_form(AForm &form);
 
-    
+    class GradeTooHighException: public std::exception
+    {
+    public:
+        const char* what() const throw();
+    };
+    class GradeTooLowException: public std::exception
+    {
+    public:
+        const char* what() const throw();
+    };
 };
 
-std::ostream &operator<<(std::ostream & o, Form const &rhs);
+std::ostream &operator<<(std::ostream & o, Bureaucrat const &rhs);
 
 #define DEBUG 1
 // Define ANSI escape sequences for colors
@@ -53,4 +59,5 @@ std::ostream &operator<<(std::ostream & o, Form const &rhs);
 #define WHITE "\033[0;37m"
 #define BOLD_BLACK "\033[1;30m"
 #define BG_WHITE "\033[0;47m"
+#define LINE "________________________________________________________________________"
 #endif
