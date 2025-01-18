@@ -16,13 +16,13 @@
 /*                    Constructor                   */
 /****************************************************/
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string t): target(t), AForm("Shrubbery", 145, 137) 
+ShrubberyCreationForm::ShrubberyCreationForm(std::string t): AForm("Shrubbery", 145, 137), target(t)
 {
     if (DEBUG){ std::cout << GREEN << "[ShrubberyCreationForm] Default Constructor called" << RESET_COLOR << std::endl;}
 }
 //ShrubberyCreationForm(std::string n = "Unkown"): name(n)
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& src): target(src.target), AForm("Shrubbery", 145, 137)
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& src): AForm("Shrubbery", 145, 137), target(src.target) 
 {
     if (DEBUG){std::cout << GREEN << "[ShrubberyCreationForm] Copy Constructor called" << RESET_COLOR << std::endl;}
     //*this = src;
@@ -44,11 +44,24 @@ ShrubberyCreationForm::~ShrubberyCreationForm(void)
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& rhs) 
 {
-    //if (DEBUG){std::cout << GREEN << "[ShrubberyCreationForm] Copy assignment operator called" << std::endl;}
-
+    if (DEBUG){std::cout << GREEN << "[ShrubberyCreationForm] Copy assignment operator called" << RESET_COLOR << std::endl;}
+    if (this != &rhs)
+    {
+        this->target= rhs.get_target();
+    }
     return (*this);
 }
 
 /****************************************************
 *                 Memeber Functions                *
 ****************************************************/
+
+int create_file(std::string target, int length);
+
+void ShrubberyCreationForm::execute() const
+{
+    create_file(this->target, 31);
+}
+
+
+

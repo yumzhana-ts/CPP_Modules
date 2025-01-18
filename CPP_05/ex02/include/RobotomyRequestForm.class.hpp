@@ -21,11 +21,13 @@ class RobotomyRequestForm: public AForm
 private:
     std::string target;
 public:
-    RobotomyRequestForm(void);
+    RobotomyRequestForm(std::string target);
     ~RobotomyRequestForm(void);
     RobotomyRequestForm(const RobotomyRequestForm& other);
     RobotomyRequestForm& operator=(const RobotomyRequestForm& other);
 
+    std::string get_target(void) const {return (this->target);}
+    void execute() const;
 };
 
 

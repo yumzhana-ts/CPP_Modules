@@ -27,7 +27,7 @@ private:
     const int   grade_to_execute;
 public:
     AForm(std::string n, int gs, int ge);
-    ~AForm(void);
+    virtual ~AForm(void);
     AForm(const AForm& other);
     AForm& operator=(const AForm& other);
 
@@ -37,8 +37,7 @@ public:
     int get_grade_to_sign(void) const {return (this->grade_to_sign);}
     int get_grade_to_execute(void) const {return (this->grade_to_execute);}
     int be_signed(Bureaucrat &person);
-    virtual void execute() = 0;
-    virtual void check_permission() = 0;
+    virtual void execute(Bureaucrat &person) const = 0;
 };
 
 std::ostream &operator<<(std::ostream & o,AForm const &rhs);
