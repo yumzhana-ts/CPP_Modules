@@ -6,7 +6,7 @@
 #    By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/05 18:06:28 by ytsyrend          #+#    #+#              #
-#    Updated: 2024/11/26 23:44:20 by ytsyrend         ###   ########.fr        #
+#    Updated: 2024/07/10 12:51:44 by ytsyrend         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRC_DIRS 	= 	srcs
 
 MAIN 		= 	$(SRC_DIRS)/main.cpp
 TEST 		= 	$(SRC_DIRS)/tests.cpp
-COMMON_SRCS =	$(SRC_DIRS)/BoogyWoogyException.class.cpp
+COMMON_SRCS =	$(SRC_DIRS)/ShrubberyCreationForm.class.cpp $(SRC_DIRS)/RobotomyRequestForm.class.cpp $(SRC_DIRS)/PresidentialPardonForm.class.cpp  $(SRC_DIRS)/Intern.class.cpp $(SRC_DIRS)/AForm.class.cpp $(SRC_DIRS)/Bureaucrat.class.cpp $(SRC_DIRS)/file_creation.cpp
 
 # Source and Object Files
 SRCS 		= 	$(COMMON_SRCS) $(MAIN)

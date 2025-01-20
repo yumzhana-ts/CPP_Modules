@@ -10,21 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PresidentialPardonForm.class.hpp"
+#include "RobotomyRequestForm.class.hpp"
+#include <cstdlib>
 
 /****************************************************/
 /*                    Constructor                   */
 /****************************************************/
 
-PresidentialPardonForm::PresidentialPardonForm(std::string t): AForm("Presidential", 25, 5), target(t)
+RobotomyRequestForm::RobotomyRequestForm(std::string t): AForm("Robotomy", 72, 45), target(t)
 {
-    if (DEBUG){ std::cout << GREEN << "[PresidentialPardonForm] Default Constructor called" << RESET_COLOR << std::endl;}
+    if (DEBUG){ std::cout << GREEN << "[RobotomyRequestForm] Default Constructor called" << RESET_COLOR << std::endl;}
 }
-//PresidentialPardonForm(std::string n = "Unkown"): name(n)
+//RobotomyRequestForm(std::string n = "Unkown"): name(n)
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& src): AForm("Presidential", 25, 5), target(src.target) 
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& src): AForm("Robotomy", 25, 5), target(src.target)
 {
-    if (DEBUG){std::cout << GREEN << "[PresidentialPardonForm] Copy Constructor called" << RESET_COLOR << std::endl;}
+    if (DEBUG){std::cout << GREEN << "[RobotomyRequestForm] Copy Constructor called" << RESET_COLOR << std::endl;}
     //*this = src;
 }
 
@@ -32,9 +33,9 @@ PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& src
 /*                    Destructor.                   */
 /****************************************************/
 
-PresidentialPardonForm::~PresidentialPardonForm(void) 
+RobotomyRequestForm::~RobotomyRequestForm(void) 
 {
-    if (DEBUG){std::cout << GREEN << "[PresidentialPardonForm] Destructor called" << RESET_COLOR << std::endl;}
+    if (DEBUG){std::cout << GREEN << "[RobotomyRequestForm] Destructor called" << RESET_COLOR << std::endl;}
 }
 
 /****************************************************
@@ -42,9 +43,9 @@ PresidentialPardonForm::~PresidentialPardonForm(void)
 ****************************************************/
 
 
-PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm& rhs) 
+RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& rhs) 
 {
-    if (DEBUG){std::cout << GREEN << "[PresidentialPardonForm] Copy assignment operator called" << RESET_COLOR <<  std::endl;}
+    if (DEBUG){std::cout << GREEN << "[RobotomyRequestForm] Copy assignment operator called" << RESET_COLOR <<   std::endl;}
     if (this != &rhs)
         this->target= rhs.get_target();
     return (*this);
@@ -54,8 +55,16 @@ PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPard
 *                 Memeber Functions                *
 ****************************************************/
 
-void PresidentialPardonForm::execute() const
+void RobotomyRequestForm::execute() const
 {
-
-    std::cout << this->target << " has been pardoned by Zaphod Beeblebrox" << std::endl;
+    for(int i = 0; i < 5; i++)
+    {
+        std::cout << "Bzzzzzzz...  ";
+        std::cout << "Vrrrrrrr...  ";;
+    }
+    std::cout << std::endl;
+    if (rand() % 2 == 0)
+        std::cout << this->target << " has been robotomized successfully" << RESET_COLOR << std::endl;
+    else
+        std::cout << "The robotomy failed" << RESET_COLOR << std::endl;
 }

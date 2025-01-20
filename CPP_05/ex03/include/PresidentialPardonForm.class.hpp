@@ -10,23 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEMPLATE_CLASS_H
-#define TEMPLATE_CLASS_H
+#ifndef PresidentialPardonForm_CLASS_H
+#define PresidentialPardonForm_CLASS_H
 
 #include <iostream>
+#include "AForm.class.hpp"
 
-class Template_c
+class PresidentialPardonForm: public AForm
 {
 private:
+    std::string target;
 public:
-    Template_c(void);
-    ~Template_c(void);
-    Template_c(const Template_c& other);
-    Template_c& operator=(const Template_c& other);
+    PresidentialPardonForm(std::string target);
+    ~PresidentialPardonForm(void);
+    PresidentialPardonForm(const PresidentialPardonForm& other);
+    PresidentialPardonForm& operator=(const PresidentialPardonForm& other);
 
-    //get&set
-    int get_value(void) const {return (this->value);}
-    void set_value(int v){this->value = v;}
+    std::string get_target(void) const {return (this->target);}
+    void execute() const;
 };
 
 

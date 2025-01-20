@@ -1,4 +1,4 @@
-                                                                                        /* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   template.class.cpp                                 :+:      :+:    :+:   */
@@ -10,21 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PresidentialPardonForm.class.hpp"
+#include "ShrubberyCreationForm.class.hpp"
 
 /****************************************************/
 /*                    Constructor                   */
 /****************************************************/
 
-PresidentialPardonForm::PresidentialPardonForm(std::string t): AForm("Presidential", 25, 5), target(t)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string t): AForm("Shrubbery", 145, 137), target(t)
 {
-    if (DEBUG){ std::cout << GREEN << "[PresidentialPardonForm] Default Constructor called" << RESET_COLOR << std::endl;}
+    if (DEBUG){ std::cout << GREEN << "[ShrubberyCreationForm] Default Constructor called" << RESET_COLOR << std::endl;}
 }
-//PresidentialPardonForm(std::string n = "Unkown"): name(n)
+//ShrubberyCreationForm(std::string n = "Unkown"): name(n)
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& src): AForm("Presidential", 25, 5), target(src.target) 
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& src): AForm("Shrubbery", 145, 137), target(src.target) 
 {
-    if (DEBUG){std::cout << GREEN << "[PresidentialPardonForm] Copy Constructor called" << RESET_COLOR << std::endl;}
+    if (DEBUG){std::cout << GREEN << "[ShrubberyCreationForm] Copy Constructor called" << RESET_COLOR << std::endl;}
     //*this = src;
 }
 
@@ -32,9 +32,9 @@ PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& src
 /*                    Destructor.                   */
 /****************************************************/
 
-PresidentialPardonForm::~PresidentialPardonForm(void) 
+ShrubberyCreationForm::~ShrubberyCreationForm(void) 
 {
-    if (DEBUG){std::cout << GREEN << "[PresidentialPardonForm] Destructor called" << RESET_COLOR << std::endl;}
+    if (DEBUG){std::cout << GREEN << "[ShrubberyCreationForm] Destructor called" << RESET_COLOR << std::endl;}
 }
 
 /****************************************************
@@ -42,11 +42,13 @@ PresidentialPardonForm::~PresidentialPardonForm(void)
 ****************************************************/
 
 
-PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm& rhs) 
+ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& rhs) 
 {
-    if (DEBUG){std::cout << GREEN << "[PresidentialPardonForm] Copy assignment operator called" << RESET_COLOR <<  std::endl;}
+    if (DEBUG){std::cout << GREEN << "[ShrubberyCreationForm] Copy assignment operator called" << RESET_COLOR << std::endl;}
     if (this != &rhs)
+    {
         this->target= rhs.get_target();
+    }
     return (*this);
 }
 
@@ -54,8 +56,12 @@ PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPard
 *                 Memeber Functions                *
 ****************************************************/
 
-void PresidentialPardonForm::execute() const
-{
+int create_file(std::string target, int length);
 
-    std::cout << this->target << " has been pardoned by Zaphod Beeblebrox" << std::endl;
+void ShrubberyCreationForm::execute() const
+{
+    create_file(this->target, 31);
 }
+
+
+

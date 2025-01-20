@@ -1,47 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*  AForm.class.hpp                                     :+:      :+:    :+:   */
+/*   template.class.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:24:01 by ytsyrend          #+#    #+#             */
-/*   Updated: 2024/12/03 02:58:56 by ytsyrend         ###   ########.fr       */
+/*   Updated: 2024/07/06 12:37:40 by ytsyrend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef AForm_CLASS_H
-#define AForm_CLASS_H
+#ifndef INTERN_CLASS_H
+#define INTERN_CLASS_H
 
 #include <iostream>
-#include "Bureaucrat.class.hpp"
 
-class Bureaucrat;
-
-class AForm
+class Intern
 {
-private:
-    const       std::string name;
-    bool        is_signed;
-    const int   grade_to_sign;
-    const int   grade_to_execute;
 public:
-    AForm(std::string n, int gs, int ge);
-    virtual ~AForm(void);
-    AForm(const AForm& other);
-    AForm& operator=(const AForm& other);
+    Intern();
+    ~Intern();
+    //Intern(const Intern& other);
+    //Intern& operator=(const Intern& other);
+    //AForm* make_form(std::string form, std::string target);
+}
 
-    //get&set
-    std::string get_name(void) const {return (this->name);}
-    bool get_signed_state(void) const {return (this->is_signed);}
-    int get_grade_to_sign(void) const {return (this->grade_to_sign);}
-    int get_grade_to_execute(void) const {return (this->grade_to_execute);}
-    int be_signed(Bureaucrat &person);
-    int is_executable(Bureaucrat &person);
-    virtual void execute() const = 0;
-};
-
-std::ostream &operator<<(std::ostream & o,AForm const &rhs);
 
 #define DEBUG 1
 // Define ANSI escape sequences for colors

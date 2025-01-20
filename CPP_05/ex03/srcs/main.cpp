@@ -43,7 +43,7 @@ int main()
     Paula.sign_form(*form_2);
     Paula.execute_form(*form_2);
 
-    std::cout << "\nTest 4: execute all 3 forms" << std::endl;
+    std::cout << "\nTest 3: execute all 3 forms" << std::endl;
     Eva.sign_form(*form_1);
     Eva.execute_form(*form_1);
     Eva.sign_form(*form_2);

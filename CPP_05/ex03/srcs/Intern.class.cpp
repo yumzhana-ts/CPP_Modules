@@ -1,4 +1,4 @@
-                                                                                        /* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   template.class.cpp                                 :+:      :+:    :+:   */
@@ -10,21 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Template_c.class.hpp"
+#include "Intern.class.hpp"
 
 /****************************************************/
 /*                    Constructor                   */
 /****************************************************/
 
-Template_c::Template_c(void) 
+Intern::Intern() 
 {
-    if (DEBUG){ std::cout << GREEN << "[Template_c] Default Constructor called" << RESET_COLOR << std::endl;}
+    if (DEBUG){ std::cout << GREEN << "[Intern] Default Constructor called" << RESET_COLOR << std::endl;}
 }
-//Template_c(std::string n = "Unkown"): name(n)
+//Intern(std::string n = "Unkown"): name(n)
 
-Template_c::Template_c(const Template_c& src) 
+Intern::Intern(const Intern& src) 
 {
-    if (DEBUG){std::cout << GREEN << "[Template_c] Copy Constructor called" << RESET_COLOR << std::endl;}
+    if (DEBUG){std::cout << GREEN << "[Intern] Copy Constructor called" << RESET_COLOR << std::endl;}
     //*this = src;
 }
 
@@ -32,9 +32,9 @@ Template_c::Template_c(const Template_c& src)
 /*                    Destructor.                   */
 /****************************************************/
 
-Template_c::~Template_c(void) 
+Intern::~Intern() 
 {
-    if (DEBUG){std::cout << GREEN << "[Template_c] Destructor called" << RESET_COLOR << std::endl;}
+    if (DEBUG){std::cout << GREEN << "[Intern] Destructor called" << RESET_COLOR << std::endl;}
 }
 
 /****************************************************
@@ -42,14 +42,29 @@ Template_c::~Template_c(void)
 ****************************************************/
 
 
-Template_c& Template_c::operator=(const Template_c& rhs) 
+Intern& Intern::operator=(const Intern& rhs) 
 {
-    if (DEBUG){std::cout << GREEN << "[Template_c] Copy assignment operator called" << std::endl;}
-    if (this != &rhs)
-        this->value = rhs.get_value();
+    if (DEBUG){std::cout << GREEN << "[Intern] Copy assignment operator called" << std::endl;}
     return (*this);
 }
 
 /****************************************************
 *                 Memeber Functions                *
 ****************************************************/
+
+/*AForm* Intern::make_form(std::string form, std::string target)
+{
+    if(form == "shrubbery creation")
+    {
+        AForm* form = new ShrubberyCreationForm(target);
+    }
+    else if(form == "robotomy request")
+    {
+        AForm* form = new RobotomyRequestForm(target);
+    }
+    else if(form == "presidential pardon")
+    {
+        AForm* form = new PresidentialPardonForm(target);
+    }
+    return (form);
+}*/

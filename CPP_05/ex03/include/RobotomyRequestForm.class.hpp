@@ -1,34 +1,38 @@
-/* ************************************************************************** */
+        /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   BoogyWoogyException.class.hpp                      :+:      :+:    :+:   */
+/*   template.class.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:24:01 by ytsyrend          #+#    #+#             */
-/*   Updated: 2024/11/27 16:28:27 by ytsyrend         ###   ########.fr       */
+/*   Updated: 2024/07/06 12:37:40 by ytsyrend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BoogyWoogyException_CLASS_H
-#define BoogyWoogyException_CLASS_H
+#ifndef RobotomyRequestForm_CLASS_H
+#define RobotomyRequestForm_CLASS_H
 
 #include <iostream>
-#include <exception>
+#include "AForm.class.hpp"
 
-class BoogyWoogyException: public std::exception
+class RobotomyRequestForm: public AForm
 {
+private:
+    std::string target;
 public:
-    const char* what() const throw()
-    {
-        return("He boogie-woogied right into a pie!");
-    }
-    BoogyWoogyException();
-    ~BoogyWoogyException() throw();
+    RobotomyRequestForm(std::string target);
+    ~RobotomyRequestForm(void);
+    RobotomyRequestForm(const RobotomyRequestForm& other);
+    RobotomyRequestForm& operator=(const RobotomyRequestForm& other);
+
+    std::string get_target(void) const {return (this->target);}
+    void execute() const;
 };
 
 
 #define DEBUG 1
+// Define ANSI escape sequences for colors
 #define RESET_COLOR "\033[0m"
 #define BLACK "\033[0;30m"
 #define RED "\033[0;31m"
