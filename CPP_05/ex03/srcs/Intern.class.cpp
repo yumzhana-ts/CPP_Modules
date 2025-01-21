@@ -11,60 +11,43 @@
 /* ************************************************************************** */
 
 #include "Intern.class.hpp"
-
-/****************************************************/
-/*                    Constructor                   */
-/****************************************************/
-
-Intern::Intern() 
-{
-    if (DEBUG){ std::cout << GREEN << "[Intern] Default Constructor called" << RESET_COLOR << std::endl;}
-}
-//Intern(std::string n = "Unkown"): name(n)
-
-Intern::Intern(const Intern& src) 
-{
-    if (DEBUG){std::cout << GREEN << "[Intern] Copy Constructor called" << RESET_COLOR << std::endl;}
-    //*this = src;
-}
-
-/****************************************************/
-/*                    Destructor.                   */
-/****************************************************/
-
-Intern::~Intern() 
-{
-    if (DEBUG){std::cout << GREEN << "[Intern] Destructor called" << RESET_COLOR << std::endl;}
-}
-
-/****************************************************
-*                    Overload                      *
-****************************************************/
-
-
-Intern& Intern::operator=(const Intern& rhs) 
-{
-    if (DEBUG){std::cout << GREEN << "[Intern] Copy assignment operator called" << std::endl;}
-    return (*this);
-}
+#include "PresidentialPardonForm.class.hpp"
+#include "RobotomyRequestForm.class.hpp"
+#include "ShrubberyCreationForm.class.hpp"
 
 /****************************************************
 *                 Memeber Functions                *
 ****************************************************/
 
-/*AForm* Intern::make_form(std::string form, std::string target)
+AForm* Intern::complain(std::string level, std::string target) 
 {
-    if(form == "shrubbery creation")
-    {
-        AForm* form = new ShrubberyCreationForm(target);
-    }
-    else if(form == "robotomy request")
-    {
-        AForm* form = new RobotomyRequestForm(target);
-    }
-    else if(form == "presidential pardon")
-    {
-        AForm* form = new PresidentialPardonForm(target);
-    }
-    return (form);
-}*/
+    std::string levels[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
+    void (Harl::*ptr[4])() = {&sh, &rob, &pr, &other};
+
+    int i = 0;
+    while(i < 3 && levels[i] != level)
+        i++;
+    (this->*ptr[i])();
+}
+
+Aform* sh( void )
+{
+    AForm* form = new ShrubberyCreationForm(target);
+    return form;
+}
+Aform* ro( void )
+{
+    AForm* form = new RobotomyRequestForm(target);
+    return form;
+}
+Aform* pr( void )
+{
+    AForm* form = new PresidentialPardonForm(target);
+    return form;
+}
+Aform* other( void )
+{
+    AForm* form = NULL;
+    std::cout << "" << std::endl;
+    return form;
+}
