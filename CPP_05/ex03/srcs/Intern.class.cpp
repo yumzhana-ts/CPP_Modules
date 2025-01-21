@@ -19,35 +19,33 @@
 *                 Memeber Functions                *
 ****************************************************/
 
-AForm* Intern::complain(std::string level, std::string target) 
+AForm* Intern::make_form(std::string form_type, std::string target) 
 {
-    std::string levels[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
-    void (Harl::*ptr[4])() = {&sh, &rob, &pr, &other};
+    std::string form_types[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
+    AForm* (*form_creators[4])(std::string form_type) = {&sh, &rob, &pr, &other};
 
     int i = 0;
-    while(i < 3 && levels[i] != level)
+    while(i < 3 && form_types[i] != form_type)
         i++;
-    (this->*ptr[i])();
+    (this->*form_creators[i](target));
+    std::cout <<
+    return NULL;
 }
 
-Aform* sh( void )
+AForm* sh( void )
 {
-    AForm* form = new ShrubberyCreationForm(target);
-    return form;
+    return new ShrubberyCreationForm(target);
 }
-Aform* ro( void )
+AForm* ro( void )
 {
-    AForm* form = new RobotomyRequestForm(target);
-    return form;
+    return new RobotomyRequestForm(target);  
 }
-Aform* pr( void )
+AForm* pr( void )
 {
-    AForm* form = new PresidentialPardonForm(target);
-    return form;
+    return new PresidentialPardonForm(target);
 }
-Aform* other( void )
+AForm* other( void )
 {
-    AForm* form = NULL;
-    std::cout << "" << std::endl;
-    return form;
+    std::cout << "Form not found. Try shrubbery creation, robotomy request, presidential pardon" << std::endl;
+    return NULL;
 }
