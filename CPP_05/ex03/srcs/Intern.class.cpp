@@ -19,33 +19,45 @@
 *                 Memeber Functions                *
 ****************************************************/
 
+AForm* sh(std::string targe);
+AForm* ro(std::string targe);
+AForm* pr(std::string targe);
+
+const char *Intern::Incorrect_form::what() const throw()
+{
+    return (RED"Error: Form not found for Bender Try shrubbery creation, robotomy request, presidential pardon"RESET_COLOR);
+}
+
 AForm* Intern::make_form(std::string form_type, std::string target) 
 {
-    std::string form_types[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
-    AForm* (*form_creators[4])(std::string form_type) = {&sh, &rob, &pr, &other};
+    std::string form_types[3] = {"shrubbery", "robotomy", "presidential"};
+    AForm* (*form_creators[4])(std::string) = {&sh, &ro, &pr};
 
     int i = 0;
     while(i < 3 && form_types[i] != form_type)
         i++;
-    (this->*form_creators[i](target));
-    std::cout <<
-    return NULL;
+    try
+    {
+        if(i >= 3)
+            throw Intern::Incorrect_form();
+        return form_creators[i](target);
+    }
+    catch(Intern::Incorrect_form &e)
+    {
+        std::cout << e.what() << std::endl;
+        return NULL;
+    }
 }
 
-AForm* sh( void )
+AForm* sh(std::string target)
 {
     return new ShrubberyCreationForm(target);
 }
-AForm* ro( void )
+AForm* ro(std::string target)
 {
-    return new RobotomyRequestForm(target);  
+    return new RobotomyRequestForm(target);
 }
-AForm* pr( void )
+AForm* pr(std::string target)
 {
     return new PresidentialPardonForm(target);
-}
-AForm* other( void )
-{
-    std::cout << "Form not found. Try shrubbery creation, robotomy request, presidential pardon" << std::endl;
-    return NULL;
 }

@@ -20,7 +20,13 @@ class Intern
 {
 public:
     AForm* make_form(std::string form, std::string target);
+    class Incorrect_form: public std::exception
+    {
+    public:
+        const char* what() const throw();
+    };
 };
+
 
 
 #define DEBUG 1

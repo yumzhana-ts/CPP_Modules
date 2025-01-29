@@ -94,12 +94,12 @@ void Bureaucrat::decrement_grade()
 
 const char *Bureaucrat::GradeTooHighException::what() const throw()
 {
-    return (RED"Error: Grade out of range, must be more then 1"RESET_COLOR);
+    return (RED"Error: Grade out of range, grade too high"RESET_COLOR);
 }
 
 const char *Bureaucrat::GradeTooLowException::what() const throw()
 {
-    return (RED"Error: Grade out of range, must be less then 150"RESET_COLOR);
+    return (RED"Error: Grade out of range, grade too low"RESET_COLOR);
 }
 
 const char *Bureaucrat::DocumentIsNotSigned::what() const throw()
