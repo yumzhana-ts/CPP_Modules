@@ -16,6 +16,15 @@
 #include <iostream>
 #include <typeinfo>
 #include <cctype>
+#include <string>
+
+enum Types
+{
+    int_type,
+    char_type,
+    double_type,
+    float_type,
+};
 
 class ScalarConverter
 {
@@ -26,6 +35,7 @@ public:
     //ScalarConverter& operator=(const ScalarConverter& other);
     static void convert(std::string argument);
 };
+
 
 
 #define DEBUG 1
