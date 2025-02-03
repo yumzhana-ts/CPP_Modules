@@ -18,13 +18,34 @@
 #include <cctype>
 #include <string>
 
-enum Types
+typedef enum t_data_types
 {
     int_type,
     char_type,
     double_type,
     float_type,
-};
+    undefined_type,
+    inff_minus,
+    inff_plus,
+    nanf,
+    inf_plus,
+    inf_minus,
+    nan
+} s_data_types;
+
+typedef union t_data_values
+{
+    int int_value;
+    float float_value;
+    double double_value;
+    const char* char_value;
+} s_data_values;
+
+typedef struct t_data
+{
+    s_data_types type;
+    s_data_values value;
+} s_data;
 
 class ScalarConverter
 {

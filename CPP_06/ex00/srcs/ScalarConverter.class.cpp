@@ -54,11 +54,21 @@ ScalarConverter::~ScalarConverter(void)
 /****************************************************
 *                 Memeber Functions                *
 ****************************************************/
-std::string get_type(std::string str);
-void type_conversion(enum Types type, std::string argument);
+s_data_types get_type(std::string str);
+s_data_values type_conversion(s_data_types type, std::string argument);
 
 void ScalarConverter::convert(std::string argument) 
 {
+    s_data data;
     std::cout << GREEN << "Converting string " << argument << "..." RESET_COLOR << std::endl;
-    std::cout << get_type(argument);
+    data.type = get_type(argument);
+    data.value = type_conversion(get_type(argument), argument);
+    if(data.type == int_type)
+    {
+        std:: cout << data.value.int_value;
+    }
+    else if(data.type == float_type)
+    {
+        std::cout << data.value.float_value;
+    }
 }
