@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   template.class.hpp                                 :+:      :+:    :+:   */
+/*   ScalarConverter.class.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:24:01 by ytsyrend          #+#    #+#             */
-/*   Updated: 2024/07/06 12:37:40 by ytsyrend         ###   ########.fr       */
+/*   Updated: 2025/02/03 19:16:28 by ytsyrend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ typedef enum t_data_types
     undefined_type,
     inff_minus,
     inff_plus,
-    nanf,
+    nanf_type,
     inf_plus,
     inf_minus,
-    nan
+    nan_type
 } s_data_types;
 
 typedef union t_data_values

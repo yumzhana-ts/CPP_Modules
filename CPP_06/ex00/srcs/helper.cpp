@@ -38,13 +38,13 @@ s_data_types get_type(std::string argument)
     else if (argument == "+inff")
         return (inff_plus);
     else if (argument == "nanf")
-        return (nanf);
+        return (nanf_type);
     else if (argument == "-inf")
         return (inf_minus);
     else if (argument == "+inf")
         return (inf_plus);
     else if (argument == "nan")
-        return (nan);
+        return (nan_type);
     else
         return(get_value(argument));
 }
@@ -72,3 +72,4 @@ s_data_values type_conversion(s_data_types type, std::string argument)
     }
     return values;
 }
+

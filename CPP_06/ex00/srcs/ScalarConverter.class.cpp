@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   template.class.cpp                                 :+:      :+:    :+:   */
+/*   ScalarConverter.class.cpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:24:16 by ytsyrend          #+#    #+#             */
-/*   Updated: 2024/12/01 22:50:01 by ytsyrend         ###   ########.fr       */
+/*   Updated: 2025/02/04 00:12:02 by ytsyrend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.class.hpp"
+#include <iomanip> // Для std::fixed и std::setprecision
 
 
 /****************************************************/
@@ -65,10 +66,24 @@ void ScalarConverter::convert(std::string argument)
     data.value = type_conversion(get_type(argument), argument);
     if(data.type == int_type)
     {
-        std:: cout << data.value.int_value;
+        std::cout << data.value.int_value;
+        char c = static_cast<char>(data.value.int_value);
+        float f = static_cast<float>(data.value.int_value);
+        double d = static_cast<double>(data.value.int_value);
+        std::cout << c << std::endl;
+        std::cout << std::fixed << std::setprecision(1) << f << '\n';
+        std::cout << std::fixed << std::setprecision(1) << d << '\n';
     }
     else if(data.type == float_type)
     {
         std::cout << data.value.float_value;
+    }
+    else if(data.type == double_type)
+    {
+        std::cout << data.value.double_value;
+    }
+    else if(data.type == char_type)
+    {
+        std::cout << data.value.char_value;
     }
 }
