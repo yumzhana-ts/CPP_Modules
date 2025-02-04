@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "ScalarConverter.class.hpp"
-#include <iomanip> // Для std::fixed и std::setprecision
 
 
 /****************************************************/
@@ -57,33 +56,59 @@ ScalarConverter::~ScalarConverter(void)
 ****************************************************/
 s_data_types get_type(std::string str);
 s_data_values type_conversion(s_data_types type, std::string argument);
+void print_conversion(s_data data);
 
 void ScalarConverter::convert(std::string argument) 
 {
     s_data data;
-    std::cout << GREEN << "Converting string " << argument << "..." RESET_COLOR << std::endl;
     data.type = get_type(argument);
-    data.value = type_conversion(get_type(argument), argument);
+    data.value = type_conversion(data.type, argument);
+
     if(data.type == int_type)
     {
-        std::cout << data.value.int_value;
-        char c = static_cast<char>(data.value.int_value);
-        float f = static_cast<float>(data.value.int_value);
-        double d = static_cast<double>(data.value.int_value);
-        std::cout << c << std::endl;
-        std::cout << std::fixed << std::setprecision(1) << f << '\n';
-        std::cout << std::fixed << std::setprecision(1) << d << '\n';
+        data.i = static_cast<long long int>(data.value.int_value);
+        if (data.i >= 33 && data.i <= 126)
+            data.c = static_cast<char>(data.value.int_value);
+        else
+            data.c = 0;
+        data.f = static_cast<float>(data.value.int_value);
+        data.d = static_cast<double>(data.value.int_value);
+        print_conversion(data);
     }
     else if(data.type == float_type)
     {
-        std::cout << data.value.float_value;
+        data.i = static_cast<long long int>(data.value.float_value);
+        if (data.i >= 33 && data.i <= 126)
+            data.c = static_cast<char>(data.value.float_value);
+        else
+            data.c = 0;
+        data.f = static_cast<float>(data.value.float_value);
+        data.d = static_cast<double>(data.value.float_value);
+        print_conversion(data);
     }
     else if(data.type == double_type)
     {
-        std::cout << data.value.double_value;
+        data.i = static_cast<long long int>(data.value.double_value);
+        if (data.i >= 33 && data.i <= 126)
+            data.c = static_cast<char>(data.value.double_value);
+        else
+            data.c = 0;
+        data.f = static_cast<float>(data.value.double_value);
+        data.d = static_cast<double>(data.value.double_value);
+        print_conversion(data);
     }
     else if(data.type == char_type)
     {
-        std::cout << data.value.char_value;
+
+        data.i = static_cast<long long int>(data.value.char_value);
+        if (data.i >= 33 && data.i <= 126)
+            data.c = static_cast<char>(data.value.char_value);
+        else
+            data.c = 0;
+        data.f = static_cast<float>(data.value.char_value);
+        data.d = static_cast<double>(data.value.char_value);
+        print_conversion(data);
     }
+    else if(data.type == undefined_type)
+        std::cout << RED << "Type is undefined, please provide correct type" RESET_COLOR << std::endl;
 }

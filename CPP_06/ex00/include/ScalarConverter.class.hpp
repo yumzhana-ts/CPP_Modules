@@ -17,6 +17,12 @@
 #include <typeinfo>
 #include <cctype>
 #include <string>
+#include <iomanip>
+#include <cmath>
+#include <string>
+#include <cstdlib>
+#include <limits>
+#include <cmath>
 
 typedef enum t_data_types
 {
@@ -35,16 +41,20 @@ typedef enum t_data_types
 
 typedef union t_data_values
 {
-    int int_value;
+    long long int int_value;
     float float_value;
     double double_value;
-    const char* char_value;
+    char char_value;
 } s_data_values;
 
 typedef struct t_data
 {
     s_data_types type;
     s_data_values value;
+    char c;
+    long long int i;
+    float f;
+    double d;
 } s_data;
 
 class ScalarConverter

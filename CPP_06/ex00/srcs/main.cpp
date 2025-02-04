@@ -22,9 +22,10 @@ void orthodox_test()
 
 int main(int argc, char **argv) 
 {
+    //td::string str = argv[1];
     if (argc == 2)
         ScalarConverter::convert(argv[1]);
     else
-        std::cout << "Please, provide one argument" << std::endl;
+        std::cout << RED << "Please, provide at least one argument or string in range of LONG LONG INT" << RESET_COLOR << std::endl;
     return (0);
 }
