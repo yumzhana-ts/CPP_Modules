@@ -6,7 +6,7 @@
 /*   By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:24:01 by ytsyrend          #+#    #+#             */
-/*   Updated: 2025/02/03 19:16:28 by ytsyrend         ###   ########.fr       */
+/*   Updated: 2025/02/06 14:52:00 by ytsyrend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef enum t_data_types
 
 typedef union t_data_values
 {
-    long long int int_value;
+    int int_value;
     float float_value;
     double double_value;
     char char_value;
@@ -52,7 +52,7 @@ typedef struct t_data
     s_data_types type;
     s_data_values value;
     char c;
-    long long int i;
+    int i;
     float f;
     double d;
 } s_data;
@@ -79,4 +79,5 @@ public:
 #define WHITE "\033[0;37m"
 #define BOLD_BLACK "\033[1;30m"
 #define BG_WHITE "\033[0;47m"
+#define LINE "_________________________________________"
 #endif
