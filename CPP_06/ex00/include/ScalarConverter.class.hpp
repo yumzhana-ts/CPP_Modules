@@ -21,6 +21,7 @@
 #include <cmath>
 #include <string>
 #include <cstdlib>
+#include <limits.h>
 #include <limits>
 #include <cmath>
 
@@ -62,8 +63,8 @@ class ScalarConverter
 public:
     ScalarConverter(void);
     ~ScalarConverter(void);
-    //ScalarConverter(const ScalarConverter& other);
-    //ScalarConverter& operator=(const ScalarConverter& other);
+    ScalarConverter(const ScalarConverter& other);
+    ScalarConverter& operator=(const ScalarConverter& other);
     static void convert(std::string argument);
 };
 

@@ -17,6 +17,6 @@ int main(int argc, char **argv)
     if (argc == 2 && (static_cast<std::string>(argv[1])).size() < 19)
         ScalarConverter::convert(argv[1]);
     else
-        std::cout << RED << "Please, provide at least one argument or string in range of LONG LONG INT" << RESET_COLOR << std::endl;
+        std::cout << RED << "Please, provide at least one argument or string in range of long long int" << RESET_COLOR << std::endl;
     return (0);
 }

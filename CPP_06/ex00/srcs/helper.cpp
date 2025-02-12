@@ -54,48 +54,45 @@ s_data_values type_conversion(s_data_types type, std::string argument)
     {
         case(int_type):
             values.int_value = std::atoi(argument.c_str());
+            std::cout << "converted type: "<< typeid(values.int_value).name();
             break;
         case(float_type):
-            //std::cout << "step 2. converting to float type\n"; 
-            //ranges or edge cases 
+
+            std::cout << "converted type: "<< typeid(values.float_value).name();
             values.float_value = static_cast<float>(std::atof(argument.c_str()));
             break;
         case(double_type):
-            //std::cout << "step 2. converting to double type\n";
-            //ranges or edge cases 
             values.double_value = std::atof(argument.c_str());
             break;
         case(char_type):
-            //std::cout << "step 2. converting to char type\n";
-            //ranges or edge cases
+            std::cout << "converted type: "<< typeid(values.char_value).name();
             values.char_value = *(const_cast<char *>(argument.c_str()));
             break;
         case(inff_plus):
-            //std::cout << "step 2. converting to inff+ type\n";
+            std::cout << "converted type: "<< typeid(values.float_value).name();
             values.float_value = std::numeric_limits<float>::infinity();
             break;
         case(inff_minus):
-            //std::cout << "step 2. converting to inff- type\n";
+            std::cout << "converted type: "<< typeid(values.float_value).name();
             values.float_value = -std::numeric_limits<float>::infinity();
             break;
         case(inf_plus):
-            //std::cout << "step 2. converting to inf+ type\n";
+            std::cout << "converted type: "<< typeid(values.double_value).name();
             values.double_value = std::numeric_limits<double>::infinity();
             break;
         case(inf_minus):
-            //std::cout << "step 2. converting to inf- type\n";
+            std::cout << "converted type: "<< typeid(values.double_value).name();
             values.double_value = -std::numeric_limits<double>::infinity();
             break;
         case(nanf_type):
-            //std::cout << "step 2. converting to nanf type\n";
+            std::cout << "converted type: "<< typeid(values.float_value).name();
             values.float_value = std::numeric_limits<float>::quiet_NaN();;
             break;
         case(nan_type):
-            //std::cout << "step 2. converting to nan type\n";
+            std::cout << "converted type: "<< typeid(values.double_value).name();
             values.double_value = std::numeric_limits<double>::quiet_NaN();;
             break;
         case(undefined_type):
-            //std::cout << "step 2. converting undefined type\n";
             break;
         default:
             std::cout << "dance dance dance" << std::endl;

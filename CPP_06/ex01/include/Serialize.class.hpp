@@ -24,12 +24,11 @@ typedef struct Data
 class Serialize
 {
 private:
-public:
     Serialize(void);
     ~Serialize(void);
     Serialize(const Serialize& other);
     Serialize& operator=(const Serialize& other);
-
+public:
     static uintptr_t serialize(Data* ptr);
     static Data* deserialize(uintptr_t raw);
 };
@@ -45,4 +44,6 @@ public:
 #define WHITE "\033[0;37m"
 #define BOLD_BLACK "\033[1;30m"
 #define BG_WHITE "\033[0;47m"
+#define LINE "_________________________________________\n"
+
 #endif

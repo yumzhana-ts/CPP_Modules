@@ -44,19 +44,38 @@ Base* Base::generate(void)
         case(2):
             random_class = new C();
             break;
-
     }
     std::cout << choice << std::endl;
-    
     return random_class;
 }
 
-/*void Base::identify(Base* p)
+void Base::identify(Base* p)
 {
-
+    A* test = dynamic_cast<A *>(p);
+    if (test != NULL)
+        std::cout << "Actual type of the object: A class " << std::endl;
+    else
+    {
+        B* test = dynamic_cast<B *>(p);
+        {
+            if (test != NULL)
+                std::cout << "Actual type of the object: B class " << std::endl;
+            else
+                std::cout << "Actual type of the object: C class " << std::endl;
+        }
+    }
+    delete test;
 }
 
 void Base::identify(Base& p)
 {
+    try
+    {
+        A& test = dynamic_cast<A&>(p);
+    }
+    catch(...)
+    {
+        std::cout << "catching errors" << std::endl;
+    }
 
-}*/
+}

@@ -22,27 +22,83 @@ void orthodox_test()
 
 int main() 
 {
-	/*std::string input;
-    std::cout << RED << "Test case 1: Ints within range(long long int min)" << RESET_COLOR << std::endl;
-    input = "-9223372036854775808";
-    ScalarConverter::convert(input);
-    std::cout << LINE << std::endl;
-    std::cout << RED << "Test case 2: Ints within range(long long int max)" << RESET_COLOR << std::endl;
-    input = "9223372036854775807";
-    ScalarConverter::convert(input);
-    std::cout << LINE << std::endl;
-    std::cout << RED << "Test case 3: Ints out of the range(0)" << RESET_COLOR << std::endl;
-    input = "-9223372036854775809";
-    ScalarConverter::convert(input);
-    std::cout << LINE << std::endl;
-    std::cout << RED << "Test case 4: Ints out of the range(long long int max+)" << RESET_COLOR << std::endl;
-    input = "9223372036854775808";
-    std::cout << RED << "note: tady by to chtelo pred converzi controlu na long long int" << RESET_COLOR << std::endl;
-    ScalarConverter::convert(input);
-    std::cout << LINE << std::endl;*/
+    orthodox_test();
+	std::string input;
+    int t = 0;
 
-    double number = 2147483.034;
-    //int num = number;
-    std::cout << number << std::endl;
+    std::cout << RED << "Test case " << t++ << ": Ints within the range(INT_MIN)" << RESET_COLOR << std::endl;
+    input = "-2147483648";
+    ScalarConverter::convert(input);
+    std::cout << LINE << std::endl;
+
+    std::cout << RED << "Test case " << t++ << ": Ints within the range(INT_MAX)" << RESET_COLOR << std::endl;
+    input = "2147483647";
+    ScalarConverter::convert(input);
+    std::cout << LINE << std::endl;
+
+    std::cout << RED << "Test case " << t++ << ": Ints out of the range(<INT_MIN)" << RESET_COLOR << std::endl;
+    input = "-2147483649";
+    ScalarConverter::convert(input);
+    std::cout << LINE << std::endl;
+
+    std::cout << RED << "Test case " << t++ << ": Ints out of the range(>INT_MAX)" << RESET_COLOR << std::endl;
+    input = "2147483648";
+    ScalarConverter::convert(input);
+    std::cout << LINE << std::endl;
+
+    std::cout << RED << "Test case " << t++ << ": Char non-displayable" << RESET_COLOR << std::endl;
+    input = " ";
+    ScalarConverter::convert(input);
+    std::cout << LINE << std::endl;
+
+    std::cout << RED << "Test case " << t++ << ": Char lower" << RESET_COLOR << std::endl;
+    input = "a";
+    ScalarConverter::convert(input);
+    std::cout << LINE << std::endl;
+
+    std::cout << RED << "Test case " << t++ << ": Char upper" << RESET_COLOR << std::endl;
+    input = "Z";
+    ScalarConverter::convert(input);
+    std::cout << LINE << std::endl;
+
+    std::cout << RED << "Test case " << t++ << ": Double" << RESET_COLOR << std::endl;
+    input = "23231.34345";
+    ScalarConverter::convert(input);
+    std::cout << LINE << std::endl;
+
+    std::cout << RED << "Test case " << t++ << ": Double +inf" << RESET_COLOR << std::endl;
+    input = "+inf";
+    ScalarConverter::convert(input);
+    std::cout << LINE << std::endl;
+
+    std::cout << RED << "Test case " << t++ << ": Double -inf" << RESET_COLOR << std::endl;
+    input = "-inf";
+    ScalarConverter::convert(input);
+    std::cout << LINE << std::endl;
+
+    std::cout << RED << "Test case " << t++ << ": Double nan" << RESET_COLOR << std::endl;
+    input = "nan";
+    ScalarConverter::convert(input);
+    std::cout << LINE << std::endl;
+
+    std::cout << RED << "Test case " << t++ << ": Float" << RESET_COLOR << std::endl;
+    input = "23231.34345f";
+    ScalarConverter::convert(input);
+    std::cout << LINE << std::endl;
+
+    std::cout << RED << "Test case " << t++ << ": Float +inff" << RESET_COLOR << std::endl;
+    input = "+inff";
+    ScalarConverter::convert(input);
+    std::cout << LINE << std::endl;
+
+    std::cout << RED << "Test case " << t++ << ": Float -inff" << RESET_COLOR << std::endl;
+    input = "-inff";
+    ScalarConverter::convert(input);
+    std::cout << LINE << std::endl;
+
+    std::cout << RED << "Test case " << t++ << ": Float nanf" << RESET_COLOR << std::endl;
+    input = "nanf";
+    ScalarConverter::convert(input);
+    std::cout << LINE << std::endl; 
     return (0);
 }

@@ -11,11 +11,15 @@
 /* ************************************************************************** */
 
 #include "Base.class.hpp"
+#include "A.class.hpp"
+#include "B.class.hpp"
+#include "C.class.hpp"
 
 int main() 
 {
     Base *generated_class = Base::generate();
-    
+    Base::identify(generated_class);
+    Base::identify(*generated_class);
     delete generated_class;
     return (0);
 }

@@ -15,6 +15,7 @@
 int main() 
 {
     Data data;
+    data.x = 1;
     uintptr_t int_ptr = Serialize::serialize(&data);
     std::cout << int_ptr << std::endl;
     std::cout << Serialize::deserialize(int_ptr) << std::endl;

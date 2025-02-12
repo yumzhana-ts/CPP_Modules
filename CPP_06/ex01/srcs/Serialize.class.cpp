@@ -58,11 +58,18 @@ Serialize& Serialize::operator=(const Serialize& rhs)
 
 uintptr_t Serialize::serialize(Data* ptr)
 {
+    if (ptr == NULL)
+        std::cerr << RED << "Warning: serializing a NULL." << RESET_COLOR << std::endl;
     return reinterpret_cast<uintptr_t>(ptr);
 }
 
 
 Data* Serialize::deserialize(uintptr_t raw)
 {
+    if (raw == 0)
+    {
+        std::cerr << RED << "Warning: deserializing a NULL." << RESET_COLOR << std::endl;
+        return NULL;
+    }
     return reinterpret_cast<Data *>(raw);
 }

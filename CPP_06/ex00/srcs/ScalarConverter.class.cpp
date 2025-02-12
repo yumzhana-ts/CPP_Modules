@@ -25,11 +25,11 @@ ScalarConverter::ScalarConverter(void)
 }
 // ScalarConverter(std::string n = "Unkown"): name(n)
 
-/*ScalarConverter::ScalarConverter(const ScalarConverter& src)
+ScalarConverter::ScalarConverter(const ScalarConverter& src)
 {
     if (DEBUG){std::cout << GREEN << "[ScalarConverter] Copy Constructor called" << RESET_COLOR << std::endl;}
     *this = src;
-}*/
+}
 
 /****************************************************/
 /*                    Destructor.                   */
@@ -47,13 +47,15 @@ ScalarConverter::~ScalarConverter(void)
  *                    Overload                      *
  ****************************************************/
 
-/*ScalarConverter& ScalarConverter::operator=(const ScalarConverter& rhs)
+ScalarConverter& ScalarConverter::operator=(const ScalarConverter& rhs)
 {
     if (DEBUG){std::cout << GREEN << "[ScalarConverter] Copy assignment operator called" << std::endl;}
     if (this != &rhs)
-        this->value = rhs.get_value();
+    {
+        
+    }
     return (*this);
-}*/
+}
 
 /****************************************************
  *                 Memeber Functions                *
