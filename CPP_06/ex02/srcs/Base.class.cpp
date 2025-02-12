@@ -72,10 +72,31 @@ void Base::identify(Base& p)
     try
     {
         A& test = dynamic_cast<A&>(p);
+        (void) test;
+        std::cout << "Actual type of the object: A class" <<  std::endl;
     }
-    catch(...)
+    catch(std::exception &e)
     {
-        std::cout << "catching errors" << std::endl;
+        
     }
+    try
+    {
+        B& test = dynamic_cast<B&>(p);
+        (void) test;
+        std::cout << "Actual type of the object: B class" <<  std::endl;
+    }
+    catch(std::exception &e)
+    {
 
+    }
+    try
+    {
+        C& test = dynamic_cast<C&>(p);
+        (void) test;
+        std::cout << "Actual type of the object: C class" <<  std::endl;
+    }
+    catch(std::exception &e)
+    {
+
+    }
 }
