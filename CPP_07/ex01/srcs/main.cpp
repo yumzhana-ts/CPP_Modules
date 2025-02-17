@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   template.class.cpp                                 :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/05 18:24:16 by ytsyrend          #+#    #+#             */
-/*   Updated: 2024/12/01 22:50:01 by ytsyrend         ###   ########.fr       */
+/*   Created: 2024/07/05 18:41:01 by ytsyrend          #+#    #+#             */
+/*   Updated: 2024/07/13 03:54:02 by ytsyrend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "B.class.hpp"
+#include "template.hpp"
 
-/****************************************************/
-/*                    Constructor                   */
-/****************************************************/
 
-B::B(void) 
+int main() 
 {
-    if (DEBUG){ std::cout << GREEN << "[B] Default Constructor called" << RESET_COLOR << std::endl;}
+    int array[5] = {1, 2, 3, 4, 5};
+
+    iter(array, 5);
 }
-
-

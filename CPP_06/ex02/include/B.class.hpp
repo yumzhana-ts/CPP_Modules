@@ -21,7 +21,6 @@ class B: public Base
 private:
 public:
     B(void);
-    ~B(void);
 };
 
 

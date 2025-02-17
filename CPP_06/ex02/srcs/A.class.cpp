@@ -21,14 +21,6 @@ A::A(void)
     if (DEBUG){ std::cout << GREEN << "[A] Default Constructor called" << RESET_COLOR << std::endl;}
 }
 
-/****************************************************/
-/*                    Destructor.                   */
-/****************************************************/
-
-A::~A(void) 
-{
-    if (DEBUG){std::cout << GREEN << "[A] Destructor called" << RESET_COLOR << std::endl;}
-}
 
 
 /****************************************************

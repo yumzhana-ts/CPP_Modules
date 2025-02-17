@@ -10,23 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLASS_H
-#define CLASS_H
+#ifndef TEMPLATE_H
+#define TEMPLATE_H
 
 #include <iostream>
-#include "Base.class.hpp"
 
-class C: public Base
+template< typename T>
+
+
+template< typename T>
+void iter(T *array, int size, )
 {
-private:
-public:
-    C(void);
-};
+    std::cout << "pointer to array: " << array << std::endl;
+    std::cout << "size: " << size << std::endl;
+}
 
 
 #define DEBUG 1
 // Define ANSI escape sequences for colors
 #define RESET_COLOR "\033[0m"
+#define LINE "----------------------------"
 #define BLACK "\033[0;30m"
 #define RED "\033[0;31m"
 #define GREEN "\033[0;32m"
