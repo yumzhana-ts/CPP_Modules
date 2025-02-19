@@ -14,21 +14,26 @@
 #define ARRAY_CLASS_H
 
 #include <iostream>
+#include <iomanip>
+#include <stdexcept>
 
+template <typename T>
 class Array
 {
 private:
+    T *my_array;
+    unsigned int n;
 public:
     Array(void);
-    ~Array(void);
-    Array(const Array& other);
-    Array& operator=(const Array& other);
+    Array(unsigned int n);
+    ~Array();
+    //Array(const Array& other);
+    //Array& operator=(const Array& other);
 
-    //get&set
-    int get_value(void) const {return (this->value);}
-    void set_value(int v){this->value = v;}
+    unsigned int size(void) const {return (this->n);}
+    T get_element(unsigned int n_element);
+    void nice_testing(unsigned int n_element);
 };
-
 
 #define DEBUG 1
 // Define ANSI escape sequences for colors
@@ -40,4 +45,5 @@ public:
 #define WHITE "\033[0;37m"
 #define BOLD_BLACK "\033[1;30m"
 #define BG_WHITE "\033[0;47m"
+#define LINE "--------------------------------------"
 #endif

@@ -10,14 +10,32 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Array.class.hpp"
+#include "Array.class.tpp"
 
 int main() 
 {
-    Array obj1; // Default Constructor called
-    Array obj2(obj1); // Copy Constructor called
-    Array obj3;
-    obj3 = obj2; // Copy Assignment Operator called
+    int t = 1;
+    std::cout << GREEN << "Test case " << t++ << ": Int array creation" << RESET_COLOR << std::endl;
+    Array<int> obj(10);
+    obj.nice_testing(1);
+
+    std::cout << GREEN << "Test case " << t++ << ": double array creation" << RESET_COLOR << std::endl;
+    Array<double> obj1(10);
+    obj1.nice_testing(11);
+
+    std::cout << GREEN << "Test case " << t++ << ": string array creation" << RESET_COLOR << std::endl;
+    Array<std::string> obj2(10);
+    obj2.nice_testing(1);
+
+    std::cout << GREEN << "Test case " << t++ << ": bool array creation" << RESET_COLOR << std::endl;
+    Array<bool> obj3(10);
+    obj3.nice_testing(1);
+
+    std::cout << GREEN << "Test case " << t++ << ": empty int array creation " << RESET_COLOR << std::endl;
+    Array<int> obj4;
+
+    std::cout << GREEN << "Test case " << t++ << ": bad access creation " << RESET_COLOR << std::endl;
+    obj4.nice_testing(1);
 
     return (0);
 }
