@@ -27,8 +27,8 @@ public:
     Array(void);
     Array(unsigned int n);
     ~Array();
-    //Array(const Array& other);
-    //Array& operator=(const Array& other);
+    Array(const Array& other);
+    Array& operator=(const Array& other);
 
     unsigned int size(void) const {return (this->n);}
     T get_element(unsigned int n_element);
@@ -45,5 +45,8 @@ public:
 #define WHITE "\033[0;37m"
 #define BOLD_BLACK "\033[1;30m"
 #define BG_WHITE "\033[0;47m"
+#define BOLD    "\033[1m"
+#define UNDERL  "\033[4m"
+#define BG_DARK_GRAY  "\033[48;5;236m"
 #define LINE "--------------------------------------"
 #endif

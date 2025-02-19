@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   template.class.cpp                                 :+:      :+:    :+:   */
+/*   Array.class.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:24:16 by ytsyrend          #+#    #+#             */
-/*   Updated: 2025/02/18 20:50:14 by ytsyrend         ###   ########.fr       */
+/*   Updated: 2025/02/19 21:54:44 by ytsyrend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,24 @@ Array<T>::Array(void)
 }
 
 template <typename T>
-Array<T>::Array(unsigned int size):my_array(new T[size]), n(size)
+Array<T>::Array(unsigned int size):my_array(new T[size]()), n(size)
 {
     if (DEBUG){ std::cout << GREEN << "[Array] Default Constructor called" << RESET_COLOR << std::endl;}
 }
 
-/*template <typename T>
-Array<T>::Array(const Array& src): value(src.value) 
+template <typename T>
+Array<T>::Array(const Array& src):my_array(new T[src.n]), n(src.n)
 {
-    if (DEBUG){std::cout << GREEN << "[Array] Copy Constructor called" << RESET_COLOR << std::endl;}
-}*/
+    for (unsigned int i = 0; i < this->n; i++)
+    {
+        this->my_array[i] = src.my_array[i]; // Copy elements
+    }
+    if (DEBUG) 
+    { 
+        std::cout << GREEN << "[Array] Copy Constructor called" << std::endl; 
+        std::cout << "Address pointer src: " << src.my_array << " Address pointer current: " << this->my_array << RESET_COLOR << std::endl;
+    }
+}
 
 
 /****************************************************/
@@ -51,14 +59,26 @@ Array<T>::~Array(void)
 *                    Overload                      *
 ****************************************************/
 
-/*template <typename T>
+template <typename T>
 Array<T>& Array<T>::operator=(const Array& rhs) 
 {
-    if (DEBUG){std::cout << GREEN << "[Array] Copy assignment operator called" << std::endl;}
     if (this != &rhs)
-        this->value = rhs.get_value();
-    return (*this);
-}*/
+    {
+        delete[] this->my_array;
+        this->n = rhs.n;
+        this->my_array = new T[this->n];
+        for (unsigned int i = 0; i < this->n; i++)
+        {
+            this->my_array[i] = rhs.my_array[i];
+        }
+    }
+    if (DEBUG) 
+    {
+        std::cout << GREEN << "[Array] Copy assignment operator called" << std::endl; 
+        std::cout << "Address pointer src: " << rhs.my_array << " Address pointer current: " << this->my_array << RESET_COLOR << std::endl;
+    }
+    return *this;
+}
 
 
 /****************************************************
@@ -67,24 +87,25 @@ Array<T>& Array<T>::operator=(const Array& rhs)
 template <typename T>
 T Array<T>::get_element(unsigned int n_element)
 {
-    try
+    if (n_element >= this->n)
     {
-        if (n_element > this->n)
-            throw std::out_of_range("Index out of range");
+        throw std::out_of_range("Index out of range");
     }
-    catch(const std::out_of_range &e)
-    {
-        std::cerr << RED << "Exception: " << RESET_COLOR << e.what() << std::endl; 
-    }
-    return (this->my_array[n_element]);
+    return this->my_array[n_element];
 }
 
 template <typename T>
 void Array<T>::nice_testing(unsigned int n_element)
 {
-    std::cout << "Array size: "<< this->n << std::endl;
-    std::cout << n_element << " element of array: " << std::endl;
-    //this->get_element(n_element) 
+    std::cout << "Array [size: "<< this->n;
+    try
+    {
+        std::cout << "]  →  index "<< n_element << ": " << this->get_element(n_element) << std::endl;
+    }
+    catch(std::out_of_range &e)
+    {
+        std::cout << RED << e.what() << RESET_COLOR << std::endl;
+    }
     std::cout << LINE << std::endl;
 }
 
