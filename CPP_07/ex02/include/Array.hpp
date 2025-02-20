@@ -12,31 +12,7 @@
 
 #ifndef ARRAY_CLASS_H
 #define ARRAY_CLASS_H
-
-#include <iostream>
-#include <iomanip>
-#include <stdexcept>
-#include <cstdlib>
-
-template <typename T>
-class Array
-{
-private:
-    T *my_array;
-    unsigned int n;
-    Array(void);
-public:
-    Array(unsigned int n);
-    ~Array();
-    Array(const Array& other);
-    Array& operator=(const Array& other);
-    unsigned int size(void) const {return (this->n);}
-    T get_element(unsigned int n_element);
-    void nice_testing(unsigned int n_element);
-};
-
 #define DEBUG 1
-// Define ANSI escape sequences for colors
 #define RESET_COLOR "\033[0m"
 #define BLACK "\033[0;30m"
 #define RED "\033[0;31m"
@@ -49,4 +25,27 @@ public:
 #define UNDERL  "\033[4m"
 #define BG_DARK_GRAY  "\033[48;5;236m"
 #define LINE "--------------------------------------"
+#include <iostream>
+#include <iomanip>
+#include <stdexcept>
+#include <cstdlib>
+
+template <typename T>
+class Array
+{
+private:
+    T *my_array;
+    unsigned int n;
+public:
+    Array(void);
+    Array(unsigned int n);
+    ~Array();
+    Array(const Array& other);
+    Array& operator=(const Array& other);
+    unsigned int size(void) const {return (this->n);}
+    T get_element(unsigned int n_element);
+    void nice_testing(unsigned int n_element);
+};
+
+
 #endif

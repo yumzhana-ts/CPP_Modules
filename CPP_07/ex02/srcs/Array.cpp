@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Array.class.tpp"
+#include "Array.hpp"
 
 /****************************************************/
 /*                    Constructor                   */
@@ -72,7 +72,7 @@ Array<T>& Array<T>::operator=(const Array& rhs)
             this->my_array[i] = rhs.my_array[i];
         }
     }
-    if (DEBUG) 
+    if (DEBUG)
     {
         std::cout << GREEN << "[Array] Copy assignment operator called" << std::endl; 
         std::cout << "Address pointer src: " << rhs.my_array << " Address pointer current: " << this->my_array << RESET_COLOR << std::endl;
@@ -109,7 +109,4 @@ void Array<T>::nice_testing(unsigned int n_element)
     std::cout << LINE << std::endl;
 }
 
-template class Array<int>;
-template class Array<double>;
-template class Array<bool>;
-template class Array<std::string>;
+
