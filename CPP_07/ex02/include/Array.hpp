@@ -1,57 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   template.hpp                                       :+:      :+:    :+:   */
+/*   Array.class.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:24:01 by ytsyrend          #+#    #+#             */
-/*   Updated: 2025/02/18 18:39:26 by ytsyrend         ###   ########.fr       */
+/*   Updated: 2025/02/18 20:51:11 by ytsyrend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEMPLATE_H
-#define TEMPLATE_H
+#ifndef ARRAY_CLASS_H
+#define ARRAY_CLASS_H
 
 #include <iostream>
+#include <iomanip>
+#include <stdexcept>
+#include <cstdlib>
 
-template< typename T>
-void process(T const &x) 
+template <typename T>
+class Array
 {
-    sumup += x;
-}
-
-template< typename T >
-void iter(T *array, int size, void(*Func)(T const &))
-{
-    std::cout << "pointer to array: " << array << std::endl;
-    std::cout << "size: " << size << std::endl;
-    T sumup = T();
-    for(int i = 0; i < size; i++)
-    {
-        Func(array[i]);
-    }
-    std::cout << "sum: " << sumup << std::endl;
-}
-
-template< typename T >
-void iter(T *array, int size, void(*Func)(T &))
-{
-    std::cout << "pointer to array: " << array << std::endl;
-    std::cout << "size: " << size << std::endl;
-    T sumup = T();
-    for(int i = 0; i < size; i++)
-    {
-        Func(array[i]);
-    }
-    std::cout << "sum: " << sumup << std::endl;
-}
-
+private:
+    T *my_array;
+    unsigned int n;
+    Array(void);
+public:
+    Array(unsigned int n);
+    ~Array();
+    Array(const Array& other);
+    Array& operator=(const Array& other);
+    unsigned int size(void) const {return (this->n);}
+    T get_element(unsigned int n_element);
+    void nice_testing(unsigned int n_element);
+};
 
 #define DEBUG 1
 // Define ANSI escape sequences for colors
 #define RESET_COLOR "\033[0m"
-#define LINE "----------------------------"
 #define BLACK "\033[0;30m"
 #define RED "\033[0;31m"
 #define GREEN "\033[0;32m"
@@ -59,4 +45,8 @@ void iter(T *array, int size, void(*Func)(T &))
 #define WHITE "\033[0;37m"
 #define BOLD_BLACK "\033[1;30m"
 #define BG_WHITE "\033[0;47m"
+#define BOLD    "\033[1m"
+#define UNDERL  "\033[4m"
+#define BG_DARK_GRAY  "\033[48;5;236m"
+#define LINE "--------------------------------------"
 #endif

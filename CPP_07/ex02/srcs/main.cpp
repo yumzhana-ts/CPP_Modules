@@ -1,49 +1,51 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/05 18:41:01 by ytsyrend          #+#    #+#             */
-/*   Updated: 2025/02/18 20:50:14 by ytsyrend         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include <iostream>
+#include "./Array.hpp"
 
-#include "Array.class.tpp"
-
-
-int main() 
+#define MAX_VAL 750
+int main(int, char**)
 {
-    int t = 1;
-    std::cout << BOLD << "Test case " << t++ << ": Int array creation" << RESET_COLOR << std::endl;
-    Array<int> obj(10);
-    obj.nice_testing(1);
+    Array<int> numbers(MAX_VAL);
+    int* mirror = new int[MAX_VAL];
+    srand(time(NULL));
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        const int value = rand();
+        numbers[i] = value;
+        mirror[i] = value;
+    }
+    {
+        Array<int> tmp = numbers;
+        Array<int> test(tmp);
+    }
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        if (mirror[i] != numbers[i])
+        {
+            std::cerr << "didn't save the same value!!" << std::endl;
+            return 1;
+        }
+    }
+    try
+    {
+        numbers[-2] = 0;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    try
+    {
+        numbers[MAX_VAL] = 0;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
 
-    std::cout << BOLD << "Test case " << t++ << ": double array creation" << RESET_COLOR << std::endl;
-    Array<double> obj1(10);
-    obj1.nice_testing(11);
-
-    std::cout << BOLD << "Test case " << t++ << ": string array creation" << RESET_COLOR << std::endl;
-    Array<std::string> obj2(10);
-    obj2.nice_testing(1);
-
-    std::cout << BOLD << "Test case " << t++ << ": bool array creation" << RESET_COLOR << std::endl;
-    Array<bool> obj3(10);
-    obj3.nice_testing(1);
-
-    std::cout << BOLD << "Test case " << t++ << ": empty int array creation " << RESET_COLOR << std::endl;
-    Array<int> obj4;
-
-    std::cout << BOLD << "Test case " << t++ << ": bad access creation " << RESET_COLOR << std::endl;
-    obj4.nice_testing(1);
-
-    std::cout << BOLD << "Test case " << t++ << ": copy constructor " << RESET_COLOR << std::endl;
-    Array<int> obj5(obj4);
-    obj5.nice_testing(0);
-
-    std::cout << BOLD << "Test case " << t++ << ": copy constructor " << RESET_COLOR << std::endl;
-    obj5 = obj;
-    obj5.nice_testing(0);
-    return (0);
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        numbers[i] = rand();
+    }
+    delete [] mirror;
+    return 0;
 }

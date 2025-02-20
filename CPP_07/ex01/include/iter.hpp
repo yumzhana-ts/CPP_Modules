@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   template.class.hpp                                 :+:      :+:    :+:   */
+/*   template.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:24:01 by ytsyrend          #+#    #+#             */
-/*   Updated: 2024/07/06 12:37:40 by ytsyrend         ###   ########.fr       */
+/*   Updated: 2025/02/18 18:39:26 by ytsyrend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,49 +14,34 @@
 #define TEMPLATE_H
 
 #include <iostream>
-#define c_max(x, y) (((x)>=(y)) ? (x) : (y))
 
-int foo(int x){return x;}
+template< typename T>
+void process(T const &x) 
+{
+    std::cout << x << std::endl;
+}
+
 
 template< typename T >
-void swap(T &a, T &b)
+void iter(T *array, int size, void(*Func)(T const &))
 {
-    T temp = a;
-    a = b;
-    b = temp;
+    std::cout << "pointer to array: " << array << std::endl;
+    std::cout << "size: " << size << std::endl;
+    for(int i = 0; i < size; i++)
+    {
+        Func(array[i]);
+    }
 }
 
 template< typename T >
-T const & min(T const &a, T const &b)
+void iter(T *array, int size, void(*Func)(T &))
 {
-    return (a >= b) ? b : a; 
-}
-
-template< typename T >
-T const & max(T const  &a, T const  &b)
-{
-   return (a <= b) ? b : a; 
-}
-
-template< typename T >
-void print_swapped(T const  &a, T const  &b, T const  &max, T const  &min)
-{
-    std::cout <<  "Swapped values: a=" << a << ", b=" << b << std::endl;
-    std::cout << "Min: " << min << " Max: " << max << std::endl;  
-}
-
-template< typename T >
-void print_init(T const  &a, T const  &b)
-{
-    std::cout <<  "Input values: a=" << a << ", b=" << b << std::endl;
-}
-
-template< typename T >
-void nice_testing(T &a, T &b)
-{
-    ::print_init(a, b);
-    ::swap(a, b);
-    ::print_swapped(a, b, ::max(a,b), ::min(a,b));
+    std::cout << "pointer to array: " << array << std::endl;
+    std::cout << "size: " << size << std::endl;
+    for(int i = 0; i < size; i++)
+    {
+        Func(array[i]);
+    }
 }
 
 

@@ -25,7 +25,7 @@ SRC_DIRS 	= 	srcs
 
 MAIN 		= 	$(SRC_DIRS)/main.cpp
 TEST 		= 	$(SRC_DIRS)/tests.cpp
-# COMMON_SRCS =	$(SRC_DIRS)/template.cpp 
+#COMMON_SRCS =	$(SRC_DIRS)/helper.cpp 
 
 # Source and Object Files
 SRCS 		= 	$(COMMON_SRCS) $(MAIN)
