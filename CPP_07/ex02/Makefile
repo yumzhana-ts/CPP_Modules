@@ -6,7 +6,7 @@
 #    By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/05 18:06:28 by ytsyrend          #+#    #+#              #
-#    Updated: 2025/02/18 20:50:14 by ytsyrend         ###   ########.fr        #
+#    Updated: 2025/02/23 20:31:48 by ytsyrend         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRC_DIRS 	= 	srcs
 
 MAIN 		= 	$(SRC_DIRS)/main.cpp
 TEST 		= 	$(SRC_DIRS)/tests.cpp
-COMMON_SRCS =	$(SRC_DIRS)/Array.cpp 
+#COMMON_SRCS =	$(SRC_DIRS)/Array.cpp 
 
 # Source and Object Files
 SRCS 		= 	$(COMMON_SRCS) $(MAIN)

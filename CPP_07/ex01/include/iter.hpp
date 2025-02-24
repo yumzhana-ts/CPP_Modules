@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   template.hpp                                       :+:      :+:    :+:   */
+/*   iter.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:24:01 by ytsyrend          #+#    #+#             */
-/*   Updated: 2025/02/18 18:39:26 by ytsyrend         ###   ########.fr       */
+/*   Updated: 2025/02/23 22:48:22 by ytsyrend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,34 +16,22 @@
 #include <iostream>
 
 template< typename T>
-void process(T const &x) 
+void process(T &x) 
 {
     std::cout << x << std::endl;
 }
 
-
-template< typename T >
-void iter(T *array, int size, void(*Func)(T const &))
+template< typename T, typename F >
+void iter(T *array, int size, F func)
 {
-    std::cout << "pointer to array: " << array << std::endl;
-    std::cout << "size: " << size << std::endl;
+	if (!array)
+		return ;
+    std::cout << "pointer to array: " << array << "\nsize: " << size << std::endl;
     for(int i = 0; i < size; i++)
     {
-        Func(array[i]);
+        func(array[i]);
     }
 }
-
-template< typename T >
-void iter(T *array, int size, void(*Func)(T &))
-{
-    std::cout << "pointer to array: " << array << std::endl;
-    std::cout << "size: " << size << std::endl;
-    for(int i = 0; i < size; i++)
-    {
-        Func(array[i]);
-    }
-}
-
 
 #define DEBUG 1
 // Define ANSI escape sequences for colors
