@@ -1,42 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   iter.hpp                                           :+:      :+:    :+:   */
+/*   template.class.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:24:01 by ytsyrend          #+#    #+#             */
-/*   Updated: 2025/02/23 22:48:22 by ytsyrend         ###   ########.fr       */
+/*   Updated: 2024/07/06 12:37:40 by ytsyrend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ITER_H
-#define ITER_H
+#ifndef SPAN_CLASS_H
+#define SPAN_CLASS_H
 
 #include <iostream>
 
-template< typename T>
-void process(T const &x) 
+class Span
 {
-    std::cout << x << std::endl;
-}
+private:
+public:
+    Span(void);
+    ~Span(void);
+    Span(const Span& other);
+    Span& operator=(const Span& other);
 
-template< typename T, typename F >
-void iter(T *array, int size, F func)
-{
-	if (!array)
-		return ;
-    std::cout << "pointer to array: " << array << "\nsize: " << size << std::endl;
-    for(int i = 0; i < size; i++)
-    {
-        func(array[i]);
-    }
-}
+    //get&set
+    int get_value(void) const {return (this->value);}
+    void set_value(int v){this->value = v;}
+};
+
 
 #define DEBUG 1
 // Define ANSI escape sequences for colors
 #define RESET_COLOR "\033[0m"
-#define LINE "----------------------------"
 #define BLACK "\033[0;30m"
 #define RED "\033[0;31m"
 #define GREEN "\033[0;32m"
