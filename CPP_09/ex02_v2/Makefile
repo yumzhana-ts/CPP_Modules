@@ -6,7 +6,7 @@
 #    By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/05 18:06:28 by ytsyrend          #+#    #+#              #
-#    Updated: 2025/03/18 18:24:32 by ytsyrend         ###   ########.fr        #
+#    Updated: 2025/04/06 01:44:09 by ytsyrend         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRC_DIRS 	= 	srcs
 
 MAIN 		= 	$(SRC_DIRS)/main.cpp
 TEST 		= 	$(SRC_DIRS)/tests.cpp
-COMMON_SRCS =	$(SRC_DIRS)/Span.class.cpp 
+COMMON_SRCS =	$(SRC_DIRS)/Pmerge_me.class.cpp $(SRC_DIRS)/utils.cpp 
 
 # Source and Object Files
 SRCS 		= 	$(COMMON_SRCS) $(MAIN)
@@ -69,7 +69,6 @@ tclean : clean
 	$(RM) test
 	@echo "Executable removed."
 
-re:			fclean all
 
 leaks: re
 	@echo "\033[1;33m\nChecking for memory leaks...\033[0m"

@@ -1,47 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Span.class.hpp                                     :+:      :+:    :+:   */
+/*   RPN.class.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:24:01 by ytsyrend          #+#    #+#             */
-/*   Updated: 2025/03/20 13:20:52 by ytsyrend         ###   ########.fr       */
+/*   Updated: 2025/04/02 21:17:51 by ytsyrend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPAN_CLASS_H
-#define SPAN_CLASS_H
+#ifndef RPNLASS_H
+#define RPNLASS_H
 
 #include <iostream>
-#include <algorithm>
-#include <vector>
+#include <stack>
+#include <fstream>
+#include <sstream>
+#include <cctype>
 
 
-class Span
+class RPN
 {
 private:
-    unsigned int N;
-    std::vector<int> vec;
-    Span();
+    std::stack<int> super_stack;
+    RPN(void);
 public:
-    Span(unsigned int size);
-    ~Span(void);
-    Span(const Span& other);
-    Span& operator=(const Span& other);
+    RPN(std::stack<int> ss);
+    ~RPN(void);
+    RPN(const RPN& other);
+    RPN& operator=(const RPN& other);
 
-    int get_N(void) const {return (this->N);}
-    void add_number(int num);
-    int shortest_span();
-    int longest_span();
-    void print_vector();
-    void add_number(std::vector<int> &vec2);
-
-    class SuperException: public std::exception
-    {
-    public:
-        const char* what() const throw();
-    };
+    //get&set
+    //int get_value(void) const {return (this->value);}
+    //void set_value(int v){this->value = v;}
 };
 
 
