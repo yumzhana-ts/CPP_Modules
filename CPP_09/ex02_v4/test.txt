@@ -1,0 +1,1524 @@
++------------------------------------------------------+
+| Initial number of elements: 22                        |
+| Total recursion: 4                                    |
++------------------------------------------------------+
+| Level  Pairs    Numbers in Pairs   Used     Leftover  |
+|------------------------------------------------------|
+| 1      11       2                  22       0         |
+| 2      5        4                  20       2         |
+| 3      2        8                  16       4         |
+| 4      1        16                 16       0         |
++------------------------------------------------------+
+| Total number of leftovers: 6                          |
++------------------------------------------------------+
+
+
+[0;34m  ------------------------ wrapping numbers  ------------------------ [0m
+Recursion level: 0 -> 1
+[0;32mGenerated pairs: [{2, 11}, {0, 17}, {8, 16}, {6, 15}, {3, 10}, {1, 21}, {9, 18}, {14, 19}, {5, 12}, {4, 20}, {7, 13}][0m
+----- t_original_vector -----
+Original: [11, 2, 17, 0, 16, 8, 6, 15, 10, 3, 21, 1, 18, 9, 14, 19, 12, 5, 4, 20, 13, 7]
+Used: [2, 11, 0, 17, 8, 16, 6, 15, 3, 10, 1, 21, 9, 18, 14, 19, 5, 12, 4, 20, 7, 13]
+Leftovers: []
+-----------------------------
+Recursion level: 1 -> 2
+[0;32mGenerated pairs: [{{2, 11}, {0, 17}}, {{6, 15}, {8, 16}}, {{3, 10}, {1, 21}}, {{9, 18}, {14, 19}}, {{5, 12}, {4, 20}}][0m
+----- t_original_vector -----
+Original: [11, 2, 17, 0, 16, 8, 6, 15, 10, 3, 21, 1, 18, 9, 14, 19, 12, 5, 4, 20, 13, 7]
+Used: [2, 11, 0, 17, 6, 15, 8, 16, 3, 10, 1, 21, 9, 18, 14, 19, 5, 12, 4, 20]
+Leftovers: [7, 13]
+-----------------------------
+Recursion level: 2 -> 3
+[0;32mGenerated pairs: [{{{6, 15}, {8, 16}}, {{2, 11}, {0, 17}}}, {{{9, 18}, {14, 19}}, {{3, 10}, {1, 21}}}][0m
+----- t_original_vector -----
+Original: [11, 2, 17, 0, 16, 8, 6, 15, 10, 3, 21, 1, 18, 9, 14, 19, 12, 5, 4, 20, 13, 7]
+Used: [6, 15, 8, 16, 2, 11, 0, 17, 9, 18, 14, 19, 3, 10, 1, 21]
+Leftovers: [5, 12, 4, 20, 7, 13]
+-----------------------------
+Recursion level: 3 -> 4
+[0;32mGenerated pairs: [{{{{6, 15}, {8, 16}}, {{2, 11}, {0, 17}}}, {{{9, 18}, {14, 19}}, {{3, 10}, {1, 21}}}}][0m
+----- t_original_vector -----
+Original: [11, 2, 17, 0, 16, 8, 6, 15, 10, 3, 21, 1, 18, 9, 14, 19, 12, 5, 4, 20, 13, 7]
+Used: [6, 15, 8, 16, 2, 11, 0, 17, 9, 18, 14, 19, 3, 10, 1, 21]
+Leftovers: [5, 12, 4, 20, 7, 13]
+-----------------------------
+[0;34m
+   ------------------------ vector after sorting  ------------------------ [0m
+[0;31moriginal vector [0m6 -> 15 -> 8 -> 16 -> 2 -> 11 -> 0 -> 17 -> 9 -> 18 -> 14 -> 19 -> 3 -> 10 -> 1 -> 21 -> 5 -> 12 -> 4 -> 20 -> 7 -> 13
+[0;34m
+   ------------------------ unwrapping numbers  ------------------------ [0m
+Recursion level: 4 -> 3
+Recursion level: 3 -> 2
+[0;31m  ------------------------ before changes  ------------------------ [0m
+[0;31mmain: [0m
+pair: {{2, 11}, {0, 17}} num: 17 label: a1 index of pair: 0
+pair: {{3, 10}, {1, 21}} num: 21 label: a2 index of pair: 1
+[0;31mpend: [0m
+pair: {{6, 15}, {8, 16}} num: 16 label: b1 index of pair: 0
+pair: {{9, 18}, {14, 19}} num: 19 label: b2 index of pair: 1
+pair: {{5, 12}, {4, 20}} num: 20 label: b3 index of pair: -1
+
+[ Total comparisons: 0 | Numbers to compare 0]
+[ Inserting at position 0]
+[0;31m  ------------------------ Jacobstahl number: 1. Queue: 1/1  ------------------------ [0m
+[0;31mmain: [0m
+pair: {{6, 15}, {8, 16}} num: 16 label: b1 index of pair: -1
+pair: {{2, 11}, {0, 17}} num: 17 label: a1 index of pair: -1
+pair: {{3, 10}, {1, 21}} num: 21 label: a2 index of pair: -1
+[0;31mpend: [0m
+pair: {{6, 15}, {8, 16}} num: 16 label: b1 index of pair: 0
+pair: {{9, 18}, {14, 19}} num: 19 label: b2 index of pair: 2
+pair: {{5, 12}, {4, 20}} num: 20 label: b3 index of pair: -1
+
+[ Total comparisons: 2 | Numbers to compare 3]
+[ Inserting at position 2]
+[0;31m  ------------------------ Jacobstahl number: 3. Queue: 1/2  ------------------------ [0m
+[0;31mmain: [0m
+pair: {{6, 15}, {8, 16}} num: 16 label: b1 index of pair: -1
+pair: {{2, 11}, {0, 17}} num: 17 label: a1 index of pair: -1
+pair: {{5, 12}, {4, 20}} num: 20 label: b3 index of pair: -1
+pair: {{3, 10}, {1, 21}} num: 21 label: a2 index of pair: -1
+[0;31mpend: [0m
+pair: {{6, 15}, {8, 16}} num: 16 label: b1 index of pair: 0
+pair: {{9, 18}, {14, 19}} num: 19 label: b2 index of pair: 2
+pair: {{5, 12}, {4, 20}} num: 20 label: b3 index of pair: -1
+
+[ Total comparisons: 1 | Numbers to compare 2]
+[ Inserting at position 2]
+[0;31m  ------------------------ Jacobstahl number: 3. Queue: 2/2  ------------------------ [0m
+[0;31mmain: [0m
+pair: {{6, 15}, {8, 16}} num: 16 label: b1 index of pair: -1
+pair: {{2, 11}, {0, 17}} num: 17 label: a1 index of pair: -1
+pair: {{9, 18}, {14, 19}} num: 19 label: b2 index of pair: -1
+pair: {{5, 12}, {4, 20}} num: 20 label: b3 index of pair: -1
+pair: {{3, 10}, {1, 21}} num: 21 label: a2 index of pair: -1
+[0;31mpend: [0m
+pair: {{6, 15}, {8, 16}} num: 16 label: b1 index of pair: 0
+pair: {{9, 18}, {14, 19}} num: 19 label: b2 index of pair: 2
+pair: {{5, 12}, {4, 20}} num: 20 label: b3 index of pair: -1
+main after sort: [6, 15, 8, 16, 2, 11, 0, 17, 9, 18, 14, 19, 5, 12, 4, 20, 3, 10, 1, 21]
+Recursion level: 2 -> 1
+[0;31m  ------------------------ before changes  ------------------------ [0m
+[0;31mmain: [0m
+pair: {8, 16} num: 16 label: a1 index of pair: 0
+pair: {0, 17} num: 17 label: a2 index of pair: 1
+pair: {14, 19} num: 19 label: a3 index of pair: 2
+pair: {4, 20} num: 20 label: a4 index of pair: 3
+pair: {1, 21} num: 21 label: a5 index of pair: 4
+[0;31mpend: [0m
+pair: {6, 15} num: 15 label: b1 index of pair: 0
+pair: {2, 11} num: 11 label: b2 index of pair: 1
+pair: {9, 18} num: 18 label: b3 index of pair: 2
+pair: {5, 12} num: 12 label: b4 index of pair: 3
+pair: {3, 10} num: 10 label: b5 index of pair: 4
+pair: {7, 13} num: 13 label: b6 index of pair: -1
+
+[ Total comparisons: 0 | Numbers to compare 0]
+[ Inserting at position 0]
+[0;31m  ------------------------ Jacobstahl number: 1. Queue: 1/1  ------------------------ [0m
+[0;31mmain: [0m
+pair: {6, 15} num: 15 label: b1 index of pair: -1
+pair: {8, 16} num: 16 label: a1 index of pair: -1
+pair: {0, 17} num: 17 label: a2 index of pair: -1
+pair: {14, 19} num: 19 label: a3 index of pair: -1
+pair: {4, 20} num: 20 label: a4 index of pair: -1
+pair: {1, 21} num: 21 label: a5 index of pair: -1
+[0;31mpend: [0m
+pair: {6, 15} num: 15 label: b1 index of pair: 0
+pair: {2, 11} num: 11 label: b2 index of pair: 2
+pair: {9, 18} num: 18 label: b3 index of pair: 3
+pair: {5, 12} num: 12 label: b4 index of pair: 4
+pair: {3, 10} num: 10 label: b5 index of pair: 5
+pair: {7, 13} num: 13 label: b6 index of pair: -1
+
+[ Total comparisons: 2 | Numbers to compare 3]
+[ Inserting at position 3]
+[0;31m  ------------------------ Jacobstahl number: 3. Queue: 1/2  ------------------------ [0m
+[0;31mmain: [0m
+pair: {6, 15} num: 15 label: b1 index of pair: -1
+pair: {8, 16} num: 16 label: a1 index of pair: -1
+pair: {0, 17} num: 17 label: a2 index of pair: -1
+pair: {9, 18} num: 18 label: b3 index of pair: -1
+pair: {14, 19} num: 19 label: a3 index of pair: -1
+pair: {4, 20} num: 20 label: a4 index of pair: -1
+pair: {1, 21} num: 21 label: a5 index of pair: -1
+[0;31mpend: [0m
+pair: {6, 15} num: 15 label: b1 index of pair: 0
+pair: {2, 11} num: 11 label: b2 index of pair: 2
+pair: {9, 18} num: 18 label: b3 index of pair: 3
+pair: {5, 12} num: 12 label: b4 index of pair: 5
+pair: {3, 10} num: 10 label: b5 index of pair: 6
+pair: {7, 13} num: 13 label: b6 index of pair: -1
+
+[ Total comparisons: 2 | Numbers to compare 2]
+[ Inserting at position 0]
+[0;31m  ------------------------ Jacobstahl number: 3. Queue: 2/2  ------------------------ [0m
+[0;31mmain: [0m
+pair: {2, 11} num: 11 label: b2 index of pair: -1
+pair: {6, 15} num: 15 label: b1 index of pair: -1
+pair: {8, 16} num: 16 label: a1 index of pair: -1
+pair: {0, 17} num: 17 label: a2 index of pair: -1
+pair: {9, 18} num: 18 label: b3 index of pair: -1
+pair: {14, 19} num: 19 label: a3 index of pair: -1
+pair: {4, 20} num: 20 label: a4 index of pair: -1
+pair: {1, 21} num: 21 label: a5 index of pair: -1
+[0;31mpend: [0m
+pair: {6, 15} num: 15 label: b1 index of pair: 0
+pair: {2, 11} num: 11 label: b2 index of pair: 2
+pair: {9, 18} num: 18 label: b3 index of pair: 4
+pair: {5, 12} num: 12 label: b4 index of pair: 6
+pair: {3, 10} num: 10 label: b5 index of pair: 7
+pair: {7, 13} num: 13 label: b6 index of pair: -1
+
+[ Total comparisons: 3 | Numbers to compare 7]
+[ Inserting at position 0]
+[0;31m  ------------------------ Jacobstahl number: 5. Queue: 1/2  ------------------------ [0m
+[0;31mmain: [0m
+pair: {3, 10} num: 10 label: b5 index of pair: -1
+pair: {2, 11} num: 11 label: b2 index of pair: -1
+pair: {6, 15} num: 15 label: b1 index of pair: -1
+pair: {8, 16} num: 16 label: a1 index of pair: -1
+pair: {0, 17} num: 17 label: a2 index of pair: -1
+pair: {9, 18} num: 18 label: b3 index of pair: -1
+pair: {14, 19} num: 19 label: a3 index of pair: -1
+pair: {4, 20} num: 20 label: a4 index of pair: -1
+pair: {1, 21} num: 21 label: a5 index of pair: -1
+[0;31mpend: [0m
+pair: {6, 15} num: 15 label: b1 index of pair: 0
+pair: {2, 11} num: 11 label: b2 index of pair: 2
+pair: {9, 18} num: 18 label: b3 index of pair: 4
+pair: {5, 12} num: 12 label: b4 index of pair: 6
+pair: {3, 10} num: 10 label: b5 index of pair: 7
+pair: {7, 13} num: 13 label: b6 index of pair: -1
+
+[ Total comparisons: 3 | Numbers to compare 6]
+[ Inserting at position 2]
+[0;31m  ------------------------ Jacobstahl number: 5. Queue: 2/2  ------------------------ [0m
+[0;31mmain: [0m
+pair: {3, 10} num: 10 label: b5 index of pair: -1
+pair: {2, 11} num: 11 label: b2 index of pair: -1
+pair: {5, 12} num: 12 label: b4 index of pair: -1
+pair: {6, 15} num: 15 label: b1 index of pair: -1
+pair: {8, 16} num: 16 label: a1 index of pair: -1
+pair: {0, 17} num: 17 label: a2 index of pair: -1
+pair: {9, 18} num: 18 label: b3 index of pair: -1
+pair: {14, 19} num: 19 label: a3 index of pair: -1
+pair: {4, 20} num: 20 label: a4 index of pair: -1
+pair: {1, 21} num: 21 label: a5 index of pair: -1
+[0;31mpend: [0m
+pair: {6, 15} num: 15 label: b1 index of pair: 0
+pair: {2, 11} num: 11 label: b2 index of pair: 2
+pair: {9, 18} num: 18 label: b3 index of pair: 4
+pair: {5, 12} num: 12 label: b4 index of pair: 6
+pair: {3, 10} num: 10 label: b5 index of pair: 7
+pair: {7, 13} num: 13 label: b6 index of pair: -1
+
+[ Total comparisons: 4 | Numbers to compare 10]
+[ Inserting at position 3]
+[0;31m  ------------------------ Jacobstahl number: 6. Queue: 1/1  ------------------------ [0m
+[0;31mmain: [0m
+pair: {3, 10} num: 10 label: b5 index of pair: -1
+pair: {2, 11} num: 11 label: b2 index of pair: -1
+pair: {5, 12} num: 12 label: b4 index of pair: -1
+pair: {7, 13} num: 13 label: b6 index of pair: -1
+pair: {6, 15} num: 15 label: b1 index of pair: -1
+pair: {8, 16} num: 16 label: a1 index of pair: -1
+pair: {0, 17} num: 17 label: a2 index of pair: -1
+pair: {9, 18} num: 18 label: b3 index of pair: -1
+pair: {14, 19} num: 19 label: a3 index of pair: -1
+pair: {4, 20} num: 20 label: a4 index of pair: -1
+pair: {1, 21} num: 21 label: a5 index of pair: -1
+[0;31mpend: [0m
+pair: {6, 15} num: 15 label: b1 index of pair: 0
+pair: {2, 11} num: 11 label: b2 index of pair: 2
+pair: {9, 18} num: 18 label: b3 index of pair: 4
+pair: {5, 12} num: 12 label: b4 index of pair: 6
+pair: {3, 10} num: 10 label: b5 index of pair: 7
+pair: {7, 13} num: 13 label: b6 index of pair: -1
+main after sort: [3, 10, 2, 11, 5, 12, 7, 13, 6, 15, 8, 16, 0, 17, 9, 18, 14, 19, 4, 20, 1, 21, 6, 15, 8, 16, 2, 11, 0, 17, 9, 18, 14, 19, 5, 12, 4, 20, 3, 10, 1, 21]
+Recursion level: 1 -> 0
+[0;31m  ------------------------ before changes  ------------------------ [0m
+[0;31mmain: [0m
+pair: 10 num: 10 label: a1 index of pair: 0
+pair: 11 num: 11 label: a2 index of pair: 1
+pair: 12 num: 12 label: a3 index of pair: 2
+pair: 13 num: 13 label: a4 index of pair: 3
+pair: 15 num: 15 label: a5 index of pair: 4
+pair: 16 num: 16 label: a6 index of pair: 5
+pair: 17 num: 17 label: a7 index of pair: 6
+pair: 18 num: 18 label: a8 index of pair: 7
+pair: 19 num: 19 label: a9 index of pair: 8
+pair: 20 num: 20 label: a10 index of pair: 9
+pair: 21 num: 21 label: a11 index of pair: 10
+pair: 15 num: 15 label: a12 index of pair: 11
+pair: 16 num: 16 label: a13 index of pair: 12
+pair: 11 num: 11 label: a14 index of pair: 13
+pair: 17 num: 17 label: a15 index of pair: 14
+pair: 18 num: 18 label: a16 index of pair: 15
+pair: 19 num: 19 label: a17 index of pair: 16
+pair: 12 num: 12 label: a18 index of pair: 17
+pair: 20 num: 20 label: a19 index of pair: 18
+pair: 10 num: 10 label: a20 index of pair: 19
+pair: 21 num: 21 label: a21 index of pair: 20
+[0;31mpend: [0m
+pair: 3 num: 3 label: b1 index of pair: 0
+pair: 2 num: 2 label: b2 index of pair: 1
+pair: 5 num: 5 label: b3 index of pair: 2
+pair: 7 num: 7 label: b4 index of pair: 3
+pair: 6 num: 6 label: b5 index of pair: 4
+pair: 8 num: 8 label: b6 index of pair: 5
+pair: 0 num: 0 label: b7 index of pair: 6
+pair: 9 num: 9 label: b8 index of pair: 7
+pair: 14 num: 14 label: b9 index of pair: 8
+pair: 4 num: 4 label: b10 index of pair: 9
+pair: 1 num: 1 label: b11 index of pair: 10
+pair: 6 num: 6 label: b12 index of pair: 11
+pair: 8 num: 8 label: b13 index of pair: 12
+pair: 2 num: 2 label: b14 index of pair: 13
+pair: 0 num: 0 label: b15 index of pair: 14
+pair: 9 num: 9 label: b16 index of pair: 15
+pair: 14 num: 14 label: b17 index of pair: 16
+pair: 5 num: 5 label: b18 index of pair: 17
+pair: 4 num: 4 label: b19 index of pair: 18
+pair: 3 num: 3 label: b20 index of pair: 19
+pair: 1 num: 1 label: b21 index of pair: 20
+
+[ Total comparisons: 0 | Numbers to compare 0]
+[ Inserting at position 0]
+[0;31m  ------------------------ Jacobstahl number: 1. Queue: 1/1  ------------------------ [0m
+[0;31mmain: [0m
+pair: 3 num: 3 label: b1 index of pair: -1
+pair: 10 num: 10 label: a1 index of pair: -1
+pair: 11 num: 11 label: a2 index of pair: -1
+pair: 12 num: 12 label: a3 index of pair: -1
+pair: 13 num: 13 label: a4 index of pair: -1
+pair: 15 num: 15 label: a5 index of pair: -1
+pair: 16 num: 16 label: a6 index of pair: -1
+pair: 17 num: 17 label: a7 index of pair: -1
+pair: 18 num: 18 label: a8 index of pair: -1
+pair: 19 num: 19 label: a9 index of pair: -1
+pair: 20 num: 20 label: a10 index of pair: -1
+pair: 21 num: 21 label: a11 index of pair: -1
+pair: 15 num: 15 label: a12 index of pair: -1
+pair: 16 num: 16 label: a13 index of pair: -1
+pair: 11 num: 11 label: a14 index of pair: -1
+pair: 17 num: 17 label: a15 index of pair: -1
+pair: 18 num: 18 label: a16 index of pair: -1
+pair: 19 num: 19 label: a17 index of pair: -1
+pair: 12 num: 12 label: a18 index of pair: -1
+pair: 20 num: 20 label: a19 index of pair: -1
+pair: 10 num: 10 label: a20 index of pair: -1
+pair: 21 num: 21 label: a21 index of pair: -1
+[0;31mpend: [0m
+pair: 3 num: 3 label: b1 index of pair: 0
+pair: 2 num: 2 label: b2 index of pair: 2
+pair: 5 num: 5 label: b3 index of pair: 3
+pair: 7 num: 7 label: b4 index of pair: 4
+pair: 6 num: 6 label: b5 index of pair: 5
+pair: 8 num: 8 label: b6 index of pair: 6
+pair: 0 num: 0 label: b7 index of pair: 7
+pair: 9 num: 9 label: b8 index of pair: 8
+pair: 14 num: 14 label: b9 index of pair: 9
+pair: 4 num: 4 label: b10 index of pair: 10
+pair: 1 num: 1 label: b11 index of pair: 11
+pair: 6 num: 6 label: b12 index of pair: 12
+pair: 8 num: 8 label: b13 index of pair: 13
+pair: 2 num: 2 label: b14 index of pair: 14
+pair: 0 num: 0 label: b15 index of pair: 15
+pair: 9 num: 9 label: b16 index of pair: 16
+pair: 14 num: 14 label: b17 index of pair: 17
+pair: 5 num: 5 label: b18 index of pair: 18
+pair: 4 num: 4 label: b19 index of pair: 19
+pair: 3 num: 3 label: b20 index of pair: 20
+pair: 1 num: 1 label: b21 index of pair: 21
+
+[ Total comparisons: 2 | Numbers to compare 3]
+[ Inserting at position 1]
+[0;31m  ------------------------ Jacobstahl number: 3. Queue: 1/2  ------------------------ [0m
+[0;31mmain: [0m
+pair: 3 num: 3 label: b1 index of pair: -1
+pair: 5 num: 5 label: b3 index of pair: -1
+pair: 10 num: 10 label: a1 index of pair: -1
+pair: 11 num: 11 label: a2 index of pair: -1
+pair: 12 num: 12 label: a3 index of pair: -1
+pair: 13 num: 13 label: a4 index of pair: -1
+pair: 15 num: 15 label: a5 index of pair: -1
+pair: 16 num: 16 label: a6 index of pair: -1
+pair: 17 num: 17 label: a7 index of pair: -1
+pair: 18 num: 18 label: a8 index of pair: -1
+pair: 19 num: 19 label: a9 index of pair: -1
+pair: 20 num: 20 label: a10 index of pair: -1
+pair: 21 num: 21 label: a11 index of pair: -1
+pair: 15 num: 15 label: a12 index of pair: -1
+pair: 16 num: 16 label: a13 index of pair: -1
+pair: 11 num: 11 label: a14 index of pair: -1
+pair: 17 num: 17 label: a15 index of pair: -1
+pair: 18 num: 18 label: a16 index of pair: -1
+pair: 19 num: 19 label: a17 index of pair: -1
+pair: 12 num: 12 label: a18 index of pair: -1
+pair: 20 num: 20 label: a19 index of pair: -1
+pair: 10 num: 10 label: a20 index of pair: -1
+pair: 21 num: 21 label: a21 index of pair: -1
+[0;31mpend: [0m
+pair: 3 num: 3 label: b1 index of pair: 0
+pair: 2 num: 2 label: b2 index of pair: 2
+pair: 5 num: 5 label: b3 index of pair: 3
+pair: 7 num: 7 label: b4 index of pair: 5
+pair: 6 num: 6 label: b5 index of pair: 6
+pair: 8 num: 8 label: b6 index of pair: 7
+pair: 0 num: 0 label: b7 index of pair: 8
+pair: 9 num: 9 label: b8 index of pair: 9
+pair: 14 num: 14 label: b9 index of pair: 10
+pair: 4 num: 4 label: b10 index of pair: 11
+pair: 1 num: 1 label: b11 index of pair: 12
+pair: 6 num: 6 label: b12 index of pair: 13
+pair: 8 num: 8 label: b13 index of pair: 14
+pair: 2 num: 2 label: b14 index of pair: 15
+pair: 0 num: 0 label: b15 index of pair: 16
+pair: 9 num: 9 label: b16 index of pair: 17
+pair: 14 num: 14 label: b17 index of pair: 18
+pair: 5 num: 5 label: b18 index of pair: 19
+pair: 4 num: 4 label: b19 index of pair: 20
+pair: 3 num: 3 label: b20 index of pair: 21
+pair: 1 num: 1 label: b21 index of pair: 22
+
+[ Total comparisons: 2 | Numbers to compare 2]
+[ Inserting at position 0]
+[0;31m  ------------------------ Jacobstahl number: 3. Queue: 2/2  ------------------------ [0m
+[0;31mmain: [0m
+pair: 2 num: 2 label: b2 index of pair: -1
+pair: 3 num: 3 label: b1 index of pair: -1
+pair: 5 num: 5 label: b3 index of pair: -1
+pair: 10 num: 10 label: a1 index of pair: -1
+pair: 11 num: 11 label: a2 index of pair: -1
+pair: 12 num: 12 label: a3 index of pair: -1
+pair: 13 num: 13 label: a4 index of pair: -1
+pair: 15 num: 15 label: a5 index of pair: -1
+pair: 16 num: 16 label: a6 index of pair: -1
+pair: 17 num: 17 label: a7 index of pair: -1
+pair: 18 num: 18 label: a8 index of pair: -1
+pair: 19 num: 19 label: a9 index of pair: -1
+pair: 20 num: 20 label: a10 index of pair: -1
+pair: 21 num: 21 label: a11 index of pair: -1
+pair: 15 num: 15 label: a12 index of pair: -1
+pair: 16 num: 16 label: a13 index of pair: -1
+pair: 11 num: 11 label: a14 index of pair: -1
+pair: 17 num: 17 label: a15 index of pair: -1
+pair: 18 num: 18 label: a16 index of pair: -1
+pair: 19 num: 19 label: a17 index of pair: -1
+pair: 12 num: 12 label: a18 index of pair: -1
+pair: 20 num: 20 label: a19 index of pair: -1
+pair: 10 num: 10 label: a20 index of pair: -1
+pair: 21 num: 21 label: a21 index of pair: -1
+[0;31mpend: [0m
+pair: 3 num: 3 label: b1 index of pair: 0
+pair: 2 num: 2 label: b2 index of pair: 2
+pair: 5 num: 5 label: b3 index of pair: 4
+pair: 7 num: 7 label: b4 index of pair: 6
+pair: 6 num: 6 label: b5 index of pair: 7
+pair: 8 num: 8 label: b6 index of pair: 8
+pair: 0 num: 0 label: b7 index of pair: 9
+pair: 9 num: 9 label: b8 index of pair: 10
+pair: 14 num: 14 label: b9 index of pair: 11
+pair: 4 num: 4 label: b10 index of pair: 12
+pair: 1 num: 1 label: b11 index of pair: 13
+pair: 6 num: 6 label: b12 index of pair: 14
+pair: 8 num: 8 label: b13 index of pair: 15
+pair: 2 num: 2 label: b14 index of pair: 16
+pair: 0 num: 0 label: b15 index of pair: 17
+pair: 9 num: 9 label: b16 index of pair: 18
+pair: 14 num: 14 label: b17 index of pair: 19
+pair: 5 num: 5 label: b18 index of pair: 20
+pair: 4 num: 4 label: b19 index of pair: 21
+pair: 3 num: 3 label: b20 index of pair: 22
+pair: 1 num: 1 label: b21 index of pair: 23
+
+[ Total comparisons: 3 | Numbers to compare 7]
+[ Inserting at position 3]
+[0;31m  ------------------------ Jacobstahl number: 5. Queue: 1/2  ------------------------ [0m
+[0;31mmain: [0m
+pair: 2 num: 2 label: b2 index of pair: -1
+pair: 3 num: 3 label: b1 index of pair: -1
+pair: 5 num: 5 label: b3 index of pair: -1
+pair: 6 num: 6 label: b5 index of pair: -1
+pair: 10 num: 10 label: a1 index of pair: -1
+pair: 11 num: 11 label: a2 index of pair: -1
+pair: 12 num: 12 label: a3 index of pair: -1
+pair: 13 num: 13 label: a4 index of pair: -1
+pair: 15 num: 15 label: a5 index of pair: -1
+pair: 16 num: 16 label: a6 index of pair: -1
+pair: 17 num: 17 label: a7 index of pair: -1
+pair: 18 num: 18 label: a8 index of pair: -1
+pair: 19 num: 19 label: a9 index of pair: -1
+pair: 20 num: 20 label: a10 index of pair: -1
+pair: 21 num: 21 label: a11 index of pair: -1
+pair: 15 num: 15 label: a12 index of pair: -1
+pair: 16 num: 16 label: a13 index of pair: -1
+pair: 11 num: 11 label: a14 index of pair: -1
+pair: 17 num: 17 label: a15 index of pair: -1
+pair: 18 num: 18 label: a16 index of pair: -1
+pair: 19 num: 19 label: a17 index of pair: -1
+pair: 12 num: 12 label: a18 index of pair: -1
+pair: 20 num: 20 label: a19 index of pair: -1
+pair: 10 num: 10 label: a20 index of pair: -1
+pair: 21 num: 21 label: a21 index of pair: -1
+[0;31mpend: [0m
+pair: 3 num: 3 label: b1 index of pair: 0
+pair: 2 num: 2 label: b2 index of pair: 2
+pair: 5 num: 5 label: b3 index of pair: 4
+pair: 7 num: 7 label: b4 index of pair: 6
+pair: 6 num: 6 label: b5 index of pair: 7
+pair: 8 num: 8 label: b6 index of pair: 8
+pair: 0 num: 0 label: b7 index of pair: 9
+pair: 9 num: 9 label: b8 index of pair: 11
+pair: 14 num: 14 label: b9 index of pair: 12
+pair: 4 num: 4 label: b10 index of pair: 13
+pair: 1 num: 1 label: b11 index of pair: 14
+pair: 6 num: 6 label: b12 index of pair: 15
+pair: 8 num: 8 label: b13 index of pair: 16
+pair: 2 num: 2 label: b14 index of pair: 17
+pair: 0 num: 0 label: b15 index of pair: 18
+pair: 9 num: 9 label: b16 index of pair: 19
+pair: 14 num: 14 label: b17 index of pair: 20
+pair: 5 num: 5 label: b18 index of pair: 21
+pair: 4 num: 4 label: b19 index of pair: 22
+pair: 3 num: 3 label: b20 index of pair: 23
+pair: 1 num: 1 label: b21 index of pair: 24
+
+[ Total comparisons: 3 | Numbers to compare 6]
+[ Inserting at position 4]
+[0;31m  ------------------------ Jacobstahl number: 5. Queue: 2/2  ------------------------ [0m
+[0;31mmain: [0m
+pair: 2 num: 2 label: b2 index of pair: -1
+pair: 3 num: 3 label: b1 index of pair: -1
+pair: 5 num: 5 label: b3 index of pair: -1
+pair: 6 num: 6 label: b5 index of pair: -1
+pair: 7 num: 7 label: b4 index of pair: -1
+pair: 10 num: 10 label: a1 index of pair: -1
+pair: 11 num: 11 label: a2 index of pair: -1
+pair: 12 num: 12 label: a3 index of pair: -1
+pair: 13 num: 13 label: a4 index of pair: -1
+pair: 15 num: 15 label: a5 index of pair: -1
+pair: 16 num: 16 label: a6 index of pair: -1
+pair: 17 num: 17 label: a7 index of pair: -1
+pair: 18 num: 18 label: a8 index of pair: -1
+pair: 19 num: 19 label: a9 index of pair: -1
+pair: 20 num: 20 label: a10 index of pair: -1
+pair: 21 num: 21 label: a11 index of pair: -1
+pair: 15 num: 15 label: a12 index of pair: -1
+pair: 16 num: 16 label: a13 index of pair: -1
+pair: 11 num: 11 label: a14 index of pair: -1
+pair: 17 num: 17 label: a15 index of pair: -1
+pair: 18 num: 18 label: a16 index of pair: -1
+pair: 19 num: 19 label: a17 index of pair: -1
+pair: 12 num: 12 label: a18 index of pair: -1
+pair: 20 num: 20 label: a19 index of pair: -1
+pair: 10 num: 10 label: a20 index of pair: -1
+pair: 21 num: 21 label: a21 index of pair: -1
+[0;31mpend: [0m
+pair: 3 num: 3 label: b1 index of pair: 0
+pair: 2 num: 2 label: b2 index of pair: 2
+pair: 5 num: 5 label: b3 index of pair: 4
+pair: 7 num: 7 label: b4 index of pair: 6
+pair: 6 num: 6 label: b5 index of pair: 7
+pair: 8 num: 8 label: b6 index of pair: 8
+pair: 0 num: 0 label: b7 index of pair: 10
+pair: 9 num: 9 label: b8 index of pair: 12
+pair: 14 num: 14 label: b9 index of pair: 13
+pair: 4 num: 4 label: b10 index of pair: 14
+pair: 1 num: 1 label: b11 index of pair: 15
+pair: 6 num: 6 label: b12 index of pair: 16
+pair: 8 num: 8 label: b13 index of pair: 17
+pair: 2 num: 2 label: b14 index of pair: 18
+pair: 0 num: 0 label: b15 index of pair: 19
+pair: 9 num: 9 label: b16 index of pair: 20
+pair: 14 num: 14 label: b17 index of pair: 21
+pair: 5 num: 5 label: b18 index of pair: 22
+pair: 4 num: 4 label: b19 index of pair: 23
+pair: 3 num: 3 label: b20 index of pair: 24
+pair: 1 num: 1 label: b21 index of pair: 25
+
+[ Total comparisons: 4 | Numbers to compare 15]
+[ Inserting at position 0]
+[0;31m  ------------------------ Jacobstahl number: 11. Queue: 1/6  ------------------------ [0m
+[0;31mmain: [0m
+pair: 1 num: 1 label: b11 index of pair: -1
+pair: 2 num: 2 label: b2 index of pair: -1
+pair: 3 num: 3 label: b1 index of pair: -1
+pair: 5 num: 5 label: b3 index of pair: -1
+pair: 6 num: 6 label: b5 index of pair: -1
+pair: 7 num: 7 label: b4 index of pair: -1
+pair: 10 num: 10 label: a1 index of pair: -1
+pair: 11 num: 11 label: a2 index of pair: -1
+pair: 12 num: 12 label: a3 index of pair: -1
+pair: 13 num: 13 label: a4 index of pair: -1
+pair: 15 num: 15 label: a5 index of pair: -1
+pair: 16 num: 16 label: a6 index of pair: -1
+pair: 17 num: 17 label: a7 index of pair: -1
+pair: 18 num: 18 label: a8 index of pair: -1
+pair: 19 num: 19 label: a9 index of pair: -1
+pair: 20 num: 20 label: a10 index of pair: -1
+pair: 21 num: 21 label: a11 index of pair: -1
+pair: 15 num: 15 label: a12 index of pair: -1
+pair: 16 num: 16 label: a13 index of pair: -1
+pair: 11 num: 11 label: a14 index of pair: -1
+pair: 17 num: 17 label: a15 index of pair: -1
+pair: 18 num: 18 label: a16 index of pair: -1
+pair: 19 num: 19 label: a17 index of pair: -1
+pair: 12 num: 12 label: a18 index of pair: -1
+pair: 20 num: 20 label: a19 index of pair: -1
+pair: 10 num: 10 label: a20 index of pair: -1
+pair: 21 num: 21 label: a21 index of pair: -1
+[0;31mpend: [0m
+pair: 3 num: 3 label: b1 index of pair: 0
+pair: 2 num: 2 label: b2 index of pair: 2
+pair: 5 num: 5 label: b3 index of pair: 4
+pair: 7 num: 7 label: b4 index of pair: 6
+pair: 6 num: 6 label: b5 index of pair: 7
+pair: 8 num: 8 label: b6 index of pair: 8
+pair: 0 num: 0 label: b7 index of pair: 10
+pair: 9 num: 9 label: b8 index of pair: 12
+pair: 14 num: 14 label: b9 index of pair: 13
+pair: 4 num: 4 label: b10 index of pair: 14
+pair: 1 num: 1 label: b11 index of pair: 15
+pair: 6 num: 6 label: b12 index of pair: 16
+pair: 8 num: 8 label: b13 index of pair: 17
+pair: 2 num: 2 label: b14 index of pair: 18
+pair: 0 num: 0 label: b15 index of pair: 19
+pair: 9 num: 9 label: b16 index of pair: 21
+pair: 14 num: 14 label: b17 index of pair: 22
+pair: 5 num: 5 label: b18 index of pair: 23
+pair: 4 num: 4 label: b19 index of pair: 24
+pair: 3 num: 3 label: b20 index of pair: 25
+pair: 1 num: 1 label: b21 index of pair: 26
+
+[ Total comparisons: 4 | Numbers to compare 14]
+[ Inserting at position 3]
+[0;31m  ------------------------ Jacobstahl number: 11. Queue: 2/6  ------------------------ [0m
+[0;31mmain: [0m
+pair: 1 num: 1 label: b11 index of pair: -1
+pair: 2 num: 2 label: b2 index of pair: -1
+pair: 3 num: 3 label: b1 index of pair: -1
+pair: 4 num: 4 label: b10 index of pair: -1
+pair: 5 num: 5 label: b3 index of pair: -1
+pair: 6 num: 6 label: b5 index of pair: -1
+pair: 7 num: 7 label: b4 index of pair: -1
+pair: 10 num: 10 label: a1 index of pair: -1
+pair: 11 num: 11 label: a2 index of pair: -1
+pair: 12 num: 12 label: a3 index of pair: -1
+pair: 13 num: 13 label: a4 index of pair: -1
+pair: 15 num: 15 label: a5 index of pair: -1
+pair: 16 num: 16 label: a6 index of pair: -1
+pair: 17 num: 17 label: a7 index of pair: -1
+pair: 18 num: 18 label: a8 index of pair: -1
+pair: 19 num: 19 label: a9 index of pair: -1
+pair: 20 num: 20 label: a10 index of pair: -1
+pair: 21 num: 21 label: a11 index of pair: -1
+pair: 15 num: 15 label: a12 index of pair: -1
+pair: 16 num: 16 label: a13 index of pair: -1
+pair: 11 num: 11 label: a14 index of pair: -1
+pair: 17 num: 17 label: a15 index of pair: -1
+pair: 18 num: 18 label: a16 index of pair: -1
+pair: 19 num: 19 label: a17 index of pair: -1
+pair: 12 num: 12 label: a18 index of pair: -1
+pair: 20 num: 20 label: a19 index of pair: -1
+pair: 10 num: 10 label: a20 index of pair: -1
+pair: 21 num: 21 label: a21 index of pair: -1
+[0;31mpend: [0m
+pair: 3 num: 3 label: b1 index of pair: 0
+pair: 2 num: 2 label: b2 index of pair: 2
+pair: 5 num: 5 label: b3 index of pair: 4
+pair: 7 num: 7 label: b4 index of pair: 6
+pair: 6 num: 6 label: b5 index of pair: 7
+pair: 8 num: 8 label: b6 index of pair: 8
+pair: 0 num: 0 label: b7 index of pair: 10
+pair: 9 num: 9 label: b8 index of pair: 12
+pair: 14 num: 14 label: b9 index of pair: 13
+pair: 4 num: 4 label: b10 index of pair: 14
+pair: 1 num: 1 label: b11 index of pair: 15
+pair: 6 num: 6 label: b12 index of pair: 16
+pair: 8 num: 8 label: b13 index of pair: 17
+pair: 2 num: 2 label: b14 index of pair: 18
+pair: 0 num: 0 label: b15 index of pair: 20
+pair: 9 num: 9 label: b16 index of pair: 22
+pair: 14 num: 14 label: b17 index of pair: 23
+pair: 5 num: 5 label: b18 index of pair: 24
+pair: 4 num: 4 label: b19 index of pair: 25
+pair: 3 num: 3 label: b20 index of pair: 26
+pair: 1 num: 1 label: b21 index of pair: 27
+
+[ Total comparisons: 4 | Numbers to compare 13]
+[ Inserting at position 11]
+[0;31m  ------------------------ Jacobstahl number: 11. Queue: 3/6  ------------------------ [0m
+[0;31mmain: [0m
+pair: 1 num: 1 label: b11 index of pair: -1
+pair: 2 num: 2 label: b2 index of pair: -1
+pair: 3 num: 3 label: b1 index of pair: -1
+pair: 4 num: 4 label: b10 index of pair: -1
+pair: 5 num: 5 label: b3 index of pair: -1
+pair: 6 num: 6 label: b5 index of pair: -1
+pair: 7 num: 7 label: b4 index of pair: -1
+pair: 10 num: 10 label: a1 index of pair: -1
+pair: 11 num: 11 label: a2 index of pair: -1
+pair: 12 num: 12 label: a3 index of pair: -1
+pair: 13 num: 13 label: a4 index of pair: -1
+pair: 14 num: 14 label: b9 index of pair: -1
+pair: 15 num: 15 label: a5 index of pair: -1
+pair: 16 num: 16 label: a6 index of pair: -1
+pair: 17 num: 17 label: a7 index of pair: -1
+pair: 18 num: 18 label: a8 index of pair: -1
+pair: 19 num: 19 label: a9 index of pair: -1
+pair: 20 num: 20 label: a10 index of pair: -1
+pair: 21 num: 21 label: a11 index of pair: -1
+pair: 15 num: 15 label: a12 index of pair: -1
+pair: 16 num: 16 label: a13 index of pair: -1
+pair: 11 num: 11 label: a14 index of pair: -1
+pair: 17 num: 17 label: a15 index of pair: -1
+pair: 18 num: 18 label: a16 index of pair: -1
+pair: 19 num: 19 label: a17 index of pair: -1
+pair: 12 num: 12 label: a18 index of pair: -1
+pair: 20 num: 20 label: a19 index of pair: -1
+pair: 10 num: 10 label: a20 index of pair: -1
+pair: 21 num: 21 label: a21 index of pair: -1
+[0;31mpend: [0m
+pair: 3 num: 3 label: b1 index of pair: 0
+pair: 2 num: 2 label: b2 index of pair: 2
+pair: 5 num: 5 label: b3 index of pair: 4
+pair: 7 num: 7 label: b4 index of pair: 6
+pair: 6 num: 6 label: b5 index of pair: 7
+pair: 8 num: 8 label: b6 index of pair: 8
+pair: 0 num: 0 label: b7 index of pair: 10
+pair: 9 num: 9 label: b8 index of pair: 12
+pair: 14 num: 14 label: b9 index of pair: 13
+pair: 4 num: 4 label: b10 index of pair: 14
+pair: 1 num: 1 label: b11 index of pair: 15
+pair: 6 num: 6 label: b12 index of pair: 16
+pair: 8 num: 8 label: b13 index of pair: 17
+pair: 2 num: 2 label: b14 index of pair: 19
+pair: 0 num: 0 label: b15 index of pair: 21
+pair: 9 num: 9 label: b16 index of pair: 23
+pair: 14 num: 14 label: b17 index of pair: 24
+pair: 5 num: 5 label: b18 index of pair: 25
+pair: 4 num: 4 label: b19 index of pair: 26
+pair: 3 num: 3 label: b20 index of pair: 27
+pair: 1 num: 1 label: b21 index of pair: 28
+
+[ Total comparisons: 4 | Numbers to compare 12]
+[ Inserting at position 7]
+[0;31m  ------------------------ Jacobstahl number: 11. Queue: 4/6  ------------------------ [0m
+[0;31mmain: [0m
+pair: 1 num: 1 label: b11 index of pair: -1
+pair: 2 num: 2 label: b2 index of pair: -1
+pair: 3 num: 3 label: b1 index of pair: -1
+pair: 4 num: 4 label: b10 index of pair: -1
+pair: 5 num: 5 label: b3 index of pair: -1
+pair: 6 num: 6 label: b5 index of pair: -1
+pair: 7 num: 7 label: b4 index of pair: -1
+pair: 9 num: 9 label: b8 index of pair: -1
+pair: 10 num: 10 label: a1 index of pair: -1
+pair: 11 num: 11 label: a2 index of pair: -1
+pair: 12 num: 12 label: a3 index of pair: -1
+pair: 13 num: 13 label: a4 index of pair: -1
+pair: 14 num: 14 label: b9 index of pair: -1
+pair: 15 num: 15 label: a5 index of pair: -1
+pair: 16 num: 16 label: a6 index of pair: -1
+pair: 17 num: 17 label: a7 index of pair: -1
+pair: 18 num: 18 label: a8 index of pair: -1
+pair: 19 num: 19 label: a9 index of pair: -1
+pair: 20 num: 20 label: a10 index of pair: -1
+pair: 21 num: 21 label: a11 index of pair: -1
+pair: 15 num: 15 label: a12 index of pair: -1
+pair: 16 num: 16 label: a13 index of pair: -1
+pair: 11 num: 11 label: a14 index of pair: -1
+pair: 17 num: 17 label: a15 index of pair: -1
+pair: 18 num: 18 label: a16 index of pair: -1
+pair: 19 num: 19 label: a17 index of pair: -1
+pair: 12 num: 12 label: a18 index of pair: -1
+pair: 20 num: 20 label: a19 index of pair: -1
+pair: 10 num: 10 label: a20 index of pair: -1
+pair: 21 num: 21 label: a21 index of pair: -1
+[0;31mpend: [0m
+pair: 3 num: 3 label: b1 index of pair: 0
+pair: 2 num: 2 label: b2 index of pair: 2
+pair: 5 num: 5 label: b3 index of pair: 4
+pair: 7 num: 7 label: b4 index of pair: 6
+pair: 6 num: 6 label: b5 index of pair: 7
+pair: 8 num: 8 label: b6 index of pair: 8
+pair: 0 num: 0 label: b7 index of pair: 10
+pair: 9 num: 9 label: b8 index of pair: 12
+pair: 14 num: 14 label: b9 index of pair: 13
+pair: 4 num: 4 label: b10 index of pair: 14
+pair: 1 num: 1 label: b11 index of pair: 15
+pair: 6 num: 6 label: b12 index of pair: 16
+pair: 8 num: 8 label: b13 index of pair: 18
+pair: 2 num: 2 label: b14 index of pair: 20
+pair: 0 num: 0 label: b15 index of pair: 22
+pair: 9 num: 9 label: b16 index of pair: 24
+pair: 14 num: 14 label: b17 index of pair: 25
+pair: 5 num: 5 label: b18 index of pair: 26
+pair: 4 num: 4 label: b19 index of pair: 27
+pair: 3 num: 3 label: b20 index of pair: 28
+pair: 1 num: 1 label: b21 index of pair: 29
+
+[ Total comparisons: 4 | Numbers to compare 10]
+[ Inserting at position 0]
+[0;31m  ------------------------ Jacobstahl number: 11. Queue: 5/6  ------------------------ [0m
+[0;31mmain: [0m
+pair: 0 num: 0 label: b7 index of pair: -1
+pair: 1 num: 1 label: b11 index of pair: -1
+pair: 2 num: 2 label: b2 index of pair: -1
+pair: 3 num: 3 label: b1 index of pair: -1
+pair: 4 num: 4 label: b10 index of pair: -1
+pair: 5 num: 5 label: b3 index of pair: -1
+pair: 6 num: 6 label: b5 index of pair: -1
+pair: 7 num: 7 label: b4 index of pair: -1
+pair: 9 num: 9 label: b8 index of pair: -1
+pair: 10 num: 10 label: a1 index of pair: -1
+pair: 11 num: 11 label: a2 index of pair: -1
+pair: 12 num: 12 label: a3 index of pair: -1
+pair: 13 num: 13 label: a4 index of pair: -1
+pair: 14 num: 14 label: b9 index of pair: -1
+pair: 15 num: 15 label: a5 index of pair: -1
+pair: 16 num: 16 label: a6 index of pair: -1
+pair: 17 num: 17 label: a7 index of pair: -1
+pair: 18 num: 18 label: a8 index of pair: -1
+pair: 19 num: 19 label: a9 index of pair: -1
+pair: 20 num: 20 label: a10 index of pair: -1
+pair: 21 num: 21 label: a11 index of pair: -1
+pair: 15 num: 15 label: a12 index of pair: -1
+pair: 16 num: 16 label: a13 index of pair: -1
+pair: 11 num: 11 label: a14 index of pair: -1
+pair: 17 num: 17 label: a15 index of pair: -1
+pair: 18 num: 18 label: a16 index of pair: -1
+pair: 19 num: 19 label: a17 index of pair: -1
+pair: 12 num: 12 label: a18 index of pair: -1
+pair: 20 num: 20 label: a19 index of pair: -1
+pair: 10 num: 10 label: a20 index of pair: -1
+pair: 21 num: 21 label: a21 index of pair: -1
+[0;31mpend: [0m
+pair: 3 num: 3 label: b1 index of pair: 0
+pair: 2 num: 2 label: b2 index of pair: 2
+pair: 5 num: 5 label: b3 index of pair: 4
+pair: 7 num: 7 label: b4 index of pair: 6
+pair: 6 num: 6 label: b5 index of pair: 7
+pair: 8 num: 8 label: b6 index of pair: 8
+pair: 0 num: 0 label: b7 index of pair: 10
+pair: 9 num: 9 label: b8 index of pair: 12
+pair: 14 num: 14 label: b9 index of pair: 13
+pair: 4 num: 4 label: b10 index of pair: 14
+pair: 1 num: 1 label: b11 index of pair: 16
+pair: 6 num: 6 label: b12 index of pair: 17
+pair: 8 num: 8 label: b13 index of pair: 19
+pair: 2 num: 2 label: b14 index of pair: 21
+pair: 0 num: 0 label: b15 index of pair: 23
+pair: 9 num: 9 label: b16 index of pair: 25
+pair: 14 num: 14 label: b17 index of pair: 26
+pair: 5 num: 5 label: b18 index of pair: 27
+pair: 4 num: 4 label: b19 index of pair: 28
+pair: 3 num: 3 label: b20 index of pair: 29
+pair: 1 num: 1 label: b21 index of pair: 30
+
+[ Total comparisons: 3 | Numbers to compare 8]
+[ Inserting at position 8]
+[0;31m  ------------------------ Jacobstahl number: 11. Queue: 6/6  ------------------------ [0m
+[0;31mmain: [0m
+pair: 0 num: 0 label: b7 index of pair: -1
+pair: 1 num: 1 label: b11 index of pair: -1
+pair: 2 num: 2 label: b2 index of pair: -1
+pair: 3 num: 3 label: b1 index of pair: -1
+pair: 4 num: 4 label: b10 index of pair: -1
+pair: 5 num: 5 label: b3 index of pair: -1
+pair: 6 num: 6 label: b5 index of pair: -1
+pair: 7 num: 7 label: b4 index of pair: -1
+pair: 8 num: 8 label: b6 index of pair: -1
+pair: 9 num: 9 label: b8 index of pair: -1
+pair: 10 num: 10 label: a1 index of pair: -1
+pair: 11 num: 11 label: a2 index of pair: -1
+pair: 12 num: 12 label: a3 index of pair: -1
+pair: 13 num: 13 label: a4 index of pair: -1
+pair: 14 num: 14 label: b9 index of pair: -1
+pair: 15 num: 15 label: a5 index of pair: -1
+pair: 16 num: 16 label: a6 index of pair: -1
+pair: 17 num: 17 label: a7 index of pair: -1
+pair: 18 num: 18 label: a8 index of pair: -1
+pair: 19 num: 19 label: a9 index of pair: -1
+pair: 20 num: 20 label: a10 index of pair: -1
+pair: 21 num: 21 label: a11 index of pair: -1
+pair: 15 num: 15 label: a12 index of pair: -1
+pair: 16 num: 16 label: a13 index of pair: -1
+pair: 11 num: 11 label: a14 index of pair: -1
+pair: 17 num: 17 label: a15 index of pair: -1
+pair: 18 num: 18 label: a16 index of pair: -1
+pair: 19 num: 19 label: a17 index of pair: -1
+pair: 12 num: 12 label: a18 index of pair: -1
+pair: 20 num: 20 label: a19 index of pair: -1
+pair: 10 num: 10 label: a20 index of pair: -1
+pair: 21 num: 21 label: a21 index of pair: -1
+[0;31mpend: [0m
+pair: 3 num: 3 label: b1 index of pair: 0
+pair: 2 num: 2 label: b2 index of pair: 2
+pair: 5 num: 5 label: b3 index of pair: 4
+pair: 7 num: 7 label: b4 index of pair: 6
+pair: 6 num: 6 label: b5 index of pair: 7
+pair: 8 num: 8 label: b6 index of pair: 8
+pair: 0 num: 0 label: b7 index of pair: 10
+pair: 9 num: 9 label: b8 index of pair: 12
+pair: 14 num: 14 label: b9 index of pair: 14
+pair: 4 num: 4 label: b10 index of pair: 15
+pair: 1 num: 1 label: b11 index of pair: 17
+pair: 6 num: 6 label: b12 index of pair: 18
+pair: 8 num: 8 label: b13 index of pair: 20
+pair: 2 num: 2 label: b14 index of pair: 22
+pair: 0 num: 0 label: b15 index of pair: 24
+pair: 9 num: 9 label: b16 index of pair: 26
+pair: 14 num: 14 label: b17 index of pair: 27
+pair: 5 num: 5 label: b18 index of pair: 28
+pair: 4 num: 4 label: b19 index of pair: 29
+pair: 3 num: 3 label: b20 index of pair: 30
+pair: 1 num: 1 label: b21 index of pair: 31
+
+[ Total comparisons: 4 | Numbers to compare 31]
+[ Inserting at position 1]
+[0;31m  ------------------------ Jacobstahl number: 21. Queue: 1/10  ------------------------ [0m
+[0;31mmain: [0m
+pair: 0 num: 0 label: b7 index of pair: -1
+pair: 1 num: 1 label: b21 index of pair: -1
+pair: 1 num: 1 label: b11 index of pair: -1
+pair: 2 num: 2 label: b2 index of pair: -1
+pair: 3 num: 3 label: b1 index of pair: -1
+pair: 4 num: 4 label: b10 index of pair: -1
+pair: 5 num: 5 label: b3 index of pair: -1
+pair: 6 num: 6 label: b5 index of pair: -1
+pair: 7 num: 7 label: b4 index of pair: -1
+pair: 8 num: 8 label: b6 index of pair: -1
+pair: 9 num: 9 label: b8 index of pair: -1
+pair: 10 num: 10 label: a1 index of pair: -1
+pair: 11 num: 11 label: a2 index of pair: -1
+pair: 12 num: 12 label: a3 index of pair: -1
+pair: 13 num: 13 label: a4 index of pair: -1
+pair: 14 num: 14 label: b9 index of pair: -1
+pair: 15 num: 15 label: a5 index of pair: -1
+pair: 16 num: 16 label: a6 index of pair: -1
+pair: 17 num: 17 label: a7 index of pair: -1
+pair: 18 num: 18 label: a8 index of pair: -1
+pair: 19 num: 19 label: a9 index of pair: -1
+pair: 20 num: 20 label: a10 index of pair: -1
+pair: 21 num: 21 label: a11 index of pair: -1
+pair: 15 num: 15 label: a12 index of pair: -1
+pair: 16 num: 16 label: a13 index of pair: -1
+pair: 11 num: 11 label: a14 index of pair: -1
+pair: 17 num: 17 label: a15 index of pair: -1
+pair: 18 num: 18 label: a16 index of pair: -1
+pair: 19 num: 19 label: a17 index of pair: -1
+pair: 12 num: 12 label: a18 index of pair: -1
+pair: 20 num: 20 label: a19 index of pair: -1
+pair: 10 num: 10 label: a20 index of pair: -1
+pair: 21 num: 21 label: a21 index of pair: -1
+[0;31mpend: [0m
+pair: 3 num: 3 label: b1 index of pair: 0
+pair: 2 num: 2 label: b2 index of pair: 2
+pair: 5 num: 5 label: b3 index of pair: 4
+pair: 7 num: 7 label: b4 index of pair: 6
+pair: 6 num: 6 label: b5 index of pair: 7
+pair: 8 num: 8 label: b6 index of pair: 8
+pair: 0 num: 0 label: b7 index of pair: 10
+pair: 9 num: 9 label: b8 index of pair: 12
+pair: 14 num: 14 label: b9 index of pair: 14
+pair: 4 num: 4 label: b10 index of pair: 15
+pair: 1 num: 1 label: b11 index of pair: 17
+pair: 6 num: 6 label: b12 index of pair: 18
+pair: 8 num: 8 label: b13 index of pair: 20
+pair: 2 num: 2 label: b14 index of pair: 22
+pair: 0 num: 0 label: b15 index of pair: 24
+pair: 9 num: 9 label: b16 index of pair: 26
+pair: 14 num: 14 label: b17 index of pair: 27
+pair: 5 num: 5 label: b18 index of pair: 28
+pair: 4 num: 4 label: b19 index of pair: 29
+pair: 3 num: 3 label: b20 index of pair: 30
+pair: 1 num: 1 label: b21 index of pair: 31
+
+[ Total comparisons: 5 | Numbers to compare 30]
+[ Inserting at position 4]
+[0;31m  ------------------------ Jacobstahl number: 21. Queue: 2/10  ------------------------ [0m
+[0;31mmain: [0m
+pair: 0 num: 0 label: b7 index of pair: -1
+pair: 1 num: 1 label: b21 index of pair: -1
+pair: 1 num: 1 label: b11 index of pair: -1
+pair: 2 num: 2 label: b2 index of pair: -1
+pair: 3 num: 3 label: b20 index of pair: -1
+pair: 3 num: 3 label: b1 index of pair: -1
+pair: 4 num: 4 label: b10 index of pair: -1
+pair: 5 num: 5 label: b3 index of pair: -1
+pair: 6 num: 6 label: b5 index of pair: -1
+pair: 7 num: 7 label: b4 index of pair: -1
+pair: 8 num: 8 label: b6 index of pair: -1
+pair: 9 num: 9 label: b8 index of pair: -1
+pair: 10 num: 10 label: a1 index of pair: -1
+pair: 11 num: 11 label: a2 index of pair: -1
+pair: 12 num: 12 label: a3 index of pair: -1
+pair: 13 num: 13 label: a4 index of pair: -1
+pair: 14 num: 14 label: b9 index of pair: -1
+pair: 15 num: 15 label: a5 index of pair: -1
+pair: 16 num: 16 label: a6 index of pair: -1
+pair: 17 num: 17 label: a7 index of pair: -1
+pair: 18 num: 18 label: a8 index of pair: -1
+pair: 19 num: 19 label: a9 index of pair: -1
+pair: 20 num: 20 label: a10 index of pair: -1
+pair: 21 num: 21 label: a11 index of pair: -1
+pair: 15 num: 15 label: a12 index of pair: -1
+pair: 16 num: 16 label: a13 index of pair: -1
+pair: 11 num: 11 label: a14 index of pair: -1
+pair: 17 num: 17 label: a15 index of pair: -1
+pair: 18 num: 18 label: a16 index of pair: -1
+pair: 19 num: 19 label: a17 index of pair: -1
+pair: 12 num: 12 label: a18 index of pair: -1
+pair: 20 num: 20 label: a19 index of pair: -1
+pair: 10 num: 10 label: a20 index of pair: -1
+pair: 21 num: 21 label: a21 index of pair: -1
+[0;31mpend: [0m
+pair: 3 num: 3 label: b1 index of pair: 0
+pair: 2 num: 2 label: b2 index of pair: 2
+pair: 5 num: 5 label: b3 index of pair: 4
+pair: 7 num: 7 label: b4 index of pair: 6
+pair: 6 num: 6 label: b5 index of pair: 7
+pair: 8 num: 8 label: b6 index of pair: 8
+pair: 0 num: 0 label: b7 index of pair: 10
+pair: 9 num: 9 label: b8 index of pair: 12
+pair: 14 num: 14 label: b9 index of pair: 14
+pair: 4 num: 4 label: b10 index of pair: 15
+pair: 1 num: 1 label: b11 index of pair: 17
+pair: 6 num: 6 label: b12 index of pair: 18
+pair: 8 num: 8 label: b13 index of pair: 20
+pair: 2 num: 2 label: b14 index of pair: 22
+pair: 0 num: 0 label: b15 index of pair: 24
+pair: 9 num: 9 label: b16 index of pair: 26
+pair: 14 num: 14 label: b17 index of pair: 27
+pair: 5 num: 5 label: b18 index of pair: 28
+pair: 4 num: 4 label: b19 index of pair: 29
+pair: 3 num: 3 label: b20 index of pair: 30
+pair: 1 num: 1 label: b21 index of pair: 31
+
+[ Total comparisons: 5 | Numbers to compare 29]
+[ Inserting at position 6]
+[0;31m  ------------------------ Jacobstahl number: 21. Queue: 3/10  ------------------------ [0m
+[0;31mmain: [0m
+pair: 0 num: 0 label: b7 index of pair: -1
+pair: 1 num: 1 label: b21 index of pair: -1
+pair: 1 num: 1 label: b11 index of pair: -1
+pair: 2 num: 2 label: b2 index of pair: -1
+pair: 3 num: 3 label: b20 index of pair: -1
+pair: 3 num: 3 label: b1 index of pair: -1
+pair: 4 num: 4 label: b19 index of pair: -1
+pair: 4 num: 4 label: b10 index of pair: -1
+pair: 5 num: 5 label: b3 index of pair: -1
+pair: 6 num: 6 label: b5 index of pair: -1
+pair: 7 num: 7 label: b4 index of pair: -1
+pair: 8 num: 8 label: b6 index of pair: -1
+pair: 9 num: 9 label: b8 index of pair: -1
+pair: 10 num: 10 label: a1 index of pair: -1
+pair: 11 num: 11 label: a2 index of pair: -1
+pair: 12 num: 12 label: a3 index of pair: -1
+pair: 13 num: 13 label: a4 index of pair: -1
+pair: 14 num: 14 label: b9 index of pair: -1
+pair: 15 num: 15 label: a5 index of pair: -1
+pair: 16 num: 16 label: a6 index of pair: -1
+pair: 17 num: 17 label: a7 index of pair: -1
+pair: 18 num: 18 label: a8 index of pair: -1
+pair: 19 num: 19 label: a9 index of pair: -1
+pair: 20 num: 20 label: a10 index of pair: -1
+pair: 21 num: 21 label: a11 index of pair: -1
+pair: 15 num: 15 label: a12 index of pair: -1
+pair: 16 num: 16 label: a13 index of pair: -1
+pair: 11 num: 11 label: a14 index of pair: -1
+pair: 17 num: 17 label: a15 index of pair: -1
+pair: 18 num: 18 label: a16 index of pair: -1
+pair: 19 num: 19 label: a17 index of pair: -1
+pair: 12 num: 12 label: a18 index of pair: -1
+pair: 20 num: 20 label: a19 index of pair: -1
+pair: 10 num: 10 label: a20 index of pair: -1
+pair: 21 num: 21 label: a21 index of pair: -1
+[0;31mpend: [0m
+pair: 3 num: 3 label: b1 index of pair: 0
+pair: 2 num: 2 label: b2 index of pair: 2
+pair: 5 num: 5 label: b3 index of pair: 4
+pair: 7 num: 7 label: b4 index of pair: 6
+pair: 6 num: 6 label: b5 index of pair: 7
+pair: 8 num: 8 label: b6 index of pair: 8
+pair: 0 num: 0 label: b7 index of pair: 10
+pair: 9 num: 9 label: b8 index of pair: 12
+pair: 14 num: 14 label: b9 index of pair: 14
+pair: 4 num: 4 label: b10 index of pair: 15
+pair: 1 num: 1 label: b11 index of pair: 17
+pair: 6 num: 6 label: b12 index of pair: 18
+pair: 8 num: 8 label: b13 index of pair: 20
+pair: 2 num: 2 label: b14 index of pair: 22
+pair: 0 num: 0 label: b15 index of pair: 24
+pair: 9 num: 9 label: b16 index of pair: 26
+pair: 14 num: 14 label: b17 index of pair: 27
+pair: 5 num: 5 label: b18 index of pair: 28
+pair: 4 num: 4 label: b19 index of pair: 29
+pair: 3 num: 3 label: b20 index of pair: 30
+pair: 1 num: 1 label: b21 index of pair: 31
+
+[ Total comparisons: 5 | Numbers to compare 28]
+[ Inserting at position 8]
+[0;31m  ------------------------ Jacobstahl number: 21. Queue: 4/10  ------------------------ [0m
+[0;31mmain: [0m
+pair: 0 num: 0 label: b7 index of pair: -1
+pair: 1 num: 1 label: b21 index of pair: -1
+pair: 1 num: 1 label: b11 index of pair: -1
+pair: 2 num: 2 label: b2 index of pair: -1
+pair: 3 num: 3 label: b20 index of pair: -1
+pair: 3 num: 3 label: b1 index of pair: -1
+pair: 4 num: 4 label: b19 index of pair: -1
+pair: 4 num: 4 label: b10 index of pair: -1
+pair: 5 num: 5 label: b18 index of pair: -1
+pair: 5 num: 5 label: b3 index of pair: -1
+pair: 6 num: 6 label: b5 index of pair: -1
+pair: 7 num: 7 label: b4 index of pair: -1
+pair: 8 num: 8 label: b6 index of pair: -1
+pair: 9 num: 9 label: b8 index of pair: -1
+pair: 10 num: 10 label: a1 index of pair: -1
+pair: 11 num: 11 label: a2 index of pair: -1
+pair: 12 num: 12 label: a3 index of pair: -1
+pair: 13 num: 13 label: a4 index of pair: -1
+pair: 14 num: 14 label: b9 index of pair: -1
+pair: 15 num: 15 label: a5 index of pair: -1
+pair: 16 num: 16 label: a6 index of pair: -1
+pair: 17 num: 17 label: a7 index of pair: -1
+pair: 18 num: 18 label: a8 index of pair: -1
+pair: 19 num: 19 label: a9 index of pair: -1
+pair: 20 num: 20 label: a10 index of pair: -1
+pair: 21 num: 21 label: a11 index of pair: -1
+pair: 15 num: 15 label: a12 index of pair: -1
+pair: 16 num: 16 label: a13 index of pair: -1
+pair: 11 num: 11 label: a14 index of pair: -1
+pair: 17 num: 17 label: a15 index of pair: -1
+pair: 18 num: 18 label: a16 index of pair: -1
+pair: 19 num: 19 label: a17 index of pair: -1
+pair: 12 num: 12 label: a18 index of pair: -1
+pair: 20 num: 20 label: a19 index of pair: -1
+pair: 10 num: 10 label: a20 index of pair: -1
+pair: 21 num: 21 label: a21 index of pair: -1
+[0;31mpend: [0m
+pair: 3 num: 3 label: b1 index of pair: 0
+pair: 2 num: 2 label: b2 index of pair: 2
+pair: 5 num: 5 label: b3 index of pair: 4
+pair: 7 num: 7 label: b4 index of pair: 6
+pair: 6 num: 6 label: b5 index of pair: 7
+pair: 8 num: 8 label: b6 index of pair: 8
+pair: 0 num: 0 label: b7 index of pair: 10
+pair: 9 num: 9 label: b8 index of pair: 12
+pair: 14 num: 14 label: b9 index of pair: 14
+pair: 4 num: 4 label: b10 index of pair: 15
+pair: 1 num: 1 label: b11 index of pair: 17
+pair: 6 num: 6 label: b12 index of pair: 18
+pair: 8 num: 8 label: b13 index of pair: 20
+pair: 2 num: 2 label: b14 index of pair: 22
+pair: 0 num: 0 label: b15 index of pair: 24
+pair: 9 num: 9 label: b16 index of pair: 26
+pair: 14 num: 14 label: b17 index of pair: 27
+pair: 5 num: 5 label: b18 index of pair: 28
+pair: 4 num: 4 label: b19 index of pair: 29
+pair: 3 num: 3 label: b20 index of pair: 30
+pair: 1 num: 1 label: b21 index of pair: 31
+
+[ Total comparisons: 5 | Numbers to compare 27]
+[ Inserting at position 18]
+[0;31m  ------------------------ Jacobstahl number: 21. Queue: 5/10  ------------------------ [0m
+[0;31mmain: [0m
+pair: 0 num: 0 label: b7 index of pair: -1
+pair: 1 num: 1 label: b21 index of pair: -1
+pair: 1 num: 1 label: b11 index of pair: -1
+pair: 2 num: 2 label: b2 index of pair: -1
+pair: 3 num: 3 label: b20 index of pair: -1
+pair: 3 num: 3 label: b1 index of pair: -1
+pair: 4 num: 4 label: b19 index of pair: -1
+pair: 4 num: 4 label: b10 index of pair: -1
+pair: 5 num: 5 label: b18 index of pair: -1
+pair: 5 num: 5 label: b3 index of pair: -1
+pair: 6 num: 6 label: b5 index of pair: -1
+pair: 7 num: 7 label: b4 index of pair: -1
+pair: 8 num: 8 label: b6 index of pair: -1
+pair: 9 num: 9 label: b8 index of pair: -1
+pair: 10 num: 10 label: a1 index of pair: -1
+pair: 11 num: 11 label: a2 index of pair: -1
+pair: 12 num: 12 label: a3 index of pair: -1
+pair: 13 num: 13 label: a4 index of pair: -1
+pair: 14 num: 14 label: b17 index of pair: -1
+pair: 14 num: 14 label: b9 index of pair: -1
+pair: 15 num: 15 label: a5 index of pair: -1
+pair: 16 num: 16 label: a6 index of pair: -1
+pair: 17 num: 17 label: a7 index of pair: -1
+pair: 18 num: 18 label: a8 index of pair: -1
+pair: 19 num: 19 label: a9 index of pair: -1
+pair: 20 num: 20 label: a10 index of pair: -1
+pair: 21 num: 21 label: a11 index of pair: -1
+pair: 15 num: 15 label: a12 index of pair: -1
+pair: 16 num: 16 label: a13 index of pair: -1
+pair: 11 num: 11 label: a14 index of pair: -1
+pair: 17 num: 17 label: a15 index of pair: -1
+pair: 18 num: 18 label: a16 index of pair: -1
+pair: 19 num: 19 label: a17 index of pair: -1
+pair: 12 num: 12 label: a18 index of pair: -1
+pair: 20 num: 20 label: a19 index of pair: -1
+pair: 10 num: 10 label: a20 index of pair: -1
+pair: 21 num: 21 label: a21 index of pair: -1
+[0;31mpend: [0m
+pair: 3 num: 3 label: b1 index of pair: 0
+pair: 2 num: 2 label: b2 index of pair: 2
+pair: 5 num: 5 label: b3 index of pair: 4
+pair: 7 num: 7 label: b4 index of pair: 6
+pair: 6 num: 6 label: b5 index of pair: 7
+pair: 8 num: 8 label: b6 index of pair: 8
+pair: 0 num: 0 label: b7 index of pair: 10
+pair: 9 num: 9 label: b8 index of pair: 12
+pair: 14 num: 14 label: b9 index of pair: 14
+pair: 4 num: 4 label: b10 index of pair: 15
+pair: 1 num: 1 label: b11 index of pair: 17
+pair: 6 num: 6 label: b12 index of pair: 18
+pair: 8 num: 8 label: b13 index of pair: 20
+pair: 2 num: 2 label: b14 index of pair: 22
+pair: 0 num: 0 label: b15 index of pair: 24
+pair: 9 num: 9 label: b16 index of pair: 26
+pair: 14 num: 14 label: b17 index of pair: 27
+pair: 5 num: 5 label: b18 index of pair: 28
+pair: 4 num: 4 label: b19 index of pair: 29
+pair: 3 num: 3 label: b20 index of pair: 30
+pair: 1 num: 1 label: b21 index of pair: 31
+
+[ Total comparisons: 1 | Numbers to compare 26]
+[ Inserting at position 13]
+[0;31m  ------------------------ Jacobstahl number: 21. Queue: 6/10  ------------------------ [0m
+[0;31mmain: [0m
+pair: 0 num: 0 label: b7 index of pair: -1
+pair: 1 num: 1 label: b21 index of pair: -1
+pair: 1 num: 1 label: b11 index of pair: -1
+pair: 2 num: 2 label: b2 index of pair: -1
+pair: 3 num: 3 label: b20 index of pair: -1
+pair: 3 num: 3 label: b1 index of pair: -1
+pair: 4 num: 4 label: b19 index of pair: -1
+pair: 4 num: 4 label: b10 index of pair: -1
+pair: 5 num: 5 label: b18 index of pair: -1
+pair: 5 num: 5 label: b3 index of pair: -1
+pair: 6 num: 6 label: b5 index of pair: -1
+pair: 7 num: 7 label: b4 index of pair: -1
+pair: 8 num: 8 label: b6 index of pair: -1
+pair: 9 num: 9 label: b16 index of pair: -1
+pair: 9 num: 9 label: b8 index of pair: -1
+pair: 10 num: 10 label: a1 index of pair: -1
+pair: 11 num: 11 label: a2 index of pair: -1
+pair: 12 num: 12 label: a3 index of pair: -1
+pair: 13 num: 13 label: a4 index of pair: -1
+pair: 14 num: 14 label: b17 index of pair: -1
+pair: 14 num: 14 label: b9 index of pair: -1
+pair: 15 num: 15 label: a5 index of pair: -1
+pair: 16 num: 16 label: a6 index of pair: -1
+pair: 17 num: 17 label: a7 index of pair: -1
+pair: 18 num: 18 label: a8 index of pair: -1
+pair: 19 num: 19 label: a9 index of pair: -1
+pair: 20 num: 20 label: a10 index of pair: -1
+pair: 21 num: 21 label: a11 index of pair: -1
+pair: 15 num: 15 label: a12 index of pair: -1
+pair: 16 num: 16 label: a13 index of pair: -1
+pair: 11 num: 11 label: a14 index of pair: -1
+pair: 17 num: 17 label: a15 index of pair: -1
+pair: 18 num: 18 label: a16 index of pair: -1
+pair: 19 num: 19 label: a17 index of pair: -1
+pair: 12 num: 12 label: a18 index of pair: -1
+pair: 20 num: 20 label: a19 index of pair: -1
+pair: 10 num: 10 label: a20 index of pair: -1
+pair: 21 num: 21 label: a21 index of pair: -1
+[0;31mpend: [0m
+pair: 3 num: 3 label: b1 index of pair: 0
+pair: 2 num: 2 label: b2 index of pair: 2
+pair: 5 num: 5 label: b3 index of pair: 4
+pair: 7 num: 7 label: b4 index of pair: 6
+pair: 6 num: 6 label: b5 index of pair: 7
+pair: 8 num: 8 label: b6 index of pair: 8
+pair: 0 num: 0 label: b7 index of pair: 10
+pair: 9 num: 9 label: b8 index of pair: 12
+pair: 14 num: 14 label: b9 index of pair: 14
+pair: 4 num: 4 label: b10 index of pair: 15
+pair: 1 num: 1 label: b11 index of pair: 17
+pair: 6 num: 6 label: b12 index of pair: 18
+pair: 8 num: 8 label: b13 index of pair: 20
+pair: 2 num: 2 label: b14 index of pair: 22
+pair: 0 num: 0 label: b15 index of pair: 24
+pair: 9 num: 9 label: b16 index of pair: 26
+pair: 14 num: 14 label: b17 index of pair: 27
+pair: 5 num: 5 label: b18 index of pair: 28
+pair: 4 num: 4 label: b19 index of pair: 29
+pair: 3 num: 3 label: b20 index of pair: 30
+pair: 1 num: 1 label: b21 index of pair: 31
+
+[ Total comparisons: 5 | Numbers to compare 24]
+[ Inserting at position 0]
+[0;31m  ------------------------ Jacobstahl number: 21. Queue: 7/10  ------------------------ [0m
+[0;31mmain: [0m
+pair: 0 num: 0 label: b15 index of pair: -1
+pair: 0 num: 0 label: b7 index of pair: -1
+pair: 1 num: 1 label: b21 index of pair: -1
+pair: 1 num: 1 label: b11 index of pair: -1
+pair: 2 num: 2 label: b2 index of pair: -1
+pair: 3 num: 3 label: b20 index of pair: -1
+pair: 3 num: 3 label: b1 index of pair: -1
+pair: 4 num: 4 label: b19 index of pair: -1
+pair: 4 num: 4 label: b10 index of pair: -1
+pair: 5 num: 5 label: b18 index of pair: -1
+pair: 5 num: 5 label: b3 index of pair: -1
+pair: 6 num: 6 label: b5 index of pair: -1
+pair: 7 num: 7 label: b4 index of pair: -1
+pair: 8 num: 8 label: b6 index of pair: -1
+pair: 9 num: 9 label: b16 index of pair: -1
+pair: 9 num: 9 label: b8 index of pair: -1
+pair: 10 num: 10 label: a1 index of pair: -1
+pair: 11 num: 11 label: a2 index of pair: -1
+pair: 12 num: 12 label: a3 index of pair: -1
+pair: 13 num: 13 label: a4 index of pair: -1
+pair: 14 num: 14 label: b17 index of pair: -1
+pair: 14 num: 14 label: b9 index of pair: -1
+pair: 15 num: 15 label: a5 index of pair: -1
+pair: 16 num: 16 label: a6 index of pair: -1
+pair: 17 num: 17 label: a7 index of pair: -1
+pair: 18 num: 18 label: a8 index of pair: -1
+pair: 19 num: 19 label: a9 index of pair: -1
+pair: 20 num: 20 label: a10 index of pair: -1
+pair: 21 num: 21 label: a11 index of pair: -1
+pair: 15 num: 15 label: a12 index of pair: -1
+pair: 16 num: 16 label: a13 index of pair: -1
+pair: 11 num: 11 label: a14 index of pair: -1
+pair: 17 num: 17 label: a15 index of pair: -1
+pair: 18 num: 18 label: a16 index of pair: -1
+pair: 19 num: 19 label: a17 index of pair: -1
+pair: 12 num: 12 label: a18 index of pair: -1
+pair: 20 num: 20 label: a19 index of pair: -1
+pair: 10 num: 10 label: a20 index of pair: -1
+pair: 21 num: 21 label: a21 index of pair: -1
+[0;31mpend: [0m
+pair: 3 num: 3 label: b1 index of pair: 0
+pair: 2 num: 2 label: b2 index of pair: 2
+pair: 5 num: 5 label: b3 index of pair: 4
+pair: 7 num: 7 label: b4 index of pair: 6
+pair: 6 num: 6 label: b5 index of pair: 7
+pair: 8 num: 8 label: b6 index of pair: 8
+pair: 0 num: 0 label: b7 index of pair: 10
+pair: 9 num: 9 label: b8 index of pair: 12
+pair: 14 num: 14 label: b9 index of pair: 14
+pair: 4 num: 4 label: b10 index of pair: 15
+pair: 1 num: 1 label: b11 index of pair: 17
+pair: 6 num: 6 label: b12 index of pair: 18
+pair: 8 num: 8 label: b13 index of pair: 20
+pair: 2 num: 2 label: b14 index of pair: 22
+pair: 0 num: 0 label: b15 index of pair: 24
+pair: 9 num: 9 label: b16 index of pair: 26
+pair: 14 num: 14 label: b17 index of pair: 27
+pair: 5 num: 5 label: b18 index of pair: 28
+pair: 4 num: 4 label: b19 index of pair: 29
+pair: 3 num: 3 label: b20 index of pair: 30
+pair: 1 num: 1 label: b21 index of pair: 31
+
+[ Total comparisons: 4 | Numbers to compare 22]
+[ Inserting at position 4]
+[0;31m  ------------------------ Jacobstahl number: 21. Queue: 8/10  ------------------------ [0m
+[0;31mmain: [0m
+pair: 0 num: 0 label: b15 index of pair: -1
+pair: 0 num: 0 label: b7 index of pair: -1
+pair: 1 num: 1 label: b21 index of pair: -1
+pair: 1 num: 1 label: b11 index of pair: -1
+pair: 2 num: 2 label: b14 index of pair: -1
+pair: 2 num: 2 label: b2 index of pair: -1
+pair: 3 num: 3 label: b20 index of pair: -1
+pair: 3 num: 3 label: b1 index of pair: -1
+pair: 4 num: 4 label: b19 index of pair: -1
+pair: 4 num: 4 label: b10 index of pair: -1
+pair: 5 num: 5 label: b18 index of pair: -1
+pair: 5 num: 5 label: b3 index of pair: -1
+pair: 6 num: 6 label: b5 index of pair: -1
+pair: 7 num: 7 label: b4 index of pair: -1
+pair: 8 num: 8 label: b6 index of pair: -1
+pair: 9 num: 9 label: b16 index of pair: -1
+pair: 9 num: 9 label: b8 index of pair: -1
+pair: 10 num: 10 label: a1 index of pair: -1
+pair: 11 num: 11 label: a2 index of pair: -1
+pair: 12 num: 12 label: a3 index of pair: -1
+pair: 13 num: 13 label: a4 index of pair: -1
+pair: 14 num: 14 label: b17 index of pair: -1
+pair: 14 num: 14 label: b9 index of pair: -1
+pair: 15 num: 15 label: a5 index of pair: -1
+pair: 16 num: 16 label: a6 index of pair: -1
+pair: 17 num: 17 label: a7 index of pair: -1
+pair: 18 num: 18 label: a8 index of pair: -1
+pair: 19 num: 19 label: a9 index of pair: -1
+pair: 20 num: 20 label: a10 index of pair: -1
+pair: 21 num: 21 label: a11 index of pair: -1
+pair: 15 num: 15 label: a12 index of pair: -1
+pair: 16 num: 16 label: a13 index of pair: -1
+pair: 11 num: 11 label: a14 index of pair: -1
+pair: 17 num: 17 label: a15 index of pair: -1
+pair: 18 num: 18 label: a16 index of pair: -1
+pair: 19 num: 19 label: a17 index of pair: -1
+pair: 12 num: 12 label: a18 index of pair: -1
+pair: 20 num: 20 label: a19 index of pair: -1
+pair: 10 num: 10 label: a20 index of pair: -1
+pair: 21 num: 21 label: a21 index of pair: -1
+[0;31mpend: [0m
+pair: 3 num: 3 label: b1 index of pair: 0
+pair: 2 num: 2 label: b2 index of pair: 2
+pair: 5 num: 5 label: b3 index of pair: 4
+pair: 7 num: 7 label: b4 index of pair: 6
+pair: 6 num: 6 label: b5 index of pair: 7
+pair: 8 num: 8 label: b6 index of pair: 8
+pair: 0 num: 0 label: b7 index of pair: 10
+pair: 9 num: 9 label: b8 index of pair: 12
+pair: 14 num: 14 label: b9 index of pair: 14
+pair: 4 num: 4 label: b10 index of pair: 15
+pair: 1 num: 1 label: b11 index of pair: 17
+pair: 6 num: 6 label: b12 index of pair: 18
+pair: 8 num: 8 label: b13 index of pair: 20
+pair: 2 num: 2 label: b14 index of pair: 22
+pair: 0 num: 0 label: b15 index of pair: 24
+pair: 9 num: 9 label: b16 index of pair: 26
+pair: 14 num: 14 label: b17 index of pair: 27
+pair: 5 num: 5 label: b18 index of pair: 28
+pair: 4 num: 4 label: b19 index of pair: 29
+pair: 3 num: 3 label: b20 index of pair: 30
+pair: 1 num: 1 label: b21 index of pair: 31
+
+[ Total comparisons: 4 | Numbers to compare 20]
+[ Inserting at position 14]
+[0;31m  ------------------------ Jacobstahl number: 21. Queue: 9/10  ------------------------ [0m
+[0;31mmain: [0m
+pair: 0 num: 0 label: b15 index of pair: -1
+pair: 0 num: 0 label: b7 index of pair: -1
+pair: 1 num: 1 label: b21 index of pair: -1
+pair: 1 num: 1 label: b11 index of pair: -1
+pair: 2 num: 2 label: b14 index of pair: -1
+pair: 2 num: 2 label: b2 index of pair: -1
+pair: 3 num: 3 label: b20 index of pair: -1
+pair: 3 num: 3 label: b1 index of pair: -1
+pair: 4 num: 4 label: b19 index of pair: -1
+pair: 4 num: 4 label: b10 index of pair: -1
+pair: 5 num: 5 label: b18 index of pair: -1
+pair: 5 num: 5 label: b3 index of pair: -1
+pair: 6 num: 6 label: b5 index of pair: -1
+pair: 7 num: 7 label: b4 index of pair: -1
+pair: 8 num: 8 label: b13 index of pair: -1
+pair: 8 num: 8 label: b6 index of pair: -1
+pair: 9 num: 9 label: b16 index of pair: -1
+pair: 9 num: 9 label: b8 index of pair: -1
+pair: 10 num: 10 label: a1 index of pair: -1
+pair: 11 num: 11 label: a2 index of pair: -1
+pair: 12 num: 12 label: a3 index of pair: -1
+pair: 13 num: 13 label: a4 index of pair: -1
+pair: 14 num: 14 label: b17 index of pair: -1
+pair: 14 num: 14 label: b9 index of pair: -1
+pair: 15 num: 15 label: a5 index of pair: -1
+pair: 16 num: 16 label: a6 index of pair: -1
+pair: 17 num: 17 label: a7 index of pair: -1
+pair: 18 num: 18 label: a8 index of pair: -1
+pair: 19 num: 19 label: a9 index of pair: -1
+pair: 20 num: 20 label: a10 index of pair: -1
+pair: 21 num: 21 label: a11 index of pair: -1
+pair: 15 num: 15 label: a12 index of pair: -1
+pair: 16 num: 16 label: a13 index of pair: -1
+pair: 11 num: 11 label: a14 index of pair: -1
+pair: 17 num: 17 label: a15 index of pair: -1
+pair: 18 num: 18 label: a16 index of pair: -1
+pair: 19 num: 19 label: a17 index of pair: -1
+pair: 12 num: 12 label: a18 index of pair: -1
+pair: 20 num: 20 label: a19 index of pair: -1
+pair: 10 num: 10 label: a20 index of pair: -1
+pair: 21 num: 21 label: a21 index of pair: -1
+[0;31mpend: [0m
+pair: 3 num: 3 label: b1 index of pair: 0
+pair: 2 num: 2 label: b2 index of pair: 2
+pair: 5 num: 5 label: b3 index of pair: 4
+pair: 7 num: 7 label: b4 index of pair: 6
+pair: 6 num: 6 label: b5 index of pair: 7
+pair: 8 num: 8 label: b6 index of pair: 8
+pair: 0 num: 0 label: b7 index of pair: 10
+pair: 9 num: 9 label: b8 index of pair: 12
+pair: 14 num: 14 label: b9 index of pair: 14
+pair: 4 num: 4 label: b10 index of pair: 15
+pair: 1 num: 1 label: b11 index of pair: 17
+pair: 6 num: 6 label: b12 index of pair: 18
+pair: 8 num: 8 label: b13 index of pair: 20
+pair: 2 num: 2 label: b14 index of pair: 22
+pair: 0 num: 0 label: b15 index of pair: 24
+pair: 9 num: 9 label: b16 index of pair: 26
+pair: 14 num: 14 label: b17 index of pair: 27
+pair: 5 num: 5 label: b18 index of pair: 28
+pair: 4 num: 4 label: b19 index of pair: 29
+pair: 3 num: 3 label: b20 index of pair: 30
+pair: 1 num: 1 label: b21 index of pair: 32
+
+[ Total comparisons: 3 | Numbers to compare 18]
+[ Inserting at position 12]
+[0;31m  ------------------------ Jacobstahl number: 21. Queue: 10/10  ------------------------ [0m
+[0;31mmain: [0m
+pair: 0 num: 0 label: b15 index of pair: -1
+pair: 0 num: 0 label: b7 index of pair: -1
+pair: 1 num: 1 label: b21 index of pair: -1
+pair: 1 num: 1 label: b11 index of pair: -1
+pair: 2 num: 2 label: b14 index of pair: -1
+pair: 2 num: 2 label: b2 index of pair: -1
+pair: 3 num: 3 label: b20 index of pair: -1
+pair: 3 num: 3 label: b1 index of pair: -1
+pair: 4 num: 4 label: b19 index of pair: -1
+pair: 4 num: 4 label: b10 index of pair: -1
+pair: 5 num: 5 label: b18 index of pair: -1
+pair: 5 num: 5 label: b3 index of pair: -1
+pair: 6 num: 6 label: b12 index of pair: -1
+pair: 6 num: 6 label: b5 index of pair: -1
+pair: 7 num: 7 label: b4 index of pair: -1
+pair: 8 num: 8 label: b13 index of pair: -1
+pair: 8 num: 8 label: b6 index of pair: -1
+pair: 9 num: 9 label: b16 index of pair: -1
+pair: 9 num: 9 label: b8 index of pair: -1
+pair: 10 num: 10 label: a1 index of pair: -1
+pair: 11 num: 11 label: a2 index of pair: -1
+pair: 12 num: 12 label: a3 index of pair: -1
+pair: 13 num: 13 label: a4 index of pair: -1
+pair: 14 num: 14 label: b17 index of pair: -1
+pair: 14 num: 14 label: b9 index of pair: -1
+pair: 15 num: 15 label: a5 index of pair: -1
+pair: 16 num: 16 label: a6 index of pair: -1
+pair: 17 num: 17 label: a7 index of pair: -1
+pair: 18 num: 18 label: a8 index of pair: -1
+pair: 19 num: 19 label: a9 index of pair: -1
+pair: 20 num: 20 label: a10 index of pair: -1
+pair: 21 num: 21 label: a11 index of pair: -1
+pair: 15 num: 15 label: a12 index of pair: -1
+pair: 16 num: 16 label: a13 index of pair: -1
+pair: 11 num: 11 label: a14 index of pair: -1
+pair: 17 num: 17 label: a15 index of pair: -1
+pair: 18 num: 18 label: a16 index of pair: -1
+pair: 19 num: 19 label: a17 index of pair: -1
+pair: 12 num: 12 label: a18 index of pair: -1
+pair: 20 num: 20 label: a19 index of pair: -1
+pair: 10 num: 10 label: a20 index of pair: -1
+pair: 21 num: 21 label: a21 index of pair: -1
+[0;31mpend: [0m
+pair: 3 num: 3 label: b1 index of pair: 0
+pair: 2 num: 2 label: b2 index of pair: 2
+pair: 5 num: 5 label: b3 index of pair: 4
+pair: 7 num: 7 label: b4 index of pair: 6
+pair: 6 num: 6 label: b5 index of pair: 7
+pair: 8 num: 8 label: b6 index of pair: 8
+pair: 0 num: 0 label: b7 index of pair: 10
+pair: 9 num: 9 label: b8 index of pair: 12
+pair: 14 num: 14 label: b9 index of pair: 14
+pair: 4 num: 4 label: b10 index of pair: 15
+pair: 1 num: 1 label: b11 index of pair: 17
+pair: 6 num: 6 label: b12 index of pair: 18
+pair: 8 num: 8 label: b13 index of pair: 20
+pair: 2 num: 2 label: b14 index of pair: 22
+pair: 0 num: 0 label: b15 index of pair: 24
+pair: 9 num: 9 label: b16 index of pair: 26
+pair: 14 num: 14 label: b17 index of pair: 27
+pair: 5 num: 5 label: b18 index of pair: 28
+pair: 4 num: 4 label: b19 index of pair: 30
+pair: 3 num: 3 label: b20 index of pair: 31
+pair: 1 num: 1 label: b21 index of pair: 33
+main after sort: [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 8, 8, 9, 9, 10, 11, 12, 13, 14, 14, 15, 16, 17, 18, 19, 20, 21, 15, 16, 11, 17, 18, 19, 12, 20, 10, 21, 3, 10, 2, 11, 5, 12, 7, 13, 6, 15, 8, 16, 0, 17, 9, 18, 14, 19, 4, 20, 1, 21, 6, 15, 8, 16, 2, 11, 0, 17, 9, 18, 14, 19, 5, 12, 4, 20, 3, 10, 1, 21]
