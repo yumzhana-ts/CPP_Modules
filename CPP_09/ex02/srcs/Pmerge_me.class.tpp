@@ -6,7 +6,7 @@
 /*   By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:24:16 by ytsyrend          #+#    #+#             */
-/*   Updated: 2025/05/14 16:16:39 by ytsyrend         ###   ########.fr       */
+/*   Updated: 2025/05/19 16:36:35 by ytsyrend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,6 +215,7 @@ bool sort_numbers(typename PairN<N>::type& first, typename PairN<N>::type& secon
 /****************************************************/
 
 template<int N>
+unpack_main_structure
 void reconstrust_main_vec(std::vector<PmergeMe<N> > &main, t_original_vector &vec)
 {
     std::vector<typename PairN<N>::type> m;

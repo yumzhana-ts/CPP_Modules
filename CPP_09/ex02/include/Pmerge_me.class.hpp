@@ -6,7 +6,7 @@
 /*   By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:24:01 by ytsyrend          #+#    #+#             */
-/*   Updated: 2025/05/14 16:35:49 by ytsyrend         ###   ########.fr       */
+/*   Updated: 2025/05/15 13:58:25 by ytsyrend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 #include <cmath>
 #include <iterator>
 
+// 👾 
 template <int N>
 struct PairN;
 
@@ -72,18 +73,21 @@ struct t_original_vector
     int total_comparisons;
 };
 
+// 👾 
 template <int N>
 struct PairN
 {
     typedef std::pair<typename PairN<N - 1>::type, typename PairN<N - 1>::type> type;
 };
 
+// 👾 
 template <>
 struct PairN<1>
 {
     typedef std::pair<int, int> type;
 };
 
+// 👾 
 template <>
 struct PairN<0>
 {

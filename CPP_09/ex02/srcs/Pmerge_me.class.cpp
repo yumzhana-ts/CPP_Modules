@@ -6,7 +6,7 @@
 /*   By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:24:16 by ytsyrend          #+#    #+#             */
-/*   Updated: 2025/05/14 16:14:41 by ytsyrend         ###   ########.fr       */
+/*   Updated: 2025/05/15 13:17:45 by ytsyrend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ std::vector<t_level_info> get_usage_up_to_max_level(int total)
 void print_usage_info(const std::vector<t_level_info> &usage_info, int total)
 {
     int level = recursion_levels(total);
-    int total_width = 54;  // ширина таблицы, можно подогнать под нужные значения
+    int total_width = 54; 
 
     std::string border = "+" + std::string(total_width, '-') + "+";
     std::cout << border << "\n";

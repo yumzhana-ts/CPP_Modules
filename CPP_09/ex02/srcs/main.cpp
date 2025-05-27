@@ -6,17 +6,11 @@
 /*   By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:41:01 by ytsyrend          #+#    #+#             */
-/*   Updated: 2025/05/14 16:42:28 by ytsyrend         ###   ########.fr       */
+/*   Updated: 2025/05/15 13:49:20 by ytsyrend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/Pmerge_me.class.hpp"
-
-
-// TODO: how to set recursion depth before compilation process?
-// TODO: edge cases tests
-// TODO: check duplicates
-// TODO: clean trash
 
 
 void print_vector_wi(const std::vector<int>& vec) 
@@ -89,16 +83,7 @@ int main(int argc, char **argv)
 {
     t_original_vector vec;
     parse_and_store_numbers(argc, argv, vec);
-    //size_t original_vector_size = vec.original_vector.size();
-    //print_vector("before ", vec.original_vector);
-    
-    //meta_recursive<6>(vec);
     pmerge_me_dispatcher(vec);
     print_vector_wi(vec.used);
-    
-    //is_sorted(vec.used);
-    //if(vec.used.size() == original_vector_size)
-    //    std::cout << "vectors are equal sized" << std::endl;
-    //std::cout << "Maximal comparisons allowed F(" << vec.total <<") = " << F(vec.total) << "  | Total: " << vec.total_comparisons << std::endl;
     return 0;
 }
