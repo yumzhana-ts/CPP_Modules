@@ -21,6 +21,9 @@
 #include <deque>
 #include <cmath>
 #include <iterator>
+#include <cstdlib>
+#include <limits.h>
+#include <string>
 
 template <int N>
 struct PairN;

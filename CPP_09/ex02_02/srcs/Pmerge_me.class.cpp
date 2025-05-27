@@ -20,7 +20,7 @@ int recursion_levels(int n)
 {
     if (n <= 1) 
         return 0;
-    return (std::floor(std::log2(n)));
+    return (std::floor(log2(n)));
 }
 
 std::vector<t_level_info> get_usage_up_to_max_level(int total)
@@ -66,7 +66,7 @@ void error_and_exit(const std::string& msg)
 
 int convert_to_int(const std::string& s)
 {
-    long num = std::atol(s.c_str());
+    long num = atol(s.c_str());
     if (num < 0 || num > INT_MAX)
     {
         std::string msg = std::string("Error: Number out of range '") + s + "'";
@@ -88,9 +88,9 @@ void print_usage_info(const std::vector<t_level_info> &usage_info, int total)
     std::string border = "+" + std::string(total_width, '-') + "+";
     std::cout << GREEN << border << "\n";
     std::cout << "| " << std::left << std::setw(total_width) 
-        << ("Initial number of elements: " + std::to_string(total)) << "|\n";
+        << "Initial number of elements: " << total << "|\n";
     std::cout << "| " << std::left << std::setw(total_width) 
-        << ("Total recursion: " + std::to_string(level)) << "|\n";
+        << "Total recursion: " << level << "|\n";
     std::cout << border << "\n";
 
     std::cout << "| " << std::left
@@ -100,7 +100,7 @@ void print_usage_info(const std::vector<t_level_info> &usage_info, int total)
         << std::setw(9) << "Used"
         << std::setw(10) << "Leftover"
         << "|\n";
-    std::cout << "|" << std::string(total_width, '-') << "|\n";
+    std::cout << "|" << total_width << "|\n";
     for (size_t i = 0; i < usage_info.size(); ++i)
     {
         const t_level_info &level_info = usage_info[i];
@@ -119,7 +119,7 @@ void print_usage_info(const std::vector<t_level_info> &usage_info, int total)
         leftovers += usage_info[i].rest;
     }
     std::cout << "| " << std::left << std::setw(total_width)
-        << ("Total number of leftovers: " + std::to_string(leftovers)) << "|\n";
+        << "Total number of leftovers: " << leftovers  << "|\n";
     std::cout << border << "\n";
     std::cout << "\n" << RESET_COLOR <<  std::endl;
 }

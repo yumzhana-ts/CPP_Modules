@@ -50,7 +50,7 @@ void process_container(int argc, char **argv, bool print = false)
     {
         std::cout << "after:   ";
         print_vector<int, Container_wrapper>(container.used);
-        //is_sorted<Container_wrapper>(container.used, original_size);
+        is_sorted<Container_wrapper>(container.used, original_size);
     }
     std::cout << "Time to process a range of " << original_size << 
     " elements with std::" << Container_wrapper<int>::name()<< " : " << std::fixed << std::setprecision(5) << duration_vector << " us\n";
