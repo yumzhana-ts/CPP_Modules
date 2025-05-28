@@ -1,4 +1,71 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/05 18:24:16 by ytsyrend          #+#    #+#             */
+/*   Updated: 2025/03/31 19:59:30 by ytsyrend         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "BitcoinExchange.hpp"
+
+/****************************************************/
+/*                    Constructor                   */
+/****************************************************/
+
+BitcoinExchange::BitcoinExchange() 
+{
+    if (DEBUG){ std::cout << GREEN << "[BitcoinExchange] Default Constructor called" << RESET_COLOR << std::endl;}
+}
+
+
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& src)
+{
+    this->btc = src.btc;
+    if (DEBUG){std::cout << GREEN << "[BitcoinExchange] Copy Constructor called" << RESET_COLOR << std::endl;}
+}
+
+/****************************************************/
+/*                    Destructor.                   */
+/****************************************************/
+
+BitcoinExchange::~BitcoinExchange(void) 
+{
+    if (DEBUG){std::cout << GREEN << "[BitcoinExchange] Destructor called" << RESET_COLOR << std::endl;}
+}
+
+/****************************************************
+*                    Overload                      *
+****************************************************/
+
+
+BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& rhs) 
+{
+    if (DEBUG){std::cout << GREEN << "[BitcoinExchange] Copy assignment operator called" << std::endl;}
+    if (this != &rhs)
+    {
+        this->btc = rhs.btc;
+    }
+    return (*this);
+}
+
+/****************************************************
+*                 Memeber Functions                *
+****************************************************/
+
+std::ostream &operator<<(std::ostream & o, BitcoinExchange &rhs)
+{
+    std::map<std::string, std::string>::iterator it = rhs.get_map().begin();
+    for (; it != rhs.get_map().end(); it++)
+    {
+        o << "{" << it->first << ", " << it->second << "}" << std::endl;
+    }
+    return o;
+}
+
 
 void read_and_process_file(BitcoinExchange &btc, std::string file, char delimeter)
 {
@@ -27,7 +94,6 @@ inline bool is_valid_date(const std::string &str)
     char dash_1, dash_2;
     if (!(ss >> t.tm_year >> dash_1 >> t.tm_mon >> dash_2 >> t.tm_mday) || (dash_1 != '-' || dash_2 != '-'))
         return false;
-    //|| !ss.eof()
     else if (t.tm_year < 1900 || t.tm_year > 2100)
         return false;
     else if (t.tm_mon < 1 || t.tm_mon > 12)
@@ -65,6 +131,7 @@ void store_db(std::ifstream &ifs, char c, BitcoinExchange &btc)
 void evaluate_prices(std::ifstream &ifs, char c, BitcoinExchange &btc)
 {
     std::string line;
+    std::getline(ifs, line);
     while (std::getline(ifs, line))
     {
         process_line(line, c, btc);
@@ -122,7 +189,8 @@ void evaluate_price(const std::string &date, float num, const std::map<std::stri
             }
         }
         std::cout << date << " => " << num << " = " << num * price;
-        std::cout << " (" << exchange_date << ")" << std::endl;
+        //std::cout << " (" << exchange_date << ")" << std::endl;
+        std::cout << std::endl;
     }
     catch(BitcoinExchange::Exception &e)
     {

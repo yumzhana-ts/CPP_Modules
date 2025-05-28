@@ -6,7 +6,7 @@
 /*   By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:24:01 by ytsyrend          #+#    #+#             */
-/*   Updated: 2025/05/15 13:58:25 by ytsyrend         ###   ########.fr       */
+/*   Updated: 2025/05/19 21:45:23 by ytsyrend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,95 +21,115 @@
 #include <deque>
 #include <cmath>
 #include <iterator>
+#include <cstdlib>
+#include <limits.h>
+#include <string>
 
-// 👾 
 template <int N>
 struct PairN;
 
-template<int N>
-class PmergeMe 
+template <int N>
+class PmergeMe
 {
-    private:
-        typename PairN<N>::type pair;
-        int num;
-        std::string ab;
-        int index_ab;
-        int index;
-    public:
-        PmergeMe(typename PairN<N>::type v, int n, std::string ab, int index_ab, int i);
-        PmergeMe(const std::string& ab, int index);
-        PmergeMe();
-        PmergeMe(const PmergeMe& other);
-        PmergeMe& operator=(const PmergeMe& other);
-        ~PmergeMe();
+private:
+    typename PairN<N>::type pair;
+    int num;
+    std::string ab;
+    int index_ab;
+    int index;
 
-        typename PairN<N>::type get_pair() const;
-        int get_num() const;
-        int get_index() const;
-        std::string get_ab() const;
-        int get_index_ab() const;
-        void set_index(int i);
+public:
+    PmergeMe(typename PairN<N>::type v, int n, std::string ab, int index_ab, int i);
+    PmergeMe(const std::string &ab, int index);
+    PmergeMe();
+    PmergeMe(const PmergeMe &other);
+    PmergeMe &operator=(const PmergeMe &other);
+    ~PmergeMe();
 
-        bool operator==(const PmergeMe<N>& other) const {
-            return this->get_ab() == other.get_ab() && this->get_index_ab() == other.get_index_ab();
+    typename PairN<N>::type get_pair() const;
+    int get_num() const;
+    int get_index() const;
+    std::string get_ab() const;
+    int get_index_ab() const;
+    void set_index(int i);
+
+    bool operator==(const PmergeMe<N> &other) const
+    {
+        return this->get_ab() == other.get_ab() && this->get_index_ab() == other.get_index_ab();
     }
 };
-struct t_level_info
-{
-    int used;
-    int rest;
-    int pairs;
-    int numbers_in_pair;
-    t_level_info(int u, int r, int p, int n) : used(u), rest(r), pairs(p),numbers_in_pair(n) {}
-};
 
-struct t_original_vector
-{
-    std::vector<int> original_vector;
-    std::vector<int> used;
-    std::vector<int> leftovers;
-    std::vector<t_level_info> info;
-    int total;
-    int total_comparisons;
-};
 
-// 👾 
+/****************************************************/
+/*             structs                             */
+/****************************************************/
+
 template <int N>
 struct PairN
 {
     typedef std::pair<typename PairN<N - 1>::type, typename PairN<N - 1>::type> type;
 };
 
-// 👾 
 template <>
 struct PairN<1>
 {
     typedef std::pair<int, int> type;
 };
 
-// 👾 
 template <>
 struct PairN<0>
 {
     typedef int type;
 };
 
+template <typename T>
+struct VectorWrapper {
+    typedef std::vector<T> type;
+    static const char* name() { return "vector"; }
+};
 
-template <int N, int MaxLevel>
+template <typename T>
+struct DequeWrapper {
+    typedef std::deque<T> type;
+    static const char* name() { return "deque"; }
+};
+
+template<int M, template <class> class container_wrapper>
+struct RecursiveFlattener;
+
+template<template <class> class container_wrapper>
+struct RecursiveFlattener<0, container_wrapper>;
+
+struct t_level_info
+{
+    int used;
+    int rest;
+    int pairs;
+    int numbers_in_pair;
+    
+    t_level_info(int u, int r, int p, int n)
+        : used(u), rest(r), pairs(p), numbers_in_pair(n) {}
+};
+
+template <typename Container>
+struct t_data
+{
+    Container original_container;
+    Container used;
+    Container leftovers;
+    std::vector<t_level_info> info;
+    int total;
+    int total_comparisons;
+
+    t_data()
+        : original_container(), used(), leftovers(), info(), total(0), total_comparisons(0){}
+};
+
+template <int N, int max_level, template <class> class container_wrapper>
 struct ConstructLevels;
 
-template <int MaxLevel>
-struct ConstructLevels<MaxLevel, MaxLevel>;
-
-template <int MaxLevel>
-typename ConstructLevels<MaxLevel, MaxLevel>::FinalVectorType
-get_sorted_vector(const typename ConstructLevels<MaxLevel, MaxLevel>::FinalVectorType& input_vec);
-
-template <int N, int MaxLevel>
-struct UnwrappedLevels;
-
-template <int MaxLevel>
-struct UnwrappedLevels<MaxLevel, MaxLevel>;
+template <int max_level, template <class> class container_wrapper>
+struct ConstructLevels<max_level, max_level, container_wrapper>;
 
 template <int N>
 struct GetSecond;
@@ -117,107 +137,115 @@ struct GetSecond;
 template <>
 struct GetSecond<0>;
 
+template <int n, int target_level, template <class> class container_wrapper>
+struct RecursiveUnwrapper;
 
+template <int target_level, template <class> class container_wrapper>
+struct RecursiveUnwrapper<target_level, target_level, container_wrapper>;
 
-template <int N>
-std::ostream &operator<<(std::ostream &os, const PmergeMe<N> &pl);
+/****************************************************/
+/*             Templates                            */
+/****************************************************/
 
+template <template <typename> class container_wrapper>
+void add_numbers_to_container(int argc, char** argv, typename container_wrapper<int>::type& container);
 
-void parse_and_store_numbers(int argc, char **argv, t_original_vector &vec);
-void add_numbers_to_vector(int argc, char **argv, std::vector<int>& vec);
-void link_elements(std::vector<int>& vec);
-void print_linked_list(const std::vector<int>& vec);
+template <template <typename> class container_wrapper>
+void setup_container(int argc, char **argv, t_data<typename container_wrapper<int>::type>& container);
 
-template <typename T>
-std::ostream& operator<<(std::ostream& o, const std::pair<T, T>& pair);
+template <template <typename> class container_wrapper>
+void add_numbers_from_string(const std::string& input, typename container_wrapper<int>::type& container);
 
-template <typename T>
-void print_pairs_vector(const std::vector<std::pair<T, T> >& vec);
+template <typename T, template <typename> class container_wrapper>
+void print_vector(const typename container_wrapper<T>::type& vec);
+
+template <template <typename> class container_wrapper>
+void dispatcher(t_data<typename container_wrapper<int>::type>& container);
+
+template <template <class> class container_wrapper, int Max>
+void meta_recursive(t_data<typename container_wrapper<int>::type>& container_data_obj);
+
+template <int N, template <class> class container_wrapper>
+typename container_wrapper<typename PairN<N + 1>::type>::type
+group_into_pairs(const typename container_wrapper<typename PairN<N>::type>::type& input, bool is_wrap);
 
 template<int N>
 bool sort_numbers(typename PairN<N>::type& first, typename PairN<N>::type& second);
 
 template<int N>
-std::vector<typename PairN<N + 1>::type> group_into_pairs(const std::vector<typename PairN<N>::type>& input, bool group);
-
-template <int MAX_RECURSION_DEPTH>
-void meta_recursive(t_original_vector &vec);
-
-template <int N, int TargetLevel>
-struct RecursiveUnwrapper;
-
-template <int TargetLevel>
-struct RecursiveUnwrapper<TargetLevel, TargetLevel>;
-
-template <int N>
-std::vector<typename PairN<N - 1>::type> unwrap_pairs(const std::vector<typename PairN<N>::type>& input);
-
-template<int N>
 int second_number(typename PairN<N>::type& first);
 
-template<int N>
-void print_pair_object(std::vector<PmergeMe<N> > vec);
+template <typename T>
+std::ostream &operator<<(std::ostream &o, const std::pair<T, T> &pair);
 
+template <typename T, template <class> class container_wrapper>
+void print_pairs_vector(const typename container_wrapper<std::pair<T, T> >::type& vec);
 
-template<int N>
-void unwrapped_sort(std::vector<typename PairN<N>::type>& input, t_original_vector &vec);
+template<int N, template <class> class container_wrapper> typename container_wrapper<typename PairN<0>::type>::type
+flatten_vector_of_nested_pairs(typename container_wrapper<typename PairN<N>::type>::type& nested_pairs_vector);
+
+template<template <typename> class container_wrapper>
+void restore_original_vector(t_data<typename container_wrapper<int>::type>& container);
+
+template <template <typename> class container_wrapper>
+void save_rest_to_vector(std::vector<t_level_info> levels, typename container_wrapper<int>::type& container, typename container_wrapper<int>::type& rest, int level);
+
+template <int N, template <typename> class container_wrapper>
+typename container_wrapper<typename PairN<N - 1>::type>::type unwrap_pairs( const typename container_wrapper<typename PairN<N>::type>::type& input);
+
+template<template <typename> class container_wrapper, int N>
+void wrap_up_with_remaining_pair(t_data<typename container_wrapper<int>::type>& container, typename container_wrapper<typename PairN<N>::type>::type &next_level_vec);
+
+template<int N, template <class> class container_wrapper>
+void unwrapped_sort(const typename container_wrapper<typename PairN<N>::type>::type& input, t_data<typename container_wrapper<int>::type>& container);
 
 template <int N>
 PmergeMe<N> pair_object(typename PairN<N>::type p, int c, std::string s, int i);
 
-template<int N>
-int insert_position(std::vector<PmergeMe<N> > &main, int start_of_slice, int end_of_slice, int insert_num, int &comparison_count);
+template<int N, template <class> class container_wrapper>
+int merge_by_jacobsthal_sequence(typename container_wrapper<PmergeMe<N> >::type &main, typename container_wrapper<PmergeMe<N> >::type &pend);
 
-template<int N>
-void binary_insertion(std::vector<PmergeMe<N> > &main, PmergeMe<N> &number, std::vector<PmergeMe<N> > &pend, int &total_comparisons);
+template<int N, template <class> class container_wrapper>
+void process_jacobsthal_batch(typename container_wrapper<PmergeMe<N> >::type &main, typename container_wrapper<PmergeMe<N> >::type &pend,
+    int jakob_prev_index, int jakob_index, int &total_comparisons);
 
-template<int N>
-void jakob_queue(std::vector<PmergeMe<N> > &main, std::vector<PmergeMe<N> > &pend, int jakob_prev_index, int jakob_index, int &total_comparisons);
+template<int N, template <class> class container_wrapper>
+void insert_with_binary_search(typename container_wrapper<PmergeMe<N> >::type &main, PmergeMe<N> &number, typename container_wrapper<PmergeMe<N> >::type &pend, int &total_comparisons);
 
-template<int N>
-void print_chains(std::vector<PmergeMe<N> > &main, std::vector<PmergeMe<N> > &pend, std::string sign);
+template<int N, template <class> class container_wrapper>
+int find_insert_position(typename container_wrapper<PmergeMe<N> >::type &main, int start_of_slice, int end_of_slice, int insert_num, int &comparison_count);
 
-template<int N>
-int chains_jakobstahl_sequence(std::vector<PmergeMe<N> > &main, std::vector<PmergeMe<N> > &pend);
+template<int N, template <class> class container_wrapper>
+void update_pair_index(PmergeMe<N> &obj, typename container_wrapper<PmergeMe<N> >::type &vec);
 
-template<int N>
-void update_indexes(std::vector<PmergeMe<N> > &main, int insert_position, std::vector<PmergeMe<N> > &pend);
+template<int N, template <class> class container_wrapper>
+void update_container_indexes(typename container_wrapper<PmergeMe<N> >::type &main, typename container_wrapper<PmergeMe<N> >::type &pend, int position_to_insert);
+
+template<int N, template <class> class container_wrapper>
+void unpack_sorted_main(typename container_wrapper<PmergeMe<N> >::type &main, t_data<typename container_wrapper<int>::type>& container);
+
+template<int N, template <class> class container_wrapper>
+void print_pair_object(typename container_wrapper<PmergeMe<N> >::type &vec);
+
+template<int N, template <class> class container_wrapper>
+void print_chains(typename container_wrapper<PmergeMe<N> >::type &main, typename container_wrapper<PmergeMe<N> >::type &pend, std::string sign);
+
+
+/****************************************************/
+/*             Functions                            */
+/****************************************************/
 
 int recursion_levels(int n);
 
 void print_usage_info(const std::vector<t_level_info> &usage_info, int total);
 
+int convert_to_int(const std::string& s);
+
+void error_and_exit(const std::string& msg);
+
+bool is_valid_number(const std::string& s);
+
 std::vector<t_level_info> get_usage_up_to_max_level(int total);
-
-template<int M>
-void unwrap_single_pair_recursive(typename PairN<M>::type& pair_to_unwrap,
-    std::vector<int>& output_vec);
-    
-
-template<int N>
-std::vector<int> reconstruct_from_nested_pairs(std::vector<typename PairN<N>::type>& input_vector);
-
-void save_rest_to_vector(std::vector<t_level_info> levels, std::vector<int> &vec, std::vector<int> &rest, int level);
-
-void print_vector(const std::string& name, const std::vector<int>& vec);
-
-void pretty_print(const t_original_vector& data);
-
-template<int N>
-void reconstrust_main_vec(std::vector<PmergeMe<N> > &main, t_original_vector &vec);
-
-void restore_original_vector(t_original_vector& vec);
-
-template<int N, typename VecType, typename NextLevelVecType>
-void process_rest_and_reconstruct(VecType& vec, NextLevelVecType& next_level_vec);
-
-template <int N>
-void print_smart(const std::vector<typename PairN<N>::type>& vec);
-
-template<int N>
-void update_index(PmergeMe<N> &obj, std::vector<PmergeMe<N> > &vec);
-
-int F(int n);
 
 
 #define DEBUG 0
@@ -232,5 +260,5 @@ int F(int n);
 #define BG_WHITE "\033[0;47m"
 #define LINE "  ------------------------ "
 
-#include "../srcs/Pmerge_me.class.tpp" 
+#include "../srcs/Pmerge_me.class.tpp"
 #endif

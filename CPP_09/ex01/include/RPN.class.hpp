@@ -18,7 +18,7 @@
 #include <fstream>
 #include <sstream>
 #include <cctype>
-
+#include <stdlib.h>
 
 class RPN
 {
@@ -30,12 +30,10 @@ public:
     ~RPN(void);
     RPN(const RPN& other);
     RPN& operator=(const RPN& other);
-
-    //get&set
-    //int get_value(void) const {return (this->value);}
-    //void set_value(int v){this->value = v;}
 };
 
+int arithmetic_operation(char op, int num_1, int num_2);
+void test();
 
 #define DEBUG 1
 // Define ANSI escape sequences for colors

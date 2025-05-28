@@ -12,18 +12,17 @@
 
 #include "BitcoinExchange.hpp"
 
-/*void test_orth()
+void test_orth()
 {
-    BitcoinExchange obj1("q","q"); // Default Constructor called
-    BitcoinExchange obj2(obj1); // Copy Constructor called
-    BitcoinExchange obj3("q","q");
-    obj3 = obj2; // Copy Assignment Operator called
-}*/
-
-//TODO: fix first line
+    BitcoinExchange obj1;
+    BitcoinExchange obj2(obj1);
+    BitcoinExchange obj3;
+    obj3 = obj2;
+}
 
 int main(int argc, char** argv)
 {
+    test_orth();
     if (argc == 2) 
     {
         BitcoinExchange btc;

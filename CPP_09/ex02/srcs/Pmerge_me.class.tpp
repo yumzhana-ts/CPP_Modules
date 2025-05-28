@@ -6,11 +6,12 @@
 /*   By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:24:16 by ytsyrend          #+#    #+#             */
-/*   Updated: 2025/05/19 16:36:35 by ytsyrend         ###   ########.fr       */
+/*   Updated: 2025/05/19 22:10:42 by ytsyrend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Pmerge_me.class.hpp"
+
 #pragma once
 
 /****************************************************/
@@ -126,44 +127,237 @@ std::ostream &operator<<(std::ostream &o, const std::pair<T, T> &pair)
 
 
 /****************************************************/
-/*                    Make pairs                   */
+/*             Container setup                      */
 /****************************************************/
 
-template<int N>
-std::vector<typename PairN<N + 1>::type> group_into_pairs(const std::vector<typename PairN<N>::type>& input, bool group)
+template <template <typename> class container_wrapper>
+void add_numbers_to_container(int argc, char** argv, typename container_wrapper<int>::type& container)
 {
-    typedef typename PairN<N + 1>::type Pair;
-    std::vector<Pair> output;
+    if (argc != 2)
+        error_and_exit("Error: Invalid number of arguments");
 
-    typename std::vector<typename PairN<N>::type>::const_iterator it = input.begin();
-    typename std::vector<typename PairN<N>::type>::const_iterator end = input.end();
+    add_numbers_from_string<container_wrapper>(std::string(argv[1]), container);
+
+    if (container.size() == 1)
+    {
+        std::cout << container[0] << std::endl;
+        std::exit(0);
+    }
+}
+
+template <template <typename> class container_wrapper>
+void setup_container(int argc, char **argv, t_data<typename container_wrapper<int>::type>& container)
+{
+    add_numbers_to_container<container_wrapper>(argc, argv, container.original_container);
+    container.total = container.original_container.size();
+    container.info = get_usage_up_to_max_level(container.total);
+
+    if (DEBUG == 1) 
+    {
+        print_vector<int, container_wrapper>(container.original_container);
+        print_usage_info(container.info, container.total); 
+    }
+}
+
+template <template <typename> class container_wrapper>
+void add_numbers_from_string(const std::string& input, typename container_wrapper<int>::type& container)
+{
+    std::stringstream ss(input);
+    std::string token;
+
+    while (std::getline(ss, token, ' '))
+    {
+        if (token.empty())
+            continue;
+
+        if (!is_valid_number(token))
+        {
+            std::string msg = std::string("Error: Invalid input '") + token + "'";
+            error_and_exit(msg);
+        }
+        container.push_back(convert_to_int(token)); // или convert_to<T> если реализуешь
+    }
+}
+
+template <typename T, template <typename> class container_wrapper>
+void print_vector(const typename container_wrapper<T>::type& vec) 
+{
+    for (size_t i = 0; i < vec.size(); ++i) {
+        std::cout << vec[i];
+        if (i != vec.size() - 1) std::cout << " ";
+    }
+    std::cout << "\n";
+}
+
+/****************************************************/
+/*                    Meta                          */
+/****************************************************/
+
+template <template <typename> class container_wrapper>
+void dispatcher(t_data<typename container_wrapper<int>::type>& container)
+{
+    int count = container.original_container.size();
+    int calculated_max_depth = recursion_levels(count);
+    
+    switch (calculated_max_depth) 
+    {
+        case 0:
+            meta_recursive<container_wrapper, 0>(container);
+            break;
+        case 1:
+            meta_recursive<container_wrapper, 1>(container);
+            break;
+        case 2:
+            meta_recursive<container_wrapper, 2>(container);
+            break;
+        case 3:
+            meta_recursive<container_wrapper, 3>(container);
+            break;
+        case 4:
+            meta_recursive<container_wrapper, 4>(container);
+            break;
+        case 5:
+            meta_recursive<container_wrapper, 5>(container);
+            break;
+        case 6:
+            meta_recursive<container_wrapper, 6>(container);
+            break;
+        case 7:
+            meta_recursive<container_wrapper, 7>(container);
+            break;
+        case 8:
+            meta_recursive<container_wrapper, 8>(container);
+            break;
+        case 9:
+            meta_recursive<container_wrapper, 9>(container);
+            break;
+        case 10:
+            meta_recursive<container_wrapper, 10>(container);
+            break;
+        case 11:
+            meta_recursive<container_wrapper, 11>(container);
+            break;
+    }
+}
+
+template <template <class> class container_wrapper, int Max>
+void meta_recursive(t_data<typename container_wrapper<int>::type>& container_data)
+{
+    typedef typename PairN<Max>::type FinalPairType;
+    typedef typename container_wrapper<FinalPairType>::type FinalVectorType;
+    
+    FinalVectorType final_result = 
+		ConstructLevels<0, Max, container_wrapper>::run(container_data.original_container, true, container_data);
+	typedef typename PairN<0>::type UnwrappedElementType;
+    typedef typename container_wrapper<UnwrappedElementType>::type UnwrappedVectorType;
+
+    UnwrappedVectorType unwrapped_vec = RecursiveUnwrapper<Max, 0, container_wrapper>::run(final_result, container_data);
+}
+
+/****************************************************/
+/*         Template for constructors                */
+/****************************************************/
+
+
+template <int N, int max_level, template <class> class container_wrapper>
+struct ConstructLevels
+{
+    typedef typename PairN<N>::type current_level_pair_type;
+    typedef typename container_wrapper<current_level_pair_type>::type current_level_container_type;
+
+    typedef typename PairN<max_level>::type final_level_pair_type;
+    typedef typename container_wrapper<final_level_pair_type>::type final_vector_type;
+
+    static final_vector_type run(current_level_container_type &current_data, bool is_wrap, t_data<typename container_wrapper<int>::type>& container) 
+    {
+        typedef typename PairN<N + 1>::type next_level_pair_type;
+        typedef typename container_wrapper<next_level_pair_type>::type next_level_container_type;
+		if (is_wrap)
+		{
+			typename container_wrapper<int>::type reconstructed_current = flatten_vector_of_nested_pairs<N, container_wrapper>(current_data);
+			save_rest_to_vector<container_wrapper>(container.info, reconstructed_current, container.leftovers, N+1);
+		}
+        next_level_container_type next_level_data = group_into_pairs<N, container_wrapper>(current_data, is_wrap);
+		if (is_wrap)
+			container.used = flatten_vector_of_nested_pairs<N+1, container_wrapper>(next_level_data);
+        if (next_level_data.size() == 1)
+		{
+			container.used = flatten_vector_of_nested_pairs<N+1, container_wrapper>(next_level_data);
+			restore_original_vector<container_wrapper>(container);
+		}
+        return ConstructLevels<N + 1, max_level, container_wrapper>::run(next_level_data, is_wrap, container);
+    }
+};
+
+
+template <int max_level, template <class> class container_wrapper>
+struct ConstructLevels<max_level, max_level, container_wrapper> 
+{
+    typedef typename PairN<max_level>::type final_level_pair_type;
+    typedef typename container_wrapper<final_level_pair_type>::type final_vector_type;
+
+    static final_vector_type run(final_vector_type &current_data, bool is_wrap, t_data<typename container_wrapper<int>::type>& container) 
+    {
+		(void)is_wrap;
+		(void)container;
+        return current_data;
+    }
+};
+
+/****************************************************/
+/*               Construct pairs                    */
+/****************************************************/
+
+template <int N, template <class> class container_wrapper>
+typename container_wrapper<typename PairN<N + 1>::type>::type
+group_into_pairs(const typename container_wrapper<typename PairN<N>::type>::type& input, bool is_wrap)
+{
+    typedef typename PairN<N>::type        input_pair_type;
+    typedef typename PairN<N + 1>::type    output_pair_type;
+    typedef typename container_wrapper<output_pair_type>::type output_container_type;
+
+    output_container_type output;
+    typename container_wrapper<input_pair_type>::type::const_iterator it = input.begin();
+    typename container_wrapper<input_pair_type>::type::const_iterator end = input.end();
 
     while (it != end)
     {
-        typename PairN<N>::type first = *it++;
+        input_pair_type first = *it;
+        ++it;
         if (it != end)
         {
-            typename PairN<N>::type second = *it++;
-            if (group == true)
-                sort_numbers<N>(first, second);
+            input_pair_type second = *it;
+            ++it;
+			if(is_wrap == true)
+				sort_numbers<N>(first, second);
             output.push_back(std::make_pair(first, second));
         }
         else
         {
-            break;
+            break; 
         }
-    }
-    if (group == true && DEBUG == 1)
-    {
-        print_pairs_vector(output);
     }
     return output;
 }
 
 
 /****************************************************/
-/*         Template for getting second value        */
+/*    Template for getting second value/ sort       */
 /****************************************************/
+
+template<int N>
+bool sort_numbers(typename PairN<N>::type& first, typename PairN<N>::type& second)
+{
+    int& a_deep = GetSecond<N>::getSecond(first);
+    int& b_deep = GetSecond<N>::getSecond(second);
+
+    if (a_deep > b_deep)
+    {
+        std::swap(first, second);
+        return (true);
+    }
+    return(false);
+}
 
 template <int N>
 struct GetSecond
@@ -192,175 +386,125 @@ int second_number(typename PairN<N>::type& first)
 }
 
 /****************************************************/
-/*                    Sort numbers                  */
+/*                    utils                         */
 /****************************************************/
 
 
-template<int N>
-bool sort_numbers(typename PairN<N>::type& first, typename PairN<N>::type& second)
-{
-    int& a_deep = GetSecond<N>::getSecond(first);
-    int& b_deep = GetSecond<N>::getSecond(second);
-
-    if (a_deep > b_deep)
-    {
-        std::swap(first, second);
-        return (true);
-    }
-    return(false);
-}
-
-/****************************************************/
-/*         utils                                    */
-/****************************************************/
-
-template<int N>
-unpack_main_structure
-void reconstrust_main_vec(std::vector<PmergeMe<N> > &main, t_original_vector &vec)
-{
-    std::vector<typename PairN<N>::type> m;
-    for (size_t i = 0; i < main.size(); ++i)
-    {
-        m.push_back(main[i].get_pair());
-    }
-    std::vector <int> r = reconstruct_from_nested_pairs<N>(m);
-    vec.used.clear();
-    vec.used.insert(vec.used.begin(), r.begin(), r.end());
-}
-
-template<int N>
-void print_chains(std::vector<PmergeMe<N> > &main, std::vector<PmergeMe<N> > &pend, std::string sign)
-{
-    if (DEBUG == 1)
-    {
-        std::cout << RED << LINE << sign << LINE<< RESET_COLOR << std::endl;
-        std::cout << RED << "main: " << RESET_COLOR << std::endl;
-        print_pair_object<N>(main);
-        std::cout << RED << "pend: " << RESET_COLOR << std::endl;
-        print_pair_object<N>(pend);        
-    }
-
-}
-
-template <typename T>
-void print_pairs_vector(const std::vector<std::pair<T, T> >& vec)
+template <typename T, template <class> class container_wrapper>
+void print_pairs_vector(const typename container_wrapper<std::pair<T, T> >::type& vec)
 {
     if (DEBUG == 1)
     {
         std::cout << GREEN << "Generated pairs: [";
-        for (size_t i = 0; i < vec.size(); ++i)
-        {
-            if (i != 0)
-                std::cout << ", ";
-            std::cout << vec[i];
-        }
-        std::cout << "]" << RESET_COLOR << std::endl;
-    }
-}
+        typedef typename container_wrapper<std::pair<T, T> >::type ConcreteContainerType;
+        typedef typename ConcreteContainerType::const_iterator const_iterator;
 
-template <int N>
-void print_smart(const std::vector<typename PairN<N>::type>& vec)
-{
-    if (DEBUG == 1)
-    {
-        std::cout << GREEN << "[";
-        for (size_t i = 0; i < vec.size(); ++i)
+        for (const_iterator it = vec.begin(); it != vec.end(); ++it)
         {
-            if (i != 0)
+            if (it != vec.begin())
+            {
                 std::cout << ", ";
-            std::cout << vec[i];
+            }
+            std::cout << *it;
         }
         std::cout << "]" << RESET_COLOR << std::endl;
     }
 }
 
 /****************************************************/
-/*         Template for constructors                */
+/*            flatten_nested_pair                   */
 /****************************************************/
 
-
-/****************************************************/
-/*         Template for constructors                */
-/****************************************************/
-
-template <int N, int MaxLevel>
-struct ConstructLevels 
-{
-    typedef typename PairN<N>::type CurrentLevelType;
-    typedef std::vector<CurrentLevelType> CurrentVectorType;
-    typedef typename PairN<MaxLevel>::type FinalLevelType;
-    typedef std::vector<FinalLevelType> FinalVectorType;
-    static FinalVectorType run(CurrentVectorType& current_vec, bool group, t_original_vector &vec) 
+template<int M, template <class> class container_wrapper>
+struct RecursiveFlattener {
+    static void flatten(typename PairN<M>::type& nested_pair,
+                        typename container_wrapper<typename PairN<0>::type>::type& flat_output)
     {
-        if(group)
-        {
-            if (DEBUG == 1){std::cout << "Recursion level: " << N << " -> " << N + 1 << std::endl;}
-            std::vector<int> reconstructed_current = reconstruct_from_nested_pairs<N>(current_vec);
-            save_rest_to_vector(vec.info, reconstructed_current, vec.leftovers, N+1);
-        }
-        typename std::vector<typename PairN<N+1>::type> next_level_vec = group_into_pairs<N>(current_vec, group);
-        if(group)
-        {
-            vec.used = reconstruct_from_nested_pairs<N+1>(next_level_vec);
-            if (DEBUG == 2){pretty_print(vec);}
-        }
-        (void)vec;
-        if(next_level_vec.size() == 1)
-        {
-            if (DEBUG == 2){std::cout << "i am grouped at " << N + 1 << std::endl;}
-            vec.used = reconstruct_from_nested_pairs<N+1>(next_level_vec);
-            restore_original_vector(vec);
-        }
-        return ConstructLevels<N + 1, MaxLevel>::run(next_level_vec, group, vec);
+        RecursiveFlattener<M - 1, container_wrapper>::flatten(nested_pair.first, flat_output);
+        RecursiveFlattener<M - 1, container_wrapper>::flatten(nested_pair.second, flat_output);
     }
 };
 
 
-template <int MaxLevel>
-struct ConstructLevels<MaxLevel, MaxLevel> 
-{
-    typedef typename PairN<MaxLevel>::type FinalLevelType;
-    typedef std::vector<FinalLevelType> FinalVectorType;
-
-    static FinalVectorType run(FinalVectorType& current_vec, bool group, t_original_vector &vec) 
+template<template <class> class container_wrapper>
+struct RecursiveFlattener<0, container_wrapper> {
+    static void flatten(typename PairN<0>::type& value,
+                        typename container_wrapper<typename PairN<0>::type>::type& flat_output)
     {
-        if (group)
-        {
-            if (DEBUG == 1){pretty_print(vec);}
-        }
-        (void)group;
-        return current_vec;
+        flat_output.push_back(value);
     }
 };
+
+template<int N, template <class> class container_wrapper>
+typename container_wrapper<typename PairN<0>::type>::type
+flatten_vector_of_nested_pairs(typename container_wrapper<typename PairN<N>::type>::type& nested_pairs_vector)
+{
+    typedef typename container_wrapper<typename PairN<0>::type>::type flat_container;
+    flat_container flattened_result;
+
+    typedef typename container_wrapper<typename PairN<N>::type>::type nested_container;
+    typedef typename nested_container::iterator it_in;
+
+    for (it_in it = nested_pairs_vector.begin(); it != nested_pairs_vector.end(); ++it)
+    {
+        typename PairN<N>::type& current_pair_object = *it;
+        RecursiveFlattener<N, container_wrapper>::flatten(current_pair_object, flattened_result);
+    }
+    return flattened_result;
+}
+
+template <template <typename> class container_wrapper>
+void restore_original_vector(t_data<typename container_wrapper<int>::type>& container)
+{
+    container.original_container.clear();
+    container.original_container.insert(container.original_container.begin(), container.leftovers.begin(), container.leftovers.end());
+    container.original_container.insert(container.original_container.begin(), container.used.begin(), container.used.end());
+    container.used.clear();
+}
+
+
+template <template <typename> class container_wrapper>
+void save_rest_to_vector(std::vector<t_level_info> levels, typename container_wrapper<int>::type& container, typename container_wrapper<int>::type& rest, int level)
+{
+    size_t leftovers = levels[level - 1].rest;
+    if (leftovers > 0 && leftovers <= container.size())
+    {
+        typename container_wrapper<int>::type slice(container.end() - leftovers, container.end());
+        rest.insert(rest.begin(), slice.begin(), slice.end());
+        container.erase(container.end() - leftovers, container.end());
+    }
+}
+
 
 /****************************************************/
 /*         Template for unwrapping                  */
 /****************************************************/
 
-template<int N, typename VecType, typename NextLevelVecType>
-void process_rest_and_reconstruct(VecType& vec, NextLevelVecType& next_level_vec)
+template<template <typename> class container_wrapper, int N>
+void wrap_up_with_remaining_pair(t_data<typename container_wrapper<int>::type>& container, typename container_wrapper<typename PairN<N-1>::type>::type &next_level_vec)
 {
-    std::vector<int> rest_vec;
-    rest_vec.insert(rest_vec.end(), vec.leftovers.begin(), vec.leftovers.begin() + vec.info[N - 1].rest);
-    vec.leftovers.erase(vec.leftovers.begin(), vec.leftovers.begin() + vec.info[N - 1].rest);
-
+    typename container_wrapper<int>::type rest_vec;
+    rest_vec.insert(rest_vec.end(), container.leftovers.begin(), container.leftovers.begin() + container.info[N - 1].rest);
+    container.leftovers.erase(container.leftovers.begin(), container.leftovers.begin() + container.info[N - 1].rest);
     if (!rest_vec.empty())
     {
         typedef typename PairN<N - 1>::type FinalPairType;
-        typedef std::vector<FinalPairType> FinalVectorType;
-        FinalVectorType final_result = ConstructLevels<0, N - 1>::run(rest_vec, false, vec);
+        typedef typename container_wrapper<FinalPairType>::type FinalVectorType;
+        FinalVectorType final_result = ConstructLevels<0, N - 1, container_wrapper>::run(rest_vec, false, container);
         next_level_vec.push_back(final_result[0]);
     }
 }
 
 
-template <int N>
-std::vector<typename PairN<N - 1>::type> unwrap_pairs(const std::vector<typename PairN<N>::type>& input)
+template <int N, template <typename> class container_wrapper>
+typename container_wrapper<typename PairN<N - 1>::type>::type unwrap_pairs( const typename container_wrapper<typename PairN<N>::type>::type& input)
 {
     typedef typename PairN<N>::type InputPair;
     typedef typename PairN<N - 1>::type OutputType;
-    typedef typename std::vector<InputPair>::const_iterator InputIterator;
-    std::vector<OutputType> output;
+    typedef typename container_wrapper<InputPair>::type::const_iterator InputIterator;
+    typedef typename container_wrapper<OutputType>::type OutputContainer;
+
+    OutputContainer output;
     for (InputIterator it = input.begin(); it != input.end(); ++it) 
     {
         output.push_back(it->first);
@@ -370,205 +514,38 @@ std::vector<typename PairN<N - 1>::type> unwrap_pairs(const std::vector<typename
 }
 
 
-template <int N, int TargetLevel>
+template <int N, int target_level, template <class> class container_wrapper>
 struct RecursiveUnwrapper 
 {
-    typedef typename PairN<N>::type CurrentLevelType;
-    typedef std::vector<CurrentLevelType> CurrentVectorType;
-    typedef typename PairN<N-1>::type PrevLevelType;
-    typedef std::vector<PrevLevelType> PrevVectorType;
-    typedef typename PairN<TargetLevel>::type FinalLevelType;
-    typedef std::vector<FinalLevelType> FinalVectorType;
+    typedef typename PairN<N>::type current_level_type;
+    typedef typename container_wrapper<current_level_type>::type current_vector_type;
+    typedef typename PairN<target_level>::type final_level_type;
+    typedef typename container_wrapper<final_level_type>::type final_vector_type;
 
-    static FinalVectorType run(const CurrentVectorType& current_vec, t_original_vector &vec) 
+    static final_vector_type run(const current_vector_type& current_data, t_data<typename container_wrapper<int>::type>& container) 
     {
-        if (DEBUG == 1){std::cout << "Recursion level: " << N << " -> " << N - 1 << std::endl;}
-        typename std::vector<typename PairN<N-1>::type> next_level_vec = unwrap_pairs<N>(current_vec);
-        process_rest_and_reconstruct<N>(vec, next_level_vec);
-        unwrapped_sort<N-1>(next_level_vec, vec);
-        next_level_vec = ConstructLevels<0, N - 1>::run(vec.used, false, vec);
-        if (DEBUG == 2){pretty_print(vec);}
-        return RecursiveUnwrapper<N - 1, TargetLevel>::run(next_level_vec, vec);
+        typedef typename container_wrapper<typename PairN<N - 1>::type>::type next_level_vec_type;
+        next_level_vec_type next_level_vec = unwrap_pairs<N, container_wrapper>(current_data);
+        wrap_up_with_remaining_pair<container_wrapper, N>(container, next_level_vec);
+        unwrapped_sort<N - 1, container_wrapper>(next_level_vec, container);
+        next_level_vec = ConstructLevels<0, N- 1, container_wrapper>::run(container.used, false, container);
+        return RecursiveUnwrapper<N - 1, target_level, container_wrapper>::run(next_level_vec, container);
     }
 };
 
-template <int TargetLevel>
-struct RecursiveUnwrapper<TargetLevel, TargetLevel> 
+
+template <int target_level, template <class> class container_wrapper>
+struct RecursiveUnwrapper<target_level, target_level, container_wrapper>
 {
-    typedef typename PairN<TargetLevel>::type FinalLevelType;
-    typedef std::vector<FinalLevelType> FinalVectorType;
-    static FinalVectorType run(const FinalVectorType& current_vec, t_original_vector &vec) 
+    typedef typename PairN<target_level>::type final_level_type;
+    typedef typename container_wrapper<final_level_type>::type final_vector_type;
+
+    static final_vector_type run(const final_vector_type& current_data, t_data<typename container_wrapper<int>::type>& container) 
     {
-        //process_rest_and_reconstruct<TargetLevel>(vec, current_vec);
-        //unwrapped_sort<0>(current_vec, vec);
-        //current_vec = ConstructLevels<0, TargetLevel>::run(vec.used, false, vec);
-        //pretty_print(vec);
-        (void)vec;
-        return current_vec;
+        (void)container;
+        return current_data;
     }
 };
-
-/****************************************************/
-/*       Template for vector reconstruction        */
-/****************************************************/
-
-template<int M>
-void unwrap_single_pair_recursive(typename PairN<M>::type& pair_to_unwrap, std::vector<int>& output_vec)
-{
-    unwrap_single_pair_recursive<M - 1>(pair_to_unwrap.first, output_vec);
-    unwrap_single_pair_recursive<M - 1>(pair_to_unwrap.second, output_vec);
-}
-
-
-template<>
-inline void unwrap_single_pair_recursive<0>(int& pair_to_unwrap, std::vector<int>& output_vec)
-{
-    output_vec.push_back(pair_to_unwrap);
-}
-
-template<int N>
-std::vector<int> reconstruct_from_nested_pairs(std::vector<typename PairN<N>::type>& input_vector)
-{
-    std::vector<int> result_vector;
-    typedef typename std::vector<typename PairN<N>::type>::iterator InputIter;
-    for (InputIter it = input_vector.begin(); it != input_vector.end(); ++it)
-    {
-        typename PairN<N>::type& current_pair_object = *it;
-        unwrap_single_pair_recursive<N>(current_pair_object, result_vector);
-    }
-    return result_vector;
-}
-
-/****************************************************/
-/*                Sort indexes                      */
-/****************************************************/
-template<int N>
-void print_pair_object(std::vector<PmergeMe<N> > vec)
-{
-    typename std::vector<PmergeMe<N> >::iterator it = vec.begin();
-    typename std::vector<PmergeMe<N> >::iterator end = vec.end();
-    while (it != end)
-    {
-        std::cout << *it << std::endl;
-        it++;
-    }
-}
-
-
-template<int N>
-void update_indexes(std::vector<PmergeMe<N> > &main, int insert_position, std::vector<PmergeMe<N> > &pend)
-{
-    typename std::vector<PmergeMe<N> >::iterator it = main.begin();
-    for (; it < main.end(); ++it)
-    {
-        update_index<N>(*it, pend);
-    }
-    (void)insert_position;
-    typename std::vector<PmergeMe<N> >::iterator it_p = pend.begin();
-    for (; it_p < pend.end(); it_p++)
-    {
-        update_index<N>(*it_p, main);
-    }
-}
-
-
-/****************************************************/
-/*         binary insertion                          */
-/****************************************************/
-
-template<int N>
-void update_index(PmergeMe<N> &obj, std::vector<PmergeMe<N> > &vec) 
-{
-    std::string find_pair_ab = (obj.get_ab() == "a") ? "b" : "a";
-    int position = obj.get_index_ab();
-    
-    PmergeMe<N> target(find_pair_ab, position);
-    typename std::vector<PmergeMe<N> >::iterator it = std::find(vec.begin(), vec.end(), target);
-    if (it != vec.end()) 
-    {
-        obj.set_index(std::distance(vec.begin(), it));
-    } else {
-        obj.set_index(-1);
-    }
-}
-
-template<int N>
-void binary_insertion(std::vector<PmergeMe<N> > &main, PmergeMe<N> &number, std::vector<PmergeMe<N> > &pend, int &total_comparisons)
-{
-    int comparison_count = 0;
-    int end_of_slice = number.get_index();
-    if (end_of_slice < 0)
-        end_of_slice = main.size();
-    int insert_num = number.get_num();
-    int start_of_slice = 0;
-
-    if (DEBUG == 2 || DEBUG == 1) {
-        std::cout << "\n--- Binary Insertion Start ---\n";
-        std::cout << number << std::endl;
-        std::cout << "Insert number: " << insert_num << "\n";
-        std::cout << "Search range: [0, " << number.get_index() << ")\n";
-        std::cout << "Initial main vector size: " << main.size() << "\n";
-    }
-
-    int position_to_insert = insert_position(main, start_of_slice, end_of_slice, insert_num, comparison_count);
-    total_comparisons += comparison_count;
-
-    if (DEBUG == 1 || DEBUG == 2)
-    {
-        std::cout << "\n[ Total comparisons (this step): " << comparison_count
-                  << " | Numbers to compare: " << end_of_slice << " ]" << std::endl;
-        std::cout << "[ Inserting at position: " << position_to_insert << " ]" << std::endl;
-    }
-
-    main.insert(main.begin() + position_to_insert, number);
-
-    if (DEBUG == 2) {
-        std::cout << "Updated main vector size: " << main.size() << "\n";
-        std::cout << "--- Binary Insertion End ---\n\n";
-    }
-
-    update_indexes(main, end_of_slice, pend);
-}
-
-
-template<int N>
-int insert_position(std::vector<PmergeMe<N> > &main, int start_of_slice, int end_of_slice, int insert_num, int &comparison_count)
-{
-    if (DEBUG == 2) {
-        std::cout << "Checking range [" << start_of_slice << ", " << end_of_slice << ")\n";
-    }
-
-    if (start_of_slice >= end_of_slice) {
-        if (DEBUG == 2) {
-            std::cout << "Base case hit. Insert position: " << start_of_slice << "\n";
-        }
-        return start_of_slice;  // Insert at the start position if the range is empty
-    }
-
-    comparison_count++;
-    int mid = (start_of_slice + end_of_slice) / 2;
-    int mid_num = main[mid].get_num();
-
-    if (DEBUG == 2) {
-        std::cout << "Comparing insert_num " << insert_num << " with mid_num " << mid_num << " at index " << mid << "\n";
-    }
-
-    // We want to find the first position where insert_num can be inserted
-    if (insert_num <= mid_num) {
-        if (DEBUG == 2) {
-            std::cout << "Going left or insert_num == mid_num: [" << start_of_slice << ", " << mid << ")\n";
-        }
-        return insert_position(main, start_of_slice, mid, insert_num, comparison_count);
-    }
-    else {
-        if (DEBUG == 2) {
-            std::cout << "Going right: [" << (mid + 1) << ", " << end_of_slice << ")\n";
-        }
-        return insert_position(main, mid + 1, end_of_slice, insert_num, comparison_count);
-    }
-}
-
-
 
 /****************************************************/
 /*         main and pend                            */
@@ -583,19 +560,19 @@ PmergeMe<N> pair_object(typename PairN<N>::type p, int c, std::string s, int i)
     return(PmergeMe<N> (first, num, s, c, i));
 }
 
-template<int N>
-void unwrapped_sort(std::vector<typename PairN<N>::type>& input, t_original_vector &vec)
+template<int N, template <class> class container_wrapper>
+void unwrapped_sort(const typename container_wrapper<typename PairN<N>::type>::type& input, t_data<typename container_wrapper<int>::type>& container)
 {
     typedef typename PairN<N>::type PairType;
     typedef PmergeMe<N> PmergeMeType;
-
-    std::vector<PmergeMeType> main;
-    std::vector<PmergeMeType> pend;
-    print_smart<N>(input);
+	
+    typedef typename container_wrapper<PmergeMeType>::type output_container_type;
+    output_container_type main;
+	output_container_type pend;
     if (input.size() != 1)
     {
-        typename std::vector<PairType>::iterator it = input.begin();
-        typename std::vector<PairType>::iterator end = input.end();
+		typename container_wrapper<PairType>::type::const_iterator it = input.begin();
+		typename container_wrapper<PairType>::type::const_iterator end = input.end();
 
         int c = 1;
         int i = 0;
@@ -607,7 +584,6 @@ void unwrapped_sort(std::vector<typename PairN<N>::type>& input, t_original_vect
             }
             pend.push_back(pair_object<N>(*it, c, "b", i));
             ++it;
-
             if (it != end)
             {
                 main.push_back(pair_object<N>(*it, c, "a", i));
@@ -616,97 +592,171 @@ void unwrapped_sort(std::vector<typename PairN<N>::type>& input, t_original_vect
             ++c;
             ++i;
         }
-        vec.total_comparisons+= chains_jakobstahl_sequence(main, pend);
-        reconstrust_main_vec(main, vec);
+        container.total_comparisons+= merge_by_jacobsthal_sequence<N, container_wrapper>(main, pend);
+        unpack_sorted_main<N, container_wrapper>(main, container);
     }
 }
 
 /****************************************************/
-/*         jakobstahls                              */
+/*         Merge insertion sort                     */
 /****************************************************/
 
-template<int N>
-void jakob_queue(std::vector<PmergeMe<N> > &main, std::vector<PmergeMe<N> > &pend, int jakob_prev_index, int jakob_index, int &total_comparisons)
+
+template<int N, template <class> class container_wrapper>
+int merge_by_jacobsthal_sequence(typename container_wrapper<PmergeMe<N> >::type &main, typename container_wrapper<PmergeMe<N> >::type &pend)
 {
-    int full_size = jakob_index - jakob_prev_index;
-    int i = 1;
-
-    // Create reversed queue
-    std::vector<int> reverse_queue;
-    for (int index = jakob_index - 1; index >= jakob_prev_index; --index)
-        reverse_queue.push_back(index);
-
-    // Process reversed queue
-    for (std::vector<int>::size_type k = 0; k < reverse_queue.size(); ++k)
-    {
-        int idx = reverse_queue[k];
-        PmergeMe<N> &item = pend[idx];
-        binary_insertion(main, item, pend, total_comparisons);
-        if (DEBUG == 1)
-        {
-            std::ostringstream oss;
-            oss << "Jacobstahl reversed. Queue: " << i << "/" << full_size;
-            print_chains(main, pend, oss.str());
-        }
-        ++i;
-    }
-}
-
-template<int N>
-int chains_jakobstahl_sequence(std::vector<PmergeMe<N> > &main, std::vector<PmergeMe<N> > &pend)
-{
-    int total_comparisons = 0;
-
+	int total_comparisons = 0;
     int limit = pend.size();
     int index_start = 0;
     int jacob_prev = 1;
     int jacob_curr = 1;
 
-    print_chains<N>(main, pend, "before changes");
-    jakob_queue<N>(main, pend, index_start, index_start + 1, total_comparisons);
+    process_jacobsthal_batch<N, container_wrapper>(main, pend, index_start, index_start + 1, total_comparisons);
     index_start++;
 
     int jacob_next = jacob_curr + 2 * jacob_prev;
     while (jacob_next <= limit)
     {
         int count = jacob_next - jacob_curr;
-        jakob_queue<N>(main, pend, index_start, index_start + count, total_comparisons);
+        process_jacobsthal_batch<N, container_wrapper>(main, pend, index_start, index_start + count, total_comparisons);
         index_start += count;
-
         jacob_prev = jacob_curr;
         jacob_curr = jacob_next;
         jacob_next = jacob_curr + 2 * jacob_prev;
     }
     if (index_start < limit)
     {
-        jakob_queue<N>(main, pend, index_start, limit, total_comparisons);
+        process_jacobsthal_batch<N, container_wrapper>(main, pend, index_start, limit, total_comparisons);
     }
-    if (DEBUG == 1) {std::cout << "\n[ TOTAL COMPARISONS: " << total_comparisons << " ]" << std::endl;}
     return (total_comparisons);
 }
 
-/****************************************************/
-/*        meta meta meta                            */
-/****************************************************/
-
-
-template <int MAX_RECURSION_DEPTH>
-void meta_recursive(t_original_vector &vec)
+template<int N, template <class> class container_wrapper>
+void process_jacobsthal_batch(typename container_wrapper<PmergeMe<N> >::type &main, typename container_wrapper<PmergeMe<N> >::type &pend,
+    int jakob_prev_index, int jakob_index, int &total_comparisons)
 {
-    enum { TARGET_UNWRAP_LEVEL = 0};
-    if (vec.original_vector.size() <= 1) 
-    {
-        std::cout << "Vector size is less then one" << std::endl;
-        return;
-    }
-    typedef typename PairN<MAX_RECURSION_DEPTH>::type FinalPairType;
-    typedef  std::vector<FinalPairType> FinalVectorType;
-    if (DEBUG == 1) {std::cout << BLUE << LINE << "wrapping numbers" << LINE <<  RESET_COLOR << std::endl;}
-    FinalVectorType final_result = ConstructLevels<0, MAX_RECURSION_DEPTH>::run(vec.original_vector, true, vec);
-    if (DEBUG == 1) {std::cout << BLUE << "\n "<< LINE << "vector after sorting" << LINE <<  RESET_COLOR << std::endl;}
-    if (DEBUG == 1) {std::cout << BLUE << "\n "<< LINE <<  "unwrapping numbers" << LINE <<  RESET_COLOR << std::endl;}
-    typedef typename PairN<TARGET_UNWRAP_LEVEL>::type UnwrappedElementType;
-    typedef std::vector<UnwrappedElementType> UnwrappedVectorType;
+	int full_size = jakob_index - jakob_prev_index;
+    int i = 1;
+    typename container_wrapper<typename PairN<0>::type>::type reverse_queue;
+    for (int index = jakob_index - 1; index >= jakob_prev_index; --index)
+        reverse_queue.push_back(index);
 
-    UnwrappedVectorType unwrapped_vec = RecursiveUnwrapper<MAX_RECURSION_DEPTH, TARGET_UNWRAP_LEVEL>::run(final_result, vec);
+    for (typename container_wrapper<typename PairN<0>::type>::type::size_type k = 0; k < reverse_queue.size(); ++k)
+    {
+        int idx = reverse_queue[k];
+        PmergeMe<N> &item = pend[idx];
+        insert_with_binary_search<N, container_wrapper>(main, item, pend, total_comparisons);
+		if (DEBUG == 1)
+        {
+            std::ostringstream oss;
+            oss << "Jacobstahl reversed. Queue: " << i << "/" << full_size;
+            print_chains<N, container_wrapper>(main, pend, oss.str());
+        }
+    }
+}
+
+template<int N, template <class> class container_wrapper>
+void insert_with_binary_search(typename container_wrapper<PmergeMe<N> >::type &main, PmergeMe<N> &number, typename container_wrapper<PmergeMe<N> >::type &pend, int &total_comparisons)
+{
+    int comparison_count = 0;
+    int end_of_slice = number.get_index();
+    if (end_of_slice < 0)
+        end_of_slice = main.size();
+
+    int insert_num = number.get_num();
+    int start_of_slice = 0;
+
+    int position_to_insert = find_insert_position<N, container_wrapper>(main, start_of_slice, end_of_slice, insert_num, comparison_count);
+    total_comparisons += comparison_count;
+
+    main.insert(main.begin() + position_to_insert, number);
+    update_container_indexes<N, container_wrapper>(main, pend, position_to_insert);
+}
+
+template<int N, template <class> class container_wrapper>
+int find_insert_position(typename container_wrapper<PmergeMe<N> >::type &main, int start_of_slice, int end_of_slice, int insert_num, int &comparison_count)
+{
+    if (start_of_slice >= end_of_slice)
+        return start_of_slice;
+    comparison_count++;
+    int mid = (start_of_slice + end_of_slice) / 2;
+    int mid_num = main[mid].get_num();
+
+    if (insert_num <= mid_num) {
+        return find_insert_position<N, container_wrapper>(main, start_of_slice, mid, insert_num, comparison_count);
+    } else {
+        return find_insert_position<N, container_wrapper>(main, mid + 1, end_of_slice, insert_num, comparison_count);
+    }
+}
+
+template<int N, template <class> class container_wrapper>
+void update_pair_index(PmergeMe<N> &obj, typename container_wrapper<PmergeMe<N> >::type &vec) 
+{
+    std::string find_pair_ab = (obj.get_ab() == "a") ? "b" : "a";
+    int position = obj.get_index_ab();
+    
+    PmergeMe<N> target(find_pair_ab, position);
+    typename container_wrapper<PmergeMe<N> >::type::iterator it = std::find(vec.begin(), vec.end(), target);
+    if (it != vec.end()) 
+    {
+        obj.set_index(std::distance(vec.begin(), it));
+    } else {
+        obj.set_index(-1);
+    }
+}
+
+
+template<int N, template <class> class container_wrapper>
+void update_container_indexes(typename container_wrapper<PmergeMe<N> >::type &main, typename container_wrapper<PmergeMe<N> >::type &pend, int position_to_insert)
+{
+    (void)main;
+    for (typename container_wrapper<PmergeMe<N> >::type::iterator it_p = pend.begin(); it_p != pend.end(); ++it_p)
+    {
+		if (it_p->get_index() >= position_to_insert)
+        {
+            it_p->set_index(it_p->get_index() + 1);
+        }
+    }
+}
+
+template<int N, template <class> class container_wrapper>
+void unpack_sorted_main(typename container_wrapper<PmergeMe<N> >::type &main, t_data<typename container_wrapper<int>::type>& container)
+{
+	typename container_wrapper<typename PairN<N>::type>::type unpacked_main;
+    for (size_t i = 0; i < main.size(); ++i)
+    {
+        unpacked_main.push_back(main[i].get_pair());
+    }
+	typename container_wrapper<typename PairN<0>::type>::type flattend_container;
+    flattend_container  = flatten_vector_of_nested_pairs<N, container_wrapper>(unpacked_main);
+    container.used.clear();
+    container.used.insert(container.used.begin(), flattend_container.begin(), flattend_container.end());
+}
+
+
+template<int N, template <class> class container_wrapper>
+void print_chains(typename container_wrapper<PmergeMe<N> >::type &main, typename container_wrapper<PmergeMe<N> >::type &pend, std::string sign)
+{
+    if (DEBUG == 1)
+    {
+        std::cout << RED << LINE << sign << LINE<< RESET_COLOR << std::endl;
+        std::cout << RED << "main: " << RESET_COLOR << std::endl;
+        print_pair_object<N, container_wrapper>(main);
+        std::cout << RED << "pend: " << RESET_COLOR << std::endl;
+        print_pair_object<N, container_wrapper>(pend);
+    }
+
+}
+
+template<int N, template <class> class container_wrapper>
+void print_pair_object(typename container_wrapper<PmergeMe<N> >::type &vec)
+{
+	typedef typename container_wrapper<PmergeMe<N> >::type Container;
+	typename Container::iterator it = vec.begin();
+	typename Container::iterator end = vec.end();
+    while (it != end)
+    {
+        std::cout << *it << std::endl;
+        it++;
+    }
 }

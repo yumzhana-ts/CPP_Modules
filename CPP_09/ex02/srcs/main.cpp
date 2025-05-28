@@ -6,84 +6,60 @@
 /*   By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:41:01 by ytsyrend          #+#    #+#             */
-/*   Updated: 2025/05/15 13:49:20 by ytsyrend         ###   ########.fr       */
+/*   Updated: 2025/05/19 22:20:00 by ytsyrend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/Pmerge_me.class.hpp"
 
-
-void print_vector_wi(const std::vector<int>& vec) 
+template <template <typename> class container_wrapper>
+bool is_sorted(typename container_wrapper<int>::type& vec, size_t original_size) 
 {
-    for (size_t i = 0; i < vec.size(); ++i) {
-        std::cout << vec[i];
-        if (i != vec.size() - 1) std::cout << " ";
-    }
-    std::cout << "\n";
-}
-
-bool is_sorted(const std::vector<int>& vec) {
-    for (size_t i = 1; i < vec.size(); ++i) {
-        if (vec[i - 1] > vec[i]) {
+    for (size_t i = 1; i < vec.size(); ++i) 
+    {
+        if (vec[i - 1] > vec[i]) 
+        {
             std::cout << "⛔️ Not sorted at index " << i - 1 << " and " << i << "!\n";
             return false;
         }
     }
-    std::cout << "✅ Vector is sorted!\n";
+    if(vec.size() == original_size)
+        std::cout << "✅ Vector is sorted!\n";
     return true;
 }
 
-void pmerge_me_dispatcher(t_original_vector &vec)
+
+template <template <typename> class Container_wrapper>
+void process_container(int argc, char **argv, bool print = false)
 {
-    int count = vec.original_vector.size();
-    int calculated_max_depth = recursion_levels(count);
-    
-    switch (calculated_max_depth) 
+    typedef typename Container_wrapper<int>::type ContainerType;
+    t_data<ContainerType> container;
+    setup_container<Container_wrapper>(argc, argv, container);
+    if (print == true)
     {
-        case 0:
-            meta_recursive<0>(vec);
-            break;
-        case 1:
-            meta_recursive<1>(vec);
-            break;
-        case 2:
-            meta_recursive<2>(vec);
-            break;
-        case 3:
-            meta_recursive<3>(vec);
-            break;
-        case 4:
-            meta_recursive<4>(vec);
-            break;
-        case 5:
-            meta_recursive<5>(vec);
-            break;
-        case 6:
-            meta_recursive<6>(vec);
-            break;
-        case 7:
-            meta_recursive<7>(vec);
-            break;
-        case 8:
-            meta_recursive<8>(vec);
-            break;
-        case 9:
-            meta_recursive<9>(vec);
-            break;
-        case 10:
-            meta_recursive<10>(vec);
-            break;
-        case 10:
-            meta_recursive<10>(vec);
-            break;
+        std::cout << "before:  ";
+        print_vector<int, Container_wrapper>(container.original_container);
     }
+    size_t original_size = container.original_container.size();
+
+    clock_t start_vector = clock();
+    dispatcher<Container_wrapper>(container);
+    clock_t end_vector = clock();
+    double duration_vector = double(end_vector - start_vector) / CLOCKS_PER_SEC;
+    if (print == true)
+    {
+        std::cout << "after:   ";
+        print_vector<int, Container_wrapper>(container.used);
+        is_sorted<Container_wrapper>(container.used, original_size);
+    }
+    std::cout << "Time to process a range of " << original_size << 
+    " elements with std::" << Container_wrapper<int>::name()<< " : " << std::fixed << std::setprecision(5) << duration_vector << " us\n";
 }
+
 
 int main(int argc, char **argv)
 {
-    t_original_vector vec;
-    parse_and_store_numbers(argc, argv, vec);
-    pmerge_me_dispatcher(vec);
-    print_vector_wi(vec.used);
+    process_container<VectorWrapper>(argc, argv, true);
+    process_container<DequeWrapper>(argc, argv, false);
     return 0;
 }

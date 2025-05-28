@@ -12,59 +12,39 @@
 
 #include "RPN.class.hpp"
 
-void test()
+void process_input(char **argv)
 {
     std::stack<int> super_stack;
-    RPN obj1(super_stack); // Default Constructor called
-    RPN obj2(obj1);        // Copy Constructor called
-    RPN obj3(super_stack);
-    obj3 = obj2; // Copy Assignment Operator called
-}
-
-int arithmetic_operation(char op, int num_1, int num_2)
-{
-    std::cout << GREEN << "[DEBUG] processing operation: ";
-    std::cout <<  num_1 << op << num_2 << RESET_COLOR << std::endl;
-    int result;
-    switch (op)
+    std::string string;
+    std::stringstream ss(argv[1]);
+    int result = 0;
+    while (std::getline(ss, string, ' '))
     {
-        case '-':
-            result = num_1 - num_2;
-            break;
-        case '+':
-            result = num_1 + num_2;
-            break;
-        case '/':
-            if (num_2 == 0)
-            {
-                throw std::runtime_error("Error: Division by zero");
-            }
-            result = num_1 / num_2;
-            break;
-        case '*':
-            result = num_1 * num_2;
-            break;
-    }
-    return (result);
-}
-
-int main(int argc, char **argv)
-{
-    if (argc == 2)
-    {
-        std::stack<int> super_stack;
-        std::string string;
-        std::stringstream ss(argv[1]);
-        int result = 0;
-        while (std::getline(ss, string, ' '))
+        if (string.size() == 1)
         {
-            if (string.size() == 1)
+            if (isdigit(string[0]))
             {
-                if (isdigit(string[0]))
+                super_stack.push(atol(string.c_str()));
+            }
+            else if ((string[0] == '-' || string[0] == '+' || string[0] == '/' || string[0] == '*'))
+            {
+                //TODO: supper ugly solution
+                //TODO: separate bad input from operations
+                //TODO: add check for incorrect values 
+                if (super_stack.size() < 2)
                 {
-                    super_stack.push(std::atol(string.c_str()));
+                    std::string string2;
+                    if (std::getline(ss, string2, ' ') && isdigit(string2[0]))
+                    {
+                        super_stack.push(atol(string2.c_str()));
+                    }
+                    else
+                    {
+                        std::cout << "Error" << std::endl;
+                        exit(1);
+                    }
                 }
-                else if ((string[0] == '-' || string[0] == '+' || string[0] == '/' || string[0] == '*') && super_stack.size() >= 2)
+                if (super_stack.size() >= 2)
                 {
                     try
                     {
@@ -78,17 +58,20 @@ int main(int argc, char **argv)
                     catch(std::exception& e)
                     {
                         std::cout << e.what() << std::endl;
-                        return(1);
-                    }
+                    }                    
                 }
             }
-            else
-            {
-                std::cout << RED << "Error" << RESET_COLOR << std::endl;
-                return (1);
-            }
         }
-        std::cout  << result  << std::endl;
+    }
+    std::cout << result << std::endl;
+}
+
+
+int main(int argc, char **argv)
+{
+    if (argc == 2)
+    {
+        process_input(argv);
     }
     else
     {

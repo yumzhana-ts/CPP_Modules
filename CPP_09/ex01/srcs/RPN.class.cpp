@@ -55,3 +55,43 @@ RPN& RPN::operator=(const RPN& rhs)
 /****************************************************
 *                 Memeber Functions                *
 ****************************************************/
+
+
+void test()
+{
+    std::stack<int> super_stack;
+    RPN obj1(super_stack); // Default Constructor called
+    RPN obj2(obj1);        // Copy Constructor called
+    RPN obj3(super_stack);
+    obj3 = obj2; // Copy Assignment Operator called
+}
+
+int arithmetic_operation(char op, int num_1, int num_2)
+{
+    if (DEBUG)
+    {
+        std::cout << GREEN << "[DEBUG] processing operation: ";
+        std::cout <<  num_1 << op << num_2 << RESET_COLOR << std::endl;
+    }
+    int result;
+    switch (op)
+    {
+        case '-':
+            result = num_1 - num_2;
+            break;
+        case '+':
+            result = num_1 + num_2;
+            break;
+        case '/':
+            if (num_2 == 0)
+            {
+                throw std::runtime_error("Error: Division by zero");
+            }
+            result = num_1 / num_2;
+            break;
+        case '*':
+            result = num_1 * num_2;
+            break;
+    }
+    return (result);
+}
