@@ -6,7 +6,7 @@
 /*   By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:24:01 by ytsyrend          #+#    #+#             */
-/*   Updated: 2025/04/02 21:17:51 by ytsyrend         ###   ########.fr       */
+/*   Updated: 2025/05/29 16:45:51 by ytsyrend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,10 @@ public:
 
 int arithmetic_operation(char op, int num_1, int num_2);
 void test();
+void process_operations(std::stack<int> &super_stack, std::string &string, int &result);
+bool is_operation(char c);
 
-#define DEBUG 1
+#define DEBUG 0
 // Define ANSI escape sequences for colors
 #define RESET_COLOR "\033[0m"
 #define BLACK "\033[0;30m"

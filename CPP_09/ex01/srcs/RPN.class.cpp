@@ -6,7 +6,7 @@
 /*   By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:24:16 by ytsyrend          #+#    #+#             */
-/*   Updated: 2025/04/02 13:02:17 by ytsyrend         ###   ########.fr       */
+/*   Updated: 2025/05/29 13:28:21 by ytsyrend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,7 @@ int arithmetic_operation(char op, int num_1, int num_2)
             break;
         case '/':
             if (num_2 == 0)
-            {
                 throw std::runtime_error("Error: Division by zero");
-            }
             result = num_1 / num_2;
             break;
         case '*':
@@ -94,4 +92,25 @@ int arithmetic_operation(char op, int num_1, int num_2)
             break;
     }
     return (result);
+}
+
+bool is_operation(char string)
+{
+    if(string == '-' || string == '+' || string == '/' || string == '*')
+        return true;
+    return false;
+}
+
+void process_operations(std::stack<int> &super_stack, std::string &string, int &result)
+{
+    if (super_stack.size() < 2)
+        throw std::runtime_error("Error");
+    int num_1 = super_stack.top();
+    super_stack.pop();
+
+    int num_2 = super_stack.top();
+    super_stack.pop();
+
+    result = arithmetic_operation(string[0], num_2, num_1);
+    super_stack.push(result);
 }
