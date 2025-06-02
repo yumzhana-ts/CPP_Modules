@@ -6,7 +6,7 @@
 /*   By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:24:01 by ytsyrend          #+#    #+#             */
-/*   Updated: 2025/05/16 16:10:47 by ytsyrend         ###   ########.fr       */
+/*   Updated: 2025/06/02 13:47:01 by ytsyrend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 #include <deque>
 #include <cmath>
 #include <iterator>
+
+#define MAX_ALLOWED 4000
 
 template <int N>
 struct PairN;

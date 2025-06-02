@@ -6,7 +6,7 @@
 /*   By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:24:16 by ytsyrend          #+#    #+#             */
-/*   Updated: 2025/05/19 11:02:49 by ytsyrend         ###   ########.fr       */
+/*   Updated: 2025/06/02 14:12:21 by ytsyrend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,23 @@
 template <template <typename> class container_wrapper>
 void add_numbers_to_container(int argc, char** argv, typename container_wrapper<int>::type& container)
 {
-    if (argc != 2)
-        error_and_exit("Error: Invalid number of arguments");
+    if (argc < 2)
+        error_and_exit("Error: No numbers provided");
 
-    add_numbers_from_string<container_wrapper>(std::string(argv[1]), container);
-
+    if (argc == 2)
+    {
+        add_numbers_from_string<container_wrapper>(std::string(argv[1]), container);
+    }
+    else
+    {
+        std::string all_numbers;
+        for (int i = 1; i < argc; ++i)
+        {
+            all_numbers += argv[i];
+            all_numbers += " ";
+        }
+        add_numbers_from_string<container_wrapper>(all_numbers, container);
+    }
     if (container.size() == 1)
     {
         std::cout << container[0] << std::endl;
@@ -61,7 +73,7 @@ void add_numbers_from_string(const std::string& input, typename container_wrappe
             std::string msg = std::string("Error: Invalid input '") + token + "'";
             error_and_exit(msg);
         }
-        container.push_back(convert_to_int(token)); // или convert_to<T> если реализуешь
+        container.push_back(convert_to_int(token));
     }
 }
 

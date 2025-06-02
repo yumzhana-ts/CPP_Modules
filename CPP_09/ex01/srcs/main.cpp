@@ -6,7 +6,7 @@
 /*   By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:41:01 by ytsyrend          #+#    #+#             */
-/*   Updated: 2025/05/29 16:38:29 by ytsyrend         ###   ########.fr       */
+/*   Updated: 2025/05/30 11:31:28 by ytsyrend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool is_allowed_char(char c)
     return false;
 }
 
-void validate_only_spaces(const std::stringstream &ss)
+void validate_input(const std::stringstream &ss)
 {
     std::string raw = ss.str();
     for (size_t i = 0; i < raw.size(); ++i)
@@ -34,7 +34,7 @@ int process_input(std::stringstream &ss)
     std::stack<int> super_stack;
     std::string string;
     int result = 0;
-    validate_only_spaces(ss);
+    validate_input(ss);
     while (std::getline(ss, string, ' '))
     {
         if (isdigit(string[0]))

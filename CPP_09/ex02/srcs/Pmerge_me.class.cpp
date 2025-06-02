@@ -6,7 +6,7 @@
 /*   By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:24:16 by ytsyrend          #+#    #+#             */
-/*   Updated: 2025/05/15 20:59:39 by ytsyrend         ###   ########.fr       */
+/*   Updated: 2025/06/02 14:22:13 by ytsyrend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,12 @@ void print_usage_info(const std::vector<t_level_info> &usage_info, int total)
     std::cout << "\n" << RESET_COLOR <<  std::endl;
 }
 
-/****************************************************/
-/*                    Meta                          */
-/****************************************************/
+int F(int n)
+{
+    int sum = 0;
+    for (int k = 1; k <= n; ++k) {
+        double value = (3.0 / 4.0) * k;
+        sum += static_cast<int>(ceil(log2(value)));
+    }
+    return sum;
+}

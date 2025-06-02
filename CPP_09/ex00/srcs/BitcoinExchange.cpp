@@ -6,7 +6,7 @@
 /*   By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:24:16 by ytsyrend          #+#    #+#             */
-/*   Updated: 2025/03/31 19:59:30 by ytsyrend         ###   ########.fr       */
+/*   Updated: 2025/06/02 02:04:31 by ytsyrend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,16 +128,20 @@ void store_db(std::ifstream &ifs, char c, BitcoinExchange &btc)
     //std::cout << btc;
 }
 
+inline bool is_title_line(const std::string &line)
+{
+    return line.find("date") != std::string::npos || line.find("value") != std::string::npos;
+}
+
 void evaluate_prices(std::ifstream &ifs, char c, BitcoinExchange &btc)
 {
     std::string line;
-    std::getline(ifs, line);
     while (std::getline(ifs, line))
     {
-        process_line(line, c, btc);
+        if(!is_title_line(line))
+            process_line(line, c, btc);
     }
 }
-
 
 void process_line(const std::string &line, char c, BitcoinExchange &btc)
 {
@@ -149,7 +153,6 @@ void process_line(const std::string &line, char c, BitcoinExchange &btc)
         std::cout << "Error: bad input => " << line << std::endl;
         return;
     }
-    
     float num = static_cast<float>(std::atof(value.c_str()));
     if (num < 0)
     {

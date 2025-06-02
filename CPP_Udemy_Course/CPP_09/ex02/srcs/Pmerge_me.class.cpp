@@ -6,7 +6,7 @@
 /*   By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:24:16 by ytsyrend          #+#    #+#             */
-/*   Updated: 2025/05/15 13:17:45 by ytsyrend         ###   ########.fr       */
+/*   Updated: 2025/06/02 14:07:07 by ytsyrend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,6 +199,11 @@ void add_numbers_to_vector(int argc, char **argv, std::vector<int>& vec)
         {
             std::cout << vec[0] << std::endl;
             exit(0);          
+        }
+        else if (vec.size() > MAX_ALLOWED)
+        {
+            std::cerr << RED << "Error: Max allowed number: " << MAX_ALLOWED << RESET_COLOR << std::endl;
+            exit(1);          
         }
     }
     else

@@ -6,7 +6,7 @@
 /*   By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:41:01 by ytsyrend          #+#    #+#             */
-/*   Updated: 2025/05/19 22:20:00 by ytsyrend         ###   ########.fr       */
+/*   Updated: 2025/06/02 14:34:29 by ytsyrend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ bool is_sorted(typename container_wrapper<int>::type& vec, size_t original_size)
         }
     }
     if(vec.size() == original_size)
-        std::cout << "✅ Vector is sorted!\n";
+        std::cout << "✅ Conatiner has same size and is sorted!\n";
     return true;
 }
 
@@ -50,7 +50,16 @@ void process_container(int argc, char **argv, bool print = false)
     {
         std::cout << "after:   ";
         print_vector<int, Container_wrapper>(container.used);
-        is_sorted<Container_wrapper>(container.used, original_size);
+        if (SUPER_DEBUG)
+        {
+            is_sorted<Container_wrapper>(container.used, original_size);
+            if (container.total_comparisons < F(container.total))
+            {
+                std::cout << "✅ Number of comparisons less then expected!" <<
+                "(Total comparisons: " << container.total_comparisons << " | ";
+                std::cout << "Max allowed F(" << container.total << ") = " << F(container.total) << ")" << std::endl;
+            }
+        }
     }
     std::cout << "Time to process a range of " << original_size << 
     " elements with std::" << Container_wrapper<int>::name()<< " : " << std::fixed << std::setprecision(5) << duration_vector << " us\n";

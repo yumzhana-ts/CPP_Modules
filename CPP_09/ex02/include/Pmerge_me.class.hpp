@@ -6,7 +6,7 @@
 /*   By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:24:01 by ytsyrend          #+#    #+#             */
-/*   Updated: 2025/05/19 21:45:23 by ytsyrend         ###   ########.fr       */
+/*   Updated: 2025/06/02 14:25:14 by ytsyrend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 #include <cstdlib>
 #include <limits.h>
 #include <string>
+#define MAX_ALLOWED 4000
 
 template <int N>
 struct PairN;
@@ -247,8 +248,10 @@ bool is_valid_number(const std::string& s);
 
 std::vector<t_level_info> get_usage_up_to_max_level(int total);
 
+int F(int n);
 
 #define DEBUG 0
+#define SUPER_DEBUG 1
 // Define ANSI escape sequences for colors
 #define RESET_COLOR "\033[0m"
 #define BLACK "\033[0;30m"

@@ -6,7 +6,7 @@
 /*   By: ytsyrend <ytsyrend@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:24:16 by ytsyrend          #+#    #+#             */
-/*   Updated: 2025/05/29 13:28:21 by ytsyrend         ###   ########.fr       */
+/*   Updated: 2025/05/31 10:05:58 by ytsyrend         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,25 +73,32 @@ int arithmetic_operation(char op, int num_1, int num_2)
         std::cout << GREEN << "[DEBUG] processing operation: ";
         std::cout <<  num_1 << op << num_2 << RESET_COLOR << std::endl;
     }
-    int result;
+    long long temp_result;
+
     switch (op)
     {
-        case '-':
-            result = num_1 - num_2;
-            break;
         case '+':
-            result = num_1 + num_2;
+            temp_result = static_cast<long long>(num_1) + num_2;
+            break;
+        case '-':
+            temp_result = static_cast<long long>(num_1) - num_2;
+            break;
+        case '*':
+            temp_result = static_cast<long long>(num_1) * num_2;
             break;
         case '/':
             if (num_2 == 0)
-                throw std::runtime_error("Error: Division by zero");
-            result = num_1 / num_2;
+                throw std::runtime_error("Division by zero");
+            temp_result = num_1 / num_2;
             break;
-        case '*':
-            result = num_1 * num_2;
-            break;
+        default:
+            throw std::runtime_error("Unknown operator");
     }
-    return (result);
+
+    if (temp_result > INT_MAX || temp_result < INT_MIN)
+        throw std::runtime_error("Integer overflow");
+
+    return static_cast<int>(temp_result);
 }
 
 bool is_operation(char string)
